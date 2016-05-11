@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Monopoly {
+        private Arraylist<Carreau> carreaux;
+    
 	public void CreerPlateau(String dataFilename){
 		buildGamePlateau(dataFilename);
 	}
