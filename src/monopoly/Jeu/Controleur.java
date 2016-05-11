@@ -1,14 +1,12 @@
 package monopoly.Jeu;
 
 public class Controleur {
-	public IHM _ihm;
-	public Monopoly _monopoly;
+	public IHM ihm;
+	public Monopoly monopoly;
 
-	public void jouerUnCoup(Joueur aJ) {
-		throw new UnsupportedOperationException();
+	public void jouerUnCoup(Joueur J) {
 	}
 
-	private Carreau lancerDésAvancer(Joueur aJ) {
-		throw new UnsupportedOperationException();
+	private Carreau lancerDésAvancer(Joueur J) {
 	}
 }
