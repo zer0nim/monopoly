@@ -6,19 +6,15 @@ public class PlateauUtilitaire {
     private static final Random RANDOM = new Random();
 
     
-    private static int De3() {
-        return RANDOM.nextInt(3)+1;
+    private static int De6() {
+        return RANDOM.nextInt(6)+1;
     }
     
     
-    public static int De3(int nbdes) {
-        int degatsub = 0;
-        for(int i = 1; i < nbdes; i++){
-            degatsub += De3();
-        }
-        return degatsub;
+    public static int LancerDe() {
+        int de = 0;
+        de += De6();
+        return de;
     }  
-    
-    
     
 }
