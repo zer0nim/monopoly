@@ -26,6 +26,6 @@ public class Controleur {
 	}
 
 	private Carreau lancerDésAvancer(Joueur J) {
-            LancerDe();
+            setPositionCourante(Utils.PlateauUtilitaire.LancerDe());
 	}
 }
