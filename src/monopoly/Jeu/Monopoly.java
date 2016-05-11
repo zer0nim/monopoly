@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Controleur {
-	public CreerPlateau(String dataFilename){
+public class Monopoly {
+	public void CreerPlateau(String dataFilename){
 		buildGamePlateau(dataFilename);
 	}
 	
