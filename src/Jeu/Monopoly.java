@@ -9,7 +9,7 @@ import Data.Carreau;
 
 
 public class Monopoly {
-        private Arraylist<Carreau> carreaux;
+        private ArrayList<Carreau> carreaux;
     
 	public void CreerPlateau(String dataFilename){
 		buildGamePlateau(dataFilename);
