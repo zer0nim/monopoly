@@ -1,5 +1,5 @@
 package Data;
 
-public class Gare {
+public class Gare extends Biens_achetables{
 	
 }
