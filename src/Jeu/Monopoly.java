@@ -46,7 +46,7 @@ public class Monopoly {
 	
 	private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
 	{
-		ArrayList<String[]> data = new ArrayList<String[]>();
+		ArrayList<String[]> data = new ArrayList<>();
 		
 		BufferedReader reader  = new BufferedReader(new FileReader(filename));
 		String line = null;
