@@ -1,4 +1,4 @@
-package monopoly.Data;
+package Data;
 
 import java.util.ArrayList;
 
