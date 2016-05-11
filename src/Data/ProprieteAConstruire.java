@@ -1,5 +1,5 @@
 package Data;
 
-public class ProprieteAConstruire {
+public class ProprieteAConstruire extends Biens_achetables{
 	
 }
