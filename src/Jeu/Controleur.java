@@ -6,8 +6,10 @@ public class Controleur {
 	public Monopoly monopoly;
 
 	public void jouerUnCoup(Joueur J) {
+
 	}
 
 	private Carreau lancerDésAvancer(Joueur J) {
+            LancerDe();
 	}
 }
