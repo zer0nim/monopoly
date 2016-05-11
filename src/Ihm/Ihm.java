@@ -1,4 +1,4 @@
-package Data;
+package Ihm;
 
 public class Ihm {
     

@@ -1,5 +1,5 @@
 package Jeu;
-import Data.Ihm;
+import Ihm.Ihm;
 
 public class Controleur {
 	public Ihm ihm;
