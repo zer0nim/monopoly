@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import Data.Carreau;
 
 public class Monopoly {
         private Arraylist<Carreau> carreaux;
