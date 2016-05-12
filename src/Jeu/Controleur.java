@@ -13,6 +13,7 @@ public class Controleur {
 
     private Carreau lancerDésAvancer(Joueur j){
         j.setPositionCourante(PlateauUtilitaire.LancerDe());
+	return(j.getPositionCourante());
     }
     
     public Ihm getIhm() {
