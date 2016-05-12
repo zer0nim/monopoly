@@ -9,8 +9,8 @@ public class Controleur {
 
     }
 
-    private Carreau lancerDésAvancer(Joueur J) {
-        setPositionCourante(Utils.PlateauUtilitaire.LancerDe());
+    private Carreau lancerDésAvancer(Joueur J){
+        getMonopoly().setPositionCourante(Utils.PlateauUtilitaire.LancerDe());
     }
     
     public Ihm getIhm() {
