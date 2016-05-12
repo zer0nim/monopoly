@@ -62,20 +62,20 @@ public class Monopoly {
 		for(int i=0; i<data.size(); ++i){
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("P") == 0){
-				System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new ProprieteAConstruire(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe( CouleurPropriete.valueOf( data.get(i)[3] ) )  )	    );
+				carreaux.add(new ProprieteAConstruire(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3]))  )	    );
+				//public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("G") == 0){
-				System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new Gare(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))    );
+				carreaux.add(new Gare(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )    );
+				//public Gare(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("C") == 0){
-				System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new Compagnie(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))	);
+				carreaux.add(	new Compagnie(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )	);
+				//public Compagnie(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("AU") == 0){
-				System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new AutreCarreau(data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))    );
+				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )    );
+				//public AutreCarreau(int numero, String nomCarreau, Groupe groupe) {
 			}
 			else
 				System.err.println("[buildGamePleateau()] : Invalid Data type");
