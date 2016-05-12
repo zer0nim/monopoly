@@ -1,16 +1,18 @@
 package Jeu;
-import Ihm.Ihm;
+import Ihm.*;
+import Data.*;
+import Utils.*;
 
 public class Controleur {
     public Ihm ihm;
     public Monopoly monopoly;
 
-    public void jouerUnCoup(Joueur J) {
-
+    public void jouerUnCoup(Joueur j) {
+	lancerDésAvancer(j);
     }
 
-    private Carreau lancerDésAvancer(Joueur J){
-        getMonopoly().setPositionCourante(Utils.PlateauUtilitaire.LancerDe());
+    private Carreau lancerDésAvancer(Joueur j){
+        j.setPositionCourante(PlateauUtilitaire.LancerDe());
     }
     
     public Ihm getIhm() {
