@@ -17,6 +17,7 @@ public class Controleur {
 	}
 	else{ //le Joueur est sur un AutreCarreau
 	    
+	    
 	}
     }
 
