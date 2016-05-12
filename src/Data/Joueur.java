@@ -44,8 +44,8 @@ public class Joueur {
         return positionCourante;
     }
 
-    public void setPositionCourante(int numCareau) {
-        this.positionCourante = ;
+    public void setPositionCourante(Carreau c) {
+        this.positionCourante = c;
     }
 
     public ArrayList<ProprieteAConstruire> getProprietés() {
