@@ -14,7 +14,7 @@ public class Biens_achetables extends Carreau{
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
-		Ihm.propositionAchat(j);
+		Ihm.propositionAchat(j, this);
 	    }
 	}
     }
