@@ -66,16 +66,16 @@ public class Monopoly {
 				//public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("G") == 0){
-				carreaux.add(new Gare(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )    );
-				//public Gare(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
+				carreaux.add(new Gare(Integer.parseInt(data.get(i)[3]), Integer.parseInt(data.get(i)[1]), data.get(i)[2])    );
+				//public Gare(int prixAchat, int numero, String nomCarreau) {
 			}
 			else if(caseType.compareTo("C") == 0){
-				carreaux.add(	new Compagnie(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )	);
+				carreaux.add(new Compagnie(Integer.parseInt(data.get(i)[3]), Integer.parseInt(data.get(i)[1]), data.get(i)[2])    );
 				//public Compagnie(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("AU") == 0){
-				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])) )    );
-				//public AutreCarreau(int numero, String nomCarreau, Groupe groupe) {
+				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2])    );
+				//public AutreCarreau(int numero, String nomCarreau) {
 			}
 			else
 				System.err.println("[buildGamePleateau()] : Invalid Data type");

@@ -4,8 +4,8 @@ public class Gare extends Biens_achetables{
 
     
     
-    public Gare(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
-	super(prixAchat, prixPassage, numero, nomCarreau, groupe);
+    public Gare(int prixAchat, int numero, String nomCarreau) {
+	super(prixAchat, 25, numero, nomCarreau, null);
     }
     
     
