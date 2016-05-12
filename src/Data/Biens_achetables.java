@@ -2,23 +2,20 @@ package Data;
 
 import Ihm.*;
 
-public class Biens_achetables extends Carreau{
+public abstract class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
 
-    public Biens_achetables(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
+    public Biens_achetables(int prixAchat, int numero, String nomCarreau, Groupe groupe) {
 	super(numero, nomCarreau, groupe);
 	this.prixAchat = prixAchat;
-	this.prixPassage = prixPassage;
-	this.propriétaire = propriétaire;
-    }
-
-    
+    }	
+	
     @Override
     public void action(Joueur j){
 	if(getPropriétaire() != null){ //bien non possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
-		j.payerLoyer(getPrixPassage()); //j paye le loyer
+		j.payerLoyer(CalculLoyer()); //j paye le loyer
 	    }
 	}
 	else{
@@ -38,7 +35,6 @@ public class Biens_achetables extends Carreau{
     }
        
 
-
     
     
     
@@ -51,14 +47,6 @@ public class Biens_achetables extends Carreau{
 
     public void setPrixAchat(int pa) {
 	this.prixAchat = pa;
-    }
-
-    public int getPrixPassage() {
-	return prixPassage;
-    }
-
-    public void setPrixPassage(int pp) {
-	this.prixPassage = pp;
     }
 
     public Joueur getPropriétaire() {
