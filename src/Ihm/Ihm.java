@@ -9,10 +9,13 @@ public class Ihm {
     public static void affBiens(Carreau c){
 	if(c.getClass().getSimpleName().equals("ProprieteAConstruire") || c.getClass().getSimpleName().equals("Gare") || c.getClass().getSimpleName().equals("Compagnie"))
 	    affBiens_achetables((Biens_achetables)c);
+	else
+	    affAutreCarreau((AutreCarreau)c);
     }
     
     public static void affBiens_achetables(Biens_achetables ba){
 	System.out.println("------------------------------------------");
+	System.out.println("Numéro: " + ba.getNumero());
 	System.out.println("Nom: " + ba.getNomCarreau());
 	if(ba.getGroupe() != null)
 	    System.out.println("Groupe: " + ba.getGroupe().getCouleur().toString());
@@ -21,8 +24,10 @@ public class Ihm {
     }
     
     public static void affAutreCarreau(AutreCarreau ac){
-	    System.out.println("AutreCarreau");
-	    //A COMPLETER
+	System.out.println("------------------------------------------");
+	System.out.println("Numéro: " + ac.getNumero());
+	System.out.println("Nom: " + ac.getNomCarreau() + "\n");
+
     }
     
     

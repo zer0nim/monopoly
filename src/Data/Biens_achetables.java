@@ -15,7 +15,8 @@ public abstract class Biens_achetables extends Carreau{
     public void action(Joueur j){
 	if(getPropriétaire() != null){ //bien non possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
-		j.payerLoyer(CalculLoyer()); //j paye le loyer
+		//j.payerLoyer(CalculLoyer()); //j paye le loyer
+		System.out.print("rien");
 	    }
 	}
 	else{
