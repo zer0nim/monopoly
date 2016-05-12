@@ -34,31 +34,7 @@ public class Monopoly {
     {
 	try{
 		ArrayList<String[]> data = readDataFile(dataFilename, ",");
-			
-		for(int i=0; i<data.size(); ++i){
-			String caseType = data.get(i)[0];
-			if(caseType.compareTo("P") == 0){
-				System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-			}
-			else if(caseType.compareTo("G") == 0){
-				System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-			}
-			else if(caseType.compareTo("C") == 0){
-				System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-			}
-			else if(caseType.compareTo("AU") == 0){
-				System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-			}
-			else
-				System.err.println("[buildGamePleateau()] : Invalid Data type");
-		}
-		
-		
-	//TODO: create cases instead of displaying TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO
-	//TODO: create cases instead of displaying TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO TTTTTOOOOO_DDDDDDDDDDOOOOOOOOOOOOOOOOOOOOOOO
 
-				
-		
 		for(int i=0; i<data.size(); ++i){
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("P") == 0){
