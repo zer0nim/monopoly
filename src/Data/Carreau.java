@@ -5,13 +5,18 @@ public abstract class Carreau {
     private String nomCarreau;
     public Groupe groupe;
 
+    public Carreau(int numero, String nomCarreau, Groupe groupe) {
+	this.numero = numero;
+	this.nomCarreau = nomCarreau;
+	this.groupe = groupe;
+    }
+    
+    
+    
     
     
     public abstract void action(Joueur j);
 
-    
-    
-    
     
     //v--getters setters--v
 
