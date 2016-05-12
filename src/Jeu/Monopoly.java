@@ -69,32 +69,20 @@ public class Monopoly {
 	return data;
     }
 
-    /**
-     * @return the carreaux
-     */
     public ArrayList<Carreau> getCarreaux() {
 	return carreaux;
     }
 
-    /**
-     * @param carreaux the carreaux to set
-     */
-    public void setCarreaux(ArrayList<Carreau> carreaux) {
-	this.carreaux = carreaux;
+    public void setCarreaux(Carreau c) {
+	getCarreaux().add(c);
     }
 
-    /**
-     * @return the joueurs
-     */
     public ArrayList<Joueur> getJoueurs() {
 	return joueurs;
     }
 
-    /**
-     * @param joueurs the joueurs to set
-     */
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
-	this.joueurs = joueurs;
+    public void setJoueurs(Joueur j) {
+	getJoueurs().add(j);
     }
 }
 
