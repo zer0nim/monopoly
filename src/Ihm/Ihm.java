@@ -4,13 +4,20 @@ import Data.*;
 import java.util.Scanner;
 
 public class Ihm {
-        
+    
+    
+    public static void affBiens(Carreau c){
+	if(c.getClass().getSimpleName().equals("ProprieteAConstruire") || c.getClass().getSimpleName().equals("Gare") || c.getClass().getSimpleName().equals("Compagnie"))
+	    affBiens_achetables((Biens_achetables)c);
+    }
+    
     public static void affBiens_achetables(Biens_achetables ba){
+	System.out.println("------------------------------------------");
 	System.out.println("Nom: " + ba.getNomCarreau());
-	System.out.println("Groupe: " + ba.getGroupe());
+	if(ba.getGroupe() != null)
+	    System.out.println("Groupe: " + ba.getGroupe().getCouleur().toString());
 	System.out.println("Prix d'Achat: " + ba.getPrixAchat());
-	System.out.println("Prix de Passage: " + ba.getPrixPassage());
-	System.out.println("Propriétaire: " + ba.getPropriétaire());
+	System.out.println("Propriétaire: " + ba.getPropriétaire() + "\n");
     }
     
     public static void affAutreCarreau(AutreCarreau ac){
