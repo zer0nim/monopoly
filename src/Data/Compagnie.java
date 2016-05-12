@@ -3,8 +3,8 @@ package Data;
 
 public class Compagnie extends Biens_achetables{
 
-    public Compagnie(int prixAchat, int prixPassage, Joueur propriétaire, int numero, String nomCarreau, Groupe groupe) {
-	super(prixAchat, prixPassage, propriétaire, numero, nomCarreau, groupe);
+    public Compagnie(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
+	super(prixAchat, prixPassage, numero, nomCarreau, groupe);
     }
     
     

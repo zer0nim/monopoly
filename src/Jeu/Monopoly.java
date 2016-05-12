@@ -11,16 +11,22 @@ import Data.*;
 public class Monopoly {
     private ArrayList<Carreau> carreaux;
     private ArrayList<Joueur> joueurs;
+    private ArrayList<Groupe> groupes;
+    
     
     
     public Monopoly() {
 	carreaux = new ArrayList<>();
 	joueurs = new ArrayList<>();
+	groupes = new ArrayList<>();
 	
 	CreerPlateau("src\\main\\data.txt");
     }
 
     public void CreerPlateau(String dataFilename){
+	for(CouleurPropriete c : CouleurPropriete.values()){
+	    getGroupes().add(new Groupe(c));
+	}
 	buildGamePlateau(dataFilename);
     }
 	
@@ -57,74 +63,23 @@ public class Monopoly {
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("P") == 0){
 				System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new ProprieteAConstruire(int prixAchat, int prixPassage, Joueur propriétaire, int numero, String nomCarreau, Groupe groupe) )
+				carreaux.add(	new ProprieteAConstruire(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe( CouleurPropriete.valueOf( data.get(i)[3] ) )  )	    );
 			}
 			else if(caseType.compareTo("G") == 0){
 				System.out.println("Gare :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new Gare(int prixAchat, int prixPassage, Joueur propriétaire, int numero, String nomCarreau, Groupe groupe)    )
+				carreaux.add(	new Gare(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))    );
 			}
 			else if(caseType.compareTo("C") == 0){
 				System.out.println("Compagnie :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new Compagnie(int prixAchat, int prixPassage, Joueur propriétaire, int numero, String nomCarreau, Groupe groupe)	)
+				carreaux.add(	new Compagnie(data.get(i)[4], data.get(i)[5], data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))	);
 			}
 			else if(caseType.compareTo("AU") == 0){
 				System.out.println("Case Autre :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-				carreaux.add(	new AutreCarreau(int numero, String nomCarreau, Groupe groupe)    )
+				carreaux.add(	new AutreCarreau(data.get(i)[1], data.get(i)[2], getGroupe(data.get(i)[3]))    );
 			}
 			else
 				System.err.println("[buildGamePleateau()] : Invalid Data type");
 		}
-							/*
-							run:
-						Case Autre :	Départ	@ case 1
-						Propriété :	Bd de Belleville	@ case 2
-						[buildGamePleateau()] : Invalid Data type
-						Case Autre :	Caisse de Communauté	@ case 3
-						Propriété :	Rue Lecourbe	@ case 4
-						Case Autre :	Impôt sur le revenu	@ case 5
-						Gare :	Gare Montparnasse	@ case 6
-						Propriété :	Rue de Vaugirard	@ case 7
-						Case Autre :	Chance	@ case 8
-						Propriété :	Rue de Courcelles	@ case 9
-						Propriété :	Av. de la République	@ case 10
-						Case Autre :	Simple Visite / En Prison	@ case 11
-						Propriété :	Bd de la Villette	@ case 12
-						Compagnie :	Companie de distribution d'électricité	@ case 13
-						Propriété :	Rue de Paradis	@ case 14
-						Propriété :	Av. de Neuilly	@ case 15
-						Gare :	Gare de Lyon	@ case 16
-						Propriété :	Bd Saint-Michel	@ case 17
-						Case Autre :	Caisse de Communauté	@ case 18
-						Propriété :	Av. Mozart	@ case 19
-						Propriété :	Place Pigalle	@ case 20
-						Case Autre :	Parc Gratuit	@ case 21
-						Propriété :	Bd Malesherbes	@ case 22
-						Case Autre :	Chance	@ case 23
-						Propriété :	Av. Matignon	@ case 24
-						Propriété :	Av. Henri-Martin	@ case 25
-						Gare :	Gare du Nord	@ case 26
-						Propriété :	Faub. Saint-Honoré	@ case 27
-						Propriété :	Place de la Bourse	@ case 28
-						Compagnie :	Companie de distribution des eaux	@ case 29
-						Propriété :	Rue La Fayette	@ case 30
-						Case Autre :	Allez en prison	@ case 31
-						Propriété :	Av. de Breteuil	@ case 32
-						Propriété :	Av. Foch	@ case 33
-						Case Autre :	Caisse de Communauté	@ case 34
-						Propriété :	Bd des Capucines	@ case 35
-						Gare :	Gare Saint-Lazare	@ case 36
-						Case Autre :	Chance	@ case 37
-						Propriété :	Av. des Champs-Elysées	@ case 38
-						Case Autre :	Taxe de Luxe	@ case 39
-						Propriété :	Rue de la Paix	@ case 40
-						BUILD SUCCESSFUL (total time: 0 seconds)
-
-							*/
-		
-		
-		
-		
-		
 		
 	} 
 	catch(FileNotFoundException e){
@@ -168,6 +123,22 @@ public class Monopoly {
 
     public void setJoueurs(Joueur j) {
 	getJoueurs().add(j);
+    }
+
+    public Groupe getGroupe(CouleurPropriete c) {
+	for(Groupe g : getGroupes()){
+	    if(g.getCouleur() == c)
+		return(g);
+	}
+	return(null);
+    }
+    
+    public ArrayList<Groupe> getGroupes() {
+	return groupes;
+    }
+
+    public void setGroupes(ArrayList<Groupe> groupes) {
+	this.groupes = groupes;
     }
 }
 

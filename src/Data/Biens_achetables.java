@@ -6,7 +6,7 @@ public class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
 
-    public Biens_achetables(int prixAchat, int prixPassage, Joueur propriétaire, int numero, String nomCarreau, Groupe groupe) {
+    public Biens_achetables(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 	super(numero, nomCarreau, groupe);
 	this.prixAchat = prixAchat;
 	this.prixPassage = prixPassage;

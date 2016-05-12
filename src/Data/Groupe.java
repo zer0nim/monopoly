@@ -5,6 +5,12 @@ import java.util.ArrayList;
 public class Groupe {
     private CouleurPropriete couleur;
     public ArrayList<Carreau> carreau = new ArrayList<>();
+
+    public Groupe(CouleurPropriete couleur) {
+	this.couleur = couleur;
+    }
+    
+    
     
     public CouleurPropriete getCouleur() {
         return couleur;
