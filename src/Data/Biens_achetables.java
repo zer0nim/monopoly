@@ -2,7 +2,7 @@ package Data;
 
 import Ihm.*;
 
-public class Biens_achetables {
+public class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
 
