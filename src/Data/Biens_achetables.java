@@ -6,6 +6,7 @@ public class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
 
+    @Override
     public void action(Joueur j){
 	if(getPropriétaire() != null){ //bien non possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
