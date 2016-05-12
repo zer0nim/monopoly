@@ -10,12 +10,15 @@ public class Joueur {
     private ArrayList<ProprieteAConstruire> proprietés = new ArrayList<>();
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
 
-    public void payerLoyer(int L) {
+    public void payerLoyer(int l) {
     }
 
-    public void recevoirLoyer(int L) {
+    public void recevoirLoyer(int l) {
     }
 
+    
+    
+    //v--getters setters--v
     public String getNomJoueur() {
         return nomJoueur;
     }

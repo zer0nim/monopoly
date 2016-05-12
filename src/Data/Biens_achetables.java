@@ -15,7 +15,13 @@ public class Biens_achetables {
 	return((getPrixAchat() - j.getCash()) <= 0);
     }
     
-   
+
+    
+    
+    
+    
+    //v--getters setters--v
+
     public int getPrixAchat() {
 	return PrixAchat;
     }

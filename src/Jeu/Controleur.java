@@ -25,6 +25,10 @@ public class Controleur {
 	return(j.getPositionCourante());
     }
     
+    
+    
+
+    //v--getters setters--v
     public Ihm getIhm() {
         return ihm;
     }

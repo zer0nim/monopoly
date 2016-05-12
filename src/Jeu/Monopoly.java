@@ -69,6 +69,11 @@ public class Monopoly {
 	return data;
     }
 
+    
+    
+    
+    //v--getters setters--v
+
     public ArrayList<Carreau> getCarreaux() {
 	return carreaux;
     }

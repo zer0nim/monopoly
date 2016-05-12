@@ -4,7 +4,16 @@ public abstract class Carreau {
     private int numero;
     private String nomCarreau;
     public Groupe groupe;
-        
+
+    
+    
+    
+    
+    
+    
+    
+    //v--getters setters--v
+
     public int getNumero() {
         return numero;
     }
