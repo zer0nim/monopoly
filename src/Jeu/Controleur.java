@@ -12,7 +12,7 @@ public class Controleur {
     }
 
     private Carreau lancerDésAvancer(Joueur j){
-        j.setPositionCourante(PlateauUtilitaire.LancerDe());
+        j.setPositionCourante(getMonopoly().getCarreaux().get(PlateauUtilitaire.LancerDe()));
 	return(j.getPositionCourante());
     }
     
