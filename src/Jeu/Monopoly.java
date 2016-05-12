@@ -16,6 +16,8 @@ public class Monopoly {
     public Monopoly() {
 	carreaux = new ArrayList<>();
 	joueurs = new ArrayList<>();
+	
+	CreerPlateau("data.txt");
     }
 
     public void CreerPlateau(String dataFilename){

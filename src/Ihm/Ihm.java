@@ -4,8 +4,7 @@ import Data.*;
 import java.util.Scanner;
 
 public class Ihm {
-    
-     
+        
     public static void affBiens_achetables(Biens_achetables ba){
 	System.out.println("Nom: " + ba.getNomCarreau());
 	System.out.println("Groupe: " + ba.getGroupe());
