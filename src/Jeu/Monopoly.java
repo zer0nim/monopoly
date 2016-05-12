@@ -5,14 +5,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import Data.Carreau;
+import Data.*;
 
 
 public class Monopoly {
     private ArrayList<Carreau> carreaux;
-    private ArrayList<Carreau> carreaux;
+    private ArrayList<Joueur> joueurs;
+    
+    
+    public Monopoly() {
+	carreaux = new ArrayList<>();
+	joueurs = new ArrayList<>();
+    }
 
-            
     public void CreerPlateau(String dataFilename){
 	buildGamePlateau(dataFilename);
     }
@@ -62,6 +67,34 @@ public class Monopoly {
 	reader.close();
 	
 	return data;
+    }
+
+    /**
+     * @return the carreaux
+     */
+    public ArrayList<Carreau> getCarreaux() {
+	return carreaux;
+    }
+
+    /**
+     * @param carreaux the carreaux to set
+     */
+    public void setCarreaux(ArrayList<Carreau> carreaux) {
+	this.carreaux = carreaux;
+    }
+
+    /**
+     * @return the joueurs
+     */
+    public ArrayList<Joueur> getJoueurs() {
+	return joueurs;
+    }
+
+    /**
+     * @param joueurs the joueurs to set
+     */
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+	this.joueurs = joueurs;
     }
 }
 
