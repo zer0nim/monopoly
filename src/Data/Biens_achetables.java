@@ -12,10 +12,13 @@ public abstract class Biens_achetables extends Carreau{
     }	
 	
     @Override
-    public void action(Joueur j){
-	if(getPropriétaire() != null){ //bien non possédé
+    public void action(Joueur j, de){
+	if(getPropriétaire() != null){ //bien possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
-		//j.payerLoyer(CalculLoyer()); //j paye le loyer
+                if(this.getClass().getSimpleName().equals("Compagnie"))
+                    j.payerLoyer(CalculLoyer(resultde));
+                else
+                    j.payerLoyer(CalculLoyer()); //j paye le loyer
 		System.out.print("rien");
 	    }
 	}
