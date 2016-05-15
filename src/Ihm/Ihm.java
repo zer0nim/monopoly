@@ -17,8 +17,8 @@ public class Ihm {
 	System.out.println("------------------------------------------");
 	System.out.println("Numéro: " + ba.getNumero());
 	System.out.println("Nom: " + ba.getNomCarreau());
-	if(ba.getGroupe() != null)
-	    System.out.println("Groupe: " + ba.getGroupe().getCouleur().toString());
+	if(ba.getClass().getSimpleName().equals("ProprieteAConstruire"))
+            affGroupe((ProprieteAConstruire)ba);
 	System.out.println("Prix d'Achat: " + ba.getPrixAchat());
 	System.out.println("Propriétaire: " + ba.getPropriétaire() + "\n");
     }
@@ -30,6 +30,10 @@ public class Ihm {
 
     }
     
+    public static void affGroupe(ProprieteAConstruire p){
+    	System.out.println("Groupe: " + p.getGroupe().getCouleur().toString());
+    }
+
     
     
     public static boolean propositionAchat(Joueur j, Biens_achetables ba){

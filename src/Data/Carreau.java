@@ -3,19 +3,17 @@ package Data;
 public abstract class Carreau {
     private int numero;
     private String nomCarreau;
-    public Groupe groupe;
 
-    public Carreau(int numero, String nomCarreau, Groupe groupe) {
+    public Carreau(int numero, String nomCarreau) {
 	this.numero = numero;
 	this.nomCarreau = nomCarreau;
-	this.groupe = groupe;
     }
     
     
     
     
     
-    public abstract void action(Joueur j);
+    public abstract void action(Joueur j, int resultde);
 
     
     //v--getters setters--v
@@ -34,13 +32,5 @@ public abstract class Carreau {
 
     public void setNomCarreau(String nomCarreau) {
         this.nomCarreau = nomCarreau;
-    }
-
-    public Groupe getGroupe() {
-        return groupe;
-    }
-
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
     }
 }

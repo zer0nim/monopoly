@@ -8,8 +8,7 @@ public class Controleur {
     public Monopoly monopoly;
 
     public void jouerUnCoup(Joueur j) {
-	lancerDésAvancer(j);
-        j.getPositionCourante().action(j);
+        j.getPositionCourante().action(j, lancerDésAvancer(j).getNumero());
     }
 
     private Carreau lancerDésAvancer(Joueur j){

@@ -6,19 +6,21 @@ public abstract class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
 
-    public Biens_achetables(int prixAchat, int numero, String nomCarreau, Groupe groupe) {
-	super(numero, nomCarreau, groupe);
+    public Biens_achetables(int prixAchat, int numero, String nomCarreau) {
+	super(numero, nomCarreau);
 	this.prixAchat = prixAchat;
-    }	
+    }
+    
+    public abstract int CalculLoyer(int resultde);
 	
     @Override
-    public void action(Joueur j, de){
+    public void action(Joueur j, int resultde){
 	if(getPropriétaire() != null){ //bien possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
                 if(this.getClass().getSimpleName().equals("Compagnie"))
                     j.payerLoyer(CalculLoyer(resultde));
                 else
-                    j.payerLoyer(CalculLoyer()); //j paye le loyer
+                    j.payerLoyer(CalculLoyer(resultde)); //j paye le loyer
 		System.out.print("rien");
 	    }
 	}

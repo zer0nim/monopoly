@@ -5,13 +5,14 @@ public class Gare extends Biens_achetables{
     
     
     public Gare(int prixAchat, int numero, String nomCarreau) {
-	super(prixAchat, numero, nomCarreau, null);
+	super(prixAchat, numero, nomCarreau);
     }
     
     
     
     
-    public int CalculLoyer(){
+    @Override
+    public int CalculLoyer(int resultde){
 	return(25); // A COMPLETTER
     }
     

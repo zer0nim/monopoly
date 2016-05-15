@@ -4,7 +4,7 @@ package Data;
 public class Compagnie extends Biens_achetables{
 
     public Compagnie(int prixAchat, int numero, String nomCarreau) {
-	super(prixAchat, numero, nomCarreau, null);
+	super(prixAchat, numero, nomCarreau);
     }
     
     
