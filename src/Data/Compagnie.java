@@ -10,6 +10,7 @@ public class Compagnie extends Biens_achetables{
     
     
     
+    @Override
     public int CalculLoyer(int résultatDé) {
 	return(résultatDé * 25); // A COMPLETTER
     }
