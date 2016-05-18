@@ -10,6 +10,9 @@ public class Joueur {
     private ArrayList<ProprieteAConstruire> proprietés = new ArrayList<>();
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
 
+    public Joueur(String nomJoueur){
+	this.setNomJoueur(nomJoueur);
+    }
     public void payerLoyer(int l) {
     }
 

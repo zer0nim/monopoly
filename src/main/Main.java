@@ -8,10 +8,10 @@ import Utils.*;
 public class Main {
     
     public static void main(String[] args) {
-	Monopoly monop = new Monopoly();
-
-	for(Carreau c : monop.getCarreaux()){
+	Controleur controleur = new Controleur();
+	controleur.creerJoueurs();
+	/*for(Carreau c : monop.getCarreaux()){
 	    Ihm.affBiens(c);
-	}
+	}*/
     }
 }

@@ -20,7 +20,7 @@ public class Monopoly {
 	joueurs = new ArrayList<>();
 	groupes = new ArrayList<>();
 	
-	CreerPlateau("src\\main\\data.txt");
+	CreerPlateau("src//main//data.txt");
     }
 
     public void CreerPlateau(String dataFilename){
@@ -97,8 +97,8 @@ public class Monopoly {
 	return joueurs;
     }
 
-    public void setJoueurs(Joueur j) {
-	getJoueurs().add(j);
+    public void setJoueur(Joueur j) {
+	joueurs.add(j);
     }
 
     public Groupe getGroupe(CouleurPropriete c) {

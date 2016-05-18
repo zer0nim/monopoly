@@ -4,8 +4,11 @@ import Data.*;
 import Utils.*;
 
 public class Controleur {
-    public Ihm ihm;
-    public Monopoly monopoly;
+    private Monopoly monopoly;
+    
+    public Controleur(){
+	this.monopoly = new Monopoly();
+    }
 
     public void jouerUnCoup(Joueur j) {
         j.getPositionCourante().action(j, lancerDésAvancer(j).getNumero());
@@ -16,17 +19,23 @@ public class Controleur {
 	return(j.getPositionCourante());
     }
     
-    
+    public void creerJoueurs(){
+	int i = 0;
+	while (!Ihm.fini()){
+	    if (getMonopoly().getJoueurs().size() <= 6){
+		monopoly.setJoueur(new Joueur(Ihm.nomJoueur()));
+	    }
+	    i++;
+	}
+	if (i < 2){
+	    Ihm.Afficher("Pas assez de joueurs. \nRecommencez.");
+	    monopoly.getJoueurs().clear();
+	    creerJoueurs();
+	}
+    }
     
 
     //v--getters setters--v
-    public Ihm getIhm() {
-        return ihm;
-    }
-
-    public void setIhm(Ihm ihm) {
-        this.ihm = ihm;
-    }
 
     public Monopoly getMonopoly() {
         return monopoly;
