@@ -1,6 +1,7 @@
 package Ihm;
 
 import Data.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ihm {
@@ -51,5 +52,25 @@ public class Ihm {
 	return(rep.equals("o"));
     }
     
+    public static Boolean fini(){
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Saisir un joueur ? (oui/non) : ");
+	String c = sc.nextLine();
+	while (!c.equals("oui") && !c.equals("non")){
+	    System.out.println("Saisie incorecte !");
+	    System.out.print("Saisir un joueur ? (oui/non) : ");
+	    c = sc.nextLine();
+	}
+	return c.equals("non");
+    }
     
+    public static String nomJoueur(){ // Récupérer le nom du joueur
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Choisir le nom du joueur (2 joueur min) : ");
+	return sc.nextLine();
+    }
+    
+    public static void Afficher(String msg){
+	System.out.println(msg);
+    }
 }
