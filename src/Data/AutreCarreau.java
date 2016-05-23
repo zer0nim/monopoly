@@ -8,7 +8,6 @@ public class AutreCarreau extends Carreau{
     
     @Override
     public void action(Joueur j, int resultde){
-	int i = 0;
     }
     
     
