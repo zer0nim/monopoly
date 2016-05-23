@@ -8,8 +8,9 @@ public class Joueur {
     private Carreau positionCourante;
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
 
-    public Joueur(String nomJoueur){
+    public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
+	this.setPositionCourante(c);
     }
     public void payerLoyer(int l) {
     }

@@ -25,7 +25,7 @@ public class Controleur {
 	int i = 0;
 	while (!Ihm.fini()){
 	    if (getMonopoly().getJoueurs().size() <= 6){
-		monopoly.setJoueur(new Joueur(Ihm.nomJoueur()));
+		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(), monopoly.getCarreaux().get(0)));
 	    }
 	    i++;
 	}

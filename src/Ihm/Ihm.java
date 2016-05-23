@@ -42,21 +42,21 @@ public class Ihm {
 	
 	affBiens_achetables(ba);
 
-	System.out.println("Souhaitez vous acheter ?(o/n): ");
+	System.out.println("Souhaitez vous acheter ?(oui/non): ");
 	String rep = sc.nextLine();
-	while(!rep.equals("o") || !rep.equals("n")){
+	while(!rep.equals("oui") && !rep.equals("non")){
 	    System.out.println("Saisie incorecte !");
-	    System.out.println("Souhaitez vous acheter ?(o/n): ");
+	    System.out.println("Souhaitez vous acheter ?(oui/non): ");
 	    rep = sc.nextLine();
 	}
-	return(rep.equals("o"));
+	return(rep.equals("oui"));
     }
     
     
     
     public static Boolean fini(){
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Saisir un joueur ? (oui/non) : ");
+	System.out.print("Inscrire le joueur ? (oui/non) : ");
 	String c = sc.nextLine();
 	while (!c.equals("oui") && !c.equals("non")){
 	    System.out.println("Saisie incorecte !");
