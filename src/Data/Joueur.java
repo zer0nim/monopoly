@@ -13,12 +13,10 @@ public class Joueur {
 	this.setPositionCourante(c);
     }
     public void payerLoyer(int l) {
+	setCash(getCash() - l);
     }
 
-    public void recevoirLoyer(int l) {
-    }
-
-    public void addCash(int Cash) {
+    public void recevoirLoyer(int Cash) {
 	setCash(getCash() + Cash);
     }
     
