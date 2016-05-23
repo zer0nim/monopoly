@@ -12,7 +12,17 @@ public class Compagnie extends Biens_achetables{
     
     @Override
     public int CalculLoyer(int résultatDé) {
-	return(résultatDé * 25); // A COMPLETTER
+	int nbComp = 0;
+        for (Biens_achetables bien : getPropriétaire().getPropriétés()){
+            if (bien.getClass().getSimpleName().equals("Compagnie")){
+                nbComp++;
+            }
+        }
+        if (nbComp == 1){
+            return(4*résultatDé);
+        } else {
+            return(10*résultatDé);
+        }
     }
     
     
