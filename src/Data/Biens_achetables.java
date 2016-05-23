@@ -1,3 +1,4 @@
+
 package Data;
 
 import Ihm.*;
@@ -23,7 +24,9 @@ public abstract class Biens_achetables extends Carreau{
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
-		Ihm.propositionAchat(j, this);
+		if (Ihm.propositionAchat(j, this)){
+		    acheterPropriété(j);
+		}
 	    }
 	    else{
 		Ihm.Afficher("Pas assez d'argent pour acheter !");
