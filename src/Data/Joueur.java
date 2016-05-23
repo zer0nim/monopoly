@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Joueur {
     private String nomJoueur;
     private int cash = 1500;
-    private ArrayList<Gare> gares = new ArrayList<>();
     private Carreau positionCourante;
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
 
@@ -35,14 +34,6 @@ public class Joueur {
 
     public void setCash(int cash) {
         this.cash = cash;
-    }
-
-    public ArrayList<Gare> getGares() {
-        return gares;
-    }
-
-    public void setGares(ArrayList<Gare> gares) {
-        this.gares = gares;
     }
 
     public Carreau getPositionCourante() {

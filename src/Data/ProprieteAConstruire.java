@@ -16,7 +16,7 @@ public class ProprieteAConstruire extends Biens_achetables{
     
         @Override
     public int CalculLoyer(int resultde){
-	return(getPrixPassage()); // A COMPLETTER
+	return(getPrixPassage());
     }
     
     
