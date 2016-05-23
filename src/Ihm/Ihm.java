@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class Ihm {
     public static void affJoueur(Joueur j){
-	System.out.println(j.getNomJoueur());
-	System.out.println(j.getCash());
+	System.out.println("Joueur: " + j.getNomJoueur());
+	System.out.println("Argent: " + j.getCash());
+	System.out.println("Position Courante: ");
+	Ihm.affBiens(j.getPositionCourante());
     }
 	
     public static void affBiens(Carreau c){
