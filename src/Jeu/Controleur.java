@@ -15,7 +15,6 @@ public class Controleur {
     public void jouerUnCoup(Joueur j) {
 	int resultD = lancerDésAvancer(j);
 	affJoueur(j);
-	Ihm.affBiens(j.getPositionCourante());
         j.getPositionCourante().action(j, resultD);
     }
 
