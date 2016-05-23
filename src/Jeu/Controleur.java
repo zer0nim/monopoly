@@ -11,12 +11,14 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
-        j.getPositionCourante().action(j, lancerDésAvancer(j).getNumero());
+	int resultD = lancerDésAvancer(j);
+        j.getPositionCourante().action(j, resultD);
     }
 
-    private Carreau lancerDésAvancer(Joueur j){
-        j.setPositionCourante(getMonopoly().getCarreaux().get(PlateauUtilitaire.LancerDe()));
-	return(j.getPositionCourante());
+    private int lancerDésAvancer(Joueur j){
+	int resultD = PlateauUtilitaire.LancerDe();
+        j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
+	return(resultD);
     }
     
     public void creerJoueurs(){

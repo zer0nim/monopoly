@@ -52,6 +52,8 @@ public class Ihm {
 	return(rep.equals("o"));
     }
     
+    
+    
     public static Boolean fini(){
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Saisir un joueur ? (oui/non) : ");
