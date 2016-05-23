@@ -7,7 +7,6 @@ public class Joueur {
     private int cash = 1500;
     private ArrayList<Gare> gares = new ArrayList<>();
     private Carreau positionCourante;
-    private ArrayList<ProprieteAConstruire> proprietés = new ArrayList<>();
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
 
     public Joueur(String nomJoueur){
@@ -52,14 +51,6 @@ public class Joueur {
 
     public void setPositionCourante(Carreau c) {
         this.positionCourante = c;
-    }
-
-    public ArrayList<ProprieteAConstruire> getProprietés() {
-        return proprietés;
-    }
-
-    public void setProprietés(ArrayList<ProprieteAConstruire> proprietés) {
-        this.proprietés = proprietés;
     }
 
     public ArrayList<Biens_achetables> getPropriétés() {
