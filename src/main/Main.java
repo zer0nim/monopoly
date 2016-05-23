@@ -13,5 +13,12 @@ public class Main {
 	/*for(Carreau c : monop.getCarreaux()){
 	    Ihm.affBiens(c);
 	}*/
+	
+	for(){
+	    
+	}
+	for (Joueur j : controleur.getMonopoly().getJoueurs()){
+	    controleur.jouerUnCoup(j);
+	}
     }
 }
