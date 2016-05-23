@@ -13,7 +13,8 @@ public class Gare extends Biens_achetables{
     
     @Override
     public int CalculLoyer(int resultde){
-	return(25); // A COMPLETTER
+	this.getPropriétaire().getPropriétés();
+	return(25);
     }
     
     
