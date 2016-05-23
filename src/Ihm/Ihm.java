@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ihm {
-    
-    
+    public static void affJoueur(Joueur j){
+	System.out.println(j.getNomJoueur());
+	System.out.println(j.getCash());
+    }
+	
     public static void affBiens(Carreau c){
 	if(c.getClass().getSimpleName().equals("ProprieteAConstruire") || c.getClass().getSimpleName().equals("Gare") || c.getClass().getSimpleName().equals("Compagnie"))
 	    affBiens_achetables((Biens_achetables)c);
@@ -39,9 +42,6 @@ public class Ihm {
     
     public static boolean propositionAchat(Joueur j, Biens_achetables ba){
 	Scanner sc = new Scanner(System.in);
-	
-	affBiens_achetables(ba);
-
 	System.out.println("Souhaitez vous acheter ?(oui/non): ");
 	String rep = sc.nextLine();
 	while(!rep.equals("oui") && !rep.equals("non")){
