@@ -17,6 +17,9 @@ public class Joueur {
     public void recevoirLoyer(int l) {
     }
 
+    public void addCash(int Cash) {
+	setCash(getCash() + Cash);
+    }
     
     
     //v--getters setters--v

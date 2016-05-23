@@ -18,6 +18,7 @@ public abstract class Biens_achetables extends Carreau{
 	if(getPropriétaire() != null){ //bien possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
                 j.payerLoyer(CalculLoyer(resultde)); //j paye le loyer
+		getPropriétaire().addCash(resultde);
 	    }
 	}
 	else{

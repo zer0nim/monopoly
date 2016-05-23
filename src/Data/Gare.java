@@ -16,9 +16,7 @@ public class Gare extends Biens_achetables{
 	int prix = 25;
 	for (Biens_achetables bien : getPropriétaire().getPropriétés()){
 	    if (bien.getClass().getSimpleName().equals("Gare")){
-		if (bien.getPropriétaire().equals(this.getPropriétaire())){
-		    prix += 25;
-		}
+		prix += 25;
 	    }
 	}
 	return(prix);

@@ -11,10 +11,7 @@ public class ProprieteAConstruire extends Biens_achetables{
 	setGroupe(groupe);
     }
 
-    
-    
-    
-        @Override
+    @Override
     public int CalculLoyer(int resultde){
 	return(getPrixPassage());
     }
