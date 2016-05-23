@@ -25,6 +25,9 @@ public abstract class Biens_achetables extends Carreau{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
 		Ihm.propositionAchat(j, this);
 	    }
+	    else{
+		Ihm.Afficher("Pas assez d'argent pour acheter !");
+	    }
 	}
     }
     
