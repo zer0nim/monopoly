@@ -13,7 +13,7 @@ public class Gare extends Biens_achetables{
     
     @Override
     public int CalculLoyer(int resultde){
-	int prix = 25;
+	int prix = 0;
 	for (Biens_achetables bien : getPropriétaire().getPropriétés()){
 	    if (bien.getClass().getSimpleName().equals("Gare")){
 		prix += 25;
