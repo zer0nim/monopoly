@@ -1,6 +1,7 @@
 package Jeu;
 import Ihm.*;
 import Data.*;
+import static Ihm.Ihm.affBiens;
 import Utils.*;
 
 public class Controleur {
@@ -12,6 +13,7 @@ public class Controleur {
 
     public void jouerUnCoup(Joueur j) {
 	int resultD = lancerDésAvancer(j);
+	Ihm.affBiens(j.getPositionCourante());
         j.getPositionCourante().action(j, resultD);
     }
 

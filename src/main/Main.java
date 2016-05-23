@@ -2,6 +2,7 @@ package main;
 
 import Data.*;
 import Ihm.*;
+import static Ihm.Ihm.affBiens_achetables;
 import Jeu.*;
 import Utils.*;
 
