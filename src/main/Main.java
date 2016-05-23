@@ -14,11 +14,10 @@ public class Main {
 	    Ihm.affBiens(c);
 	}*/
 	
-	for(){
-	    
-	}
-	for (Joueur j : controleur.getMonopoly().getJoueurs()){
-	    controleur.jouerUnCoup(j);
+	while(controleur.getMonopoly().getJoueurs().size() > 1){
+	    for (Joueur j : controleur.getMonopoly().getJoueurs()){
+		controleur.jouerUnCoup(j);
+	    }
 	}
     }
 }
