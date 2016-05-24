@@ -29,7 +29,8 @@ public class Ihm {
 	if(ba.getClass().getSimpleName().equals("ProprieteAConstruire"))
             affGroupe((ProprieteAConstruire)ba);
 	System.out.println("Prix d'Achat: " + ba.getPrixAchat());
-	System.out.println("Propriétaire: " + ba.getPropriétaire() + "\n");
+	if (ba.getPropriétaire() != null)
+	    System.out.println("Propriétaire: " + ba.getPropriétaire().getNomJoueur() + "\n");
 	System.out.println("-------");
     }
     
@@ -44,6 +45,9 @@ public class Ihm {
     	System.out.println("Groupe: " + p.getGroupe().getCouleur().toString());
     }
 
+    public static void Cimetiere(Joueur j){
+    	System.out.println("Le Joueur " + j.getNomJoueur() + " est mort ! :(");
+    }
     
     
     public static boolean propositionAchat(Joueur j, Biens_achetables ba){

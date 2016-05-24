@@ -13,9 +13,14 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
-	int resultD = lancerDésAvancer(j);
-	affJoueur(j);
-        j.getPositionCourante().action(j, resultD);
+	if (!j.estMort()){
+	    int resultD = lancerDésAvancer(j);
+	    affJoueur(j);
+	    j.getPositionCourante().action(j, resultD);
+	}
+	if (j.estMort()){ //pas de else il est peut etre mort en jouant
+		j.vendrePropriétés();
+	}
     }
 
     private int lancerDésAvancer(Joueur j){

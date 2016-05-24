@@ -20,6 +20,16 @@ public class Joueur {
 	setCash(getCash() + Cash);
     }
     
+    public boolean estMort(){
+	return(getCash() < 0);
+    }
+    
+    public void vendrePropriétés(){
+	for(Biens_achetables ba : propriétés){
+	    ba.setPropriétaire(null);
+	}
+	propriétés.clear();
+    }
     
     //v--getters setters--v
     public String getNomJoueur() {
