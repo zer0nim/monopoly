@@ -13,19 +13,25 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
-	if (!j.estMort()){
-	    int resultD = lancerDésAvancer(j);
+	int resultD = lancerDésAvancer(j);
+	int resultD2 = lancerDésAvancer(j);
+	
+	if (!j.estMort()){   
+	    resultD += resultD2;
+
 	    affJoueur(j);
 	    j.getPositionCourante().action(j, resultD);
 	}
 	if (j.estMort()){ //pas de else il est peut etre mort en jouant
 		j.vendrePropriétés();
 	}
+	if (resultD == 2 * resultD2){ //si double
+	    jouerUnCoup(j);
+	}
     }
 
     private int lancerDésAvancer(Joueur j){
 	int resultD = PlateauUtilitaire.LancerDe();
-	resultD1 += resultD2;
         j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
 	return(resultD);
     }
