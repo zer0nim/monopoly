@@ -36,6 +36,7 @@ public abstract class Biens_achetables extends Carreau{
     
     public void acheterPropriété(Joueur j){
 	setPropriétaire(j);
+	j.addPropriété(this);
 	j.payerLoyer(getPrixAchat());
     }
     

@@ -46,7 +46,11 @@ public class Ihm {
     }
 
     public static void Cimetiere(Joueur j){
+	System.out.println("----------------MORT----------------------------");
+	System.out.println("------------------------------------------------");
     	System.out.println("Le Joueur " + j.getNomJoueur() + " est mort ! :(");
+	System.out.println("------------------------------------------------");
+	System.out.println("------------------------------------------------");
     }
     
     

@@ -24,9 +24,15 @@ public class Joueur {
 	return(getCash() < 0);
     }
     
+    public void addPropriété(Biens_achetables ba){
+	getPropriétés().add(ba);
+    }
+    
     public void vendrePropriétés(){
+	System.out.println("propriétés");
 	for(Biens_achetables ba : propriétés){
 	    ba.setPropriétaire(null);
+	    System.out.println("propriétaire: " + ba.getPropriétaire());
 	}
 	propriétés.clear();
     }
