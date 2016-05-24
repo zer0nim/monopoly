@@ -3,10 +3,10 @@ package Data;
 import java.util.ArrayList;
 
 public class Joueur {
-    private String nomJoueur;
-    private int cash = 1500;
-    private Carreau positionCourante;
-    private ArrayList<Biens_achetables> propriétés = new ArrayList<>();
+    private String nomJoueur; // nom du joueur j
+    private int cash = 1500; //solde de départ
+    private Carreau positionCourante; //position du joueur j sur le plateau
+    private ArrayList<Biens_achetables> propriétés = new ArrayList<>(); //liste des biens achetables possédés par le joueur j
 
     public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
@@ -20,11 +20,11 @@ public class Joueur {
 	setCash(getCash() + Cash);
     }
     
-    public boolean estMort(){
+    public boolean estMort(){//si cash < 0, return true
 	return(getCash() < 0);
     }
     
-    public void addPropriété(Biens_achetables ba){
+    public void addPropriété(Biens_achetables ba){ //rajoute ba à l'ArrayList propriétés
 	getPropriétés().add(ba);
     }
     
