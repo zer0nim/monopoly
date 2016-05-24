@@ -12,8 +12,7 @@ public class PlateauUtilitaire {
     
     
     public static int LancerDe() {
-        int de = 0;
-        de += De6();
+        int de = De6();
         return de;
     }  
     

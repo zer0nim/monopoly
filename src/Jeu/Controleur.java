@@ -25,7 +25,7 @@ public class Controleur {
 
     private int lancerDésAvancer(Joueur j){
 	int resultD = PlateauUtilitaire.LancerDe();
-	int resultD = PlateauUtilitaire.LancerDe();
+	resultD1 += resultD2;
         j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
 	return(resultD);
     }
