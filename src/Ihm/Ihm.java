@@ -68,21 +68,22 @@ public class Ihm {
     
     
     
-    public static Boolean fini(){
+    public static int nbJoueur(){
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Inscrire le joueur ? (oui/non) : ");
-	String c = sc.nextLine();
-	while (!c.equals("oui") && !c.equals("non")){
-	    System.out.println("Saisie incorecte !");
-	    System.out.print("Saisir un joueur ? (oui/non) : ");
-	    c = sc.nextLine();
-	}
-	return c.equals("non");
+	System.out.print("Inscrire le nombre de joueur : ");
+	int c = sc.nextInt();
+	while (c > 6 || c < 2){
+	    System.out.print("Erreur : Nombre de joueur incorrect");
+	    System.out.print("Inscrire le nombre de joueur (2/6) : ");
+	    c = sc.nextInt();
+	}	
+
+	return (c);
     }
     
-    public static String nomJoueur(){ // Récupérer le nom du joueur
+    public static String nomJoueur(int numero){ // Récupérer le nom du joueur
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Choisir le nom du joueur (2 joueur min) : ");
+	System.out.print("Choisir le nom du joueur " + numero + ": ");
 	return sc.nextLine();
     }
     
