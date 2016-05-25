@@ -3,7 +3,7 @@ import Ihm.*;
 import Data.*;
 import static Ihm.Ihm.affBiens;
 import static Ihm.Ihm.affJoueur;
-import Utils.*;
+import java.util.Random;
 
 public class Controleur {
     private Monopoly monopoly;
@@ -32,10 +32,15 @@ public class Controleur {
     }
 
     private int lancerDésAvancer(Joueur j){
-	int resultD = PlateauUtilitaire.LancerDe();
+	int resultD = LancerDeN(6);
         j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
 	return(resultD);
     }
+    
+    public static int LancerDeN(int n){
+	Random rand = new Random();
+        return rand.nextInt(n)+1; //retourne un entier correspondant à un lancé de dé
+    } 
     
     public void creerJoueurs(){
 	int nbJoueur = Ihm.nbJoueur();
