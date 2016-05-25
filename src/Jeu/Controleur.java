@@ -37,7 +37,7 @@ public class Controleur {
 	return(resultD);
     }
     
-    public static int LancerDeN(int n){
+    public int LancerDeN(int n){
 	Random rand = new Random();
         return rand.nextInt(n)+1; //retourne un entier correspondant à un lancé de dé
     } 
