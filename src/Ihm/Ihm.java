@@ -71,7 +71,12 @@ public class Ihm {
     }
     
     
-    
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
     public static int nbJoueur(){
 	Scanner sc = new Scanner(System.in);
 	System.out.print("Inscrire le nombre de joueur : ");
@@ -84,6 +89,11 @@ public class Ihm {
 
 	return (c);
     }
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    
     
     public static String nomJoueur(int numero){ // Récupérer le nom du joueur
 	Scanner sc = new Scanner(System.in);
