@@ -17,13 +17,16 @@ public class Main {
 	    Ihm.affBiens(c);
 	}*/
 	
-	while(controleur.getMonopoly().getJoueurs().size() > 1){ //tand qu'il y a au moins 2 joueurs
+	while(controleur.getMonopoly().getJoueurs().size() > 1){ //tant qu'il y a au moins 2 joueurs
 	    for (Joueur j : controleur.getMonopoly().getJoueurs()){ //On boucle sur les joueurs encore en jeu
-		controleur.jouerUnCoup(j); //chaque joueur jous un coup
-		if(j.estMort()){ //si le joueur à 0 ou moins de cash
-		    Ihm.Cimetiere(j); //affiche que le joueur est éliminé
-		    deathNote.add(j); //ajoute le joueur à la liste d'élimination
+		if (controleur.getMonopoly().getJoueurs().size() > 1){//tant qu'il y a au moins 2 joueurs
+		    controleur.jouerUnCoup(j); //chaque joueur jous un coup
+		    if(j.estMort()){ //si le joueur à 0 ou moins de cash
+			Ihm.Cimetiere(j); //affiche que le joueur est éliminé
+			deathNote.add(j); //ajoute le joueur à la liste d'élimination
+		    }
 		}
+		
 	    }
 	    for (Joueur j : deathNote){ //pour chaque joueur de la liste d'élimination
 		controleur.getMonopoly().getJoueurs().remove(j); //On élimine les joueur du monopoly
