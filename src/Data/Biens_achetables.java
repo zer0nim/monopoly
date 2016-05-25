@@ -66,5 +66,5 @@ public abstract class Biens_achetables extends Carreau{
     public void setPropriétaire(Joueur propriétaire) {
 	this.propriétaire = propriétaire;
     }
-
+    
 }

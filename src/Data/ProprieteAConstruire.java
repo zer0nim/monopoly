@@ -13,7 +13,23 @@ public class ProprieteAConstruire extends Biens_achetables{
 
     @Override
     public int CalculLoyer(int resultde){
-	return(getPrixPassage());
+        int groupeSize = getGroupe().getCarreau().size();
+        int i = 0;
+        int prixPassage = getPrixPassage();
+	for (Biens_achetables bien : getPropriétaire().getPropriétés()){
+	    if (bien.getClass().getSimpleName().equals("ProprieteAConstruire")){
+		if(((ProprieteAConstruire)bien).getGroupe() == this.getGroupe()){
+                    i++;
+                }
+	    }
+	}
+        System.out.print("Incrémentation calcul loyer : ");
+        System.out.println(i);
+        System.out.println(groupeSize);
+        if(i == groupeSize){
+           prixPassage *= 2;
+        }
+	return(prixPassage);
     }
     
     
