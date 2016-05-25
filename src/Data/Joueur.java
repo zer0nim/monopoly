@@ -12,12 +12,12 @@ public class Joueur {
 	this.setNomJoueur(nomJoueur);
 	this.setPositionCourante(c);
     }
-    public void payerLoyer(int l) {
-	setCash(getCash() - l);
+    public void payerLoyer(int cash) {
+	setCash(getCash() - cash); //débite le cash du joueur de 'cash'
     }
 
-    public void recevoirLoyer(int Cash) {
-	setCash(getCash() + Cash);
+    public void recevoirLoyer(int cash) {
+	setCash(getCash() + cash); //augmente le cash du joueur de 'cash'
     }
     
     public boolean estMort(){//si cash < 0, return true
@@ -39,15 +39,15 @@ public class Joueur {
     
     //v--getters setters--v
     public String getNomJoueur() {
-        return nomJoueur;
+        return nomJoueur; //retourne le nom du joueur
     }
 
     public void setNomJoueur(String nomJoueur) {
-        this.nomJoueur = nomJoueur;
+        this.nomJoueur = nomJoueur; //définit le nom du joueur
     }
 
     public int getCash() {
-        return cash;
+        return cash; //retourne le cash du joueur
     }
 
     public void setCash(int cash) {
@@ -55,11 +55,11 @@ public class Joueur {
     }
 
     public Carreau getPositionCourante() {
-        return positionCourante;
+        return positionCourante; //retourne le carreau actuel du joueur
     }
 
     public void setPositionCourante(Carreau c) {
-        this.positionCourante = c;
+        this.positionCourante = c; //définit le position du joueur par le carreau 'c'
     }
 
     public ArrayList<Biens_achetables> getPropriétés() {
