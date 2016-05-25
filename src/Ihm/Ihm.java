@@ -2,7 +2,6 @@ package Ihm;
 
 import Data.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ihm {
@@ -79,29 +78,13 @@ public class Ihm {
     //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
     //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
     public static int nbJoueur(){
-        int c = 0;
 	Scanner sc = new Scanner(System.in);
-        System.out.print("Inscrire le nombre de joueur : ");
-        while (c == 0){
-            try{
-                 c = sc.nextInt();
-            } 
-            catch(InputMismatchException e){
-                    System.err.println("Entrer le nombre de joueurs sous format numérique : ");
-            }
-        }
+	System.out.print("Inscrire le nombre de joueur : ");
+	int c = sc.nextInt();
 	while (c > 6 || c < 2){
-            c = 0;
 	    System.out.println("Erreur : Nombre de joueur incorrect");
 	    System.out.print("Inscrire le nombre de joueur (2/6) : ");
-	    while (c == 0){
-                try{
-                     c = sc.nextInt();
-                } 
-                catch(InputMismatchException e){
-                        System.err.println("Entrer le nombre de joueurs sous format numérique : ");
-                }
-            }
+	    c = sc.nextInt();
 	}	
 
 	return (c);
