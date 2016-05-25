@@ -70,11 +70,11 @@ public class Ihm {
     
     public static int nbJoueur(){
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Inscrire le nombre de joueur : ");
+	System.out.println("Inscrire le nombre de joueur : ");
 	int c = sc.nextInt();
 	while (c > 6 || c < 2){
-	    System.out.print("Erreur : Nombre de joueur incorrect");
-	    System.out.print("Inscrire le nombre de joueur (2/6) : ");
+	    System.out.println("Erreur : Nombre de joueur incorrect");
+	    System.out.println("Inscrire le nombre de joueur (2/6) : ");
 	    c = sc.nextInt();
 	}	
 
