@@ -23,9 +23,6 @@ public class ProprieteAConstruire extends Biens_achetables{
                 }
 	    }
 	}
-        System.out.print("Incrémentation calcul loyer : ");
-        System.out.println(i);
-        System.out.println(groupeSize);
         if(i == groupeSize){
            prixPassage *= 2;
         }
