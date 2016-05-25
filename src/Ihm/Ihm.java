@@ -46,11 +46,15 @@ public class Ihm {
     }
 
     public static void Cimetiere(Joueur j){
-	System.out.println("----------------MORT----------------------------");
-	System.out.println("------------------------------------------------");
+	Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
     	System.out.println("Le Joueur " + j.getNomJoueur() + " est mort ! :(");
-	System.out.println("------------------------------------------------");
-	System.out.println("------------------------------------------------");
+	Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
+    }
+    
+    public static void Winner(Joueur j){
+	Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
+	Ihm.Afficher("Le Joueur " + j.getNomJoueur() + " a gagné !");
+	Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
     }
     
     

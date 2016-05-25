@@ -32,5 +32,7 @@ public class Main {
 	    }
 	    deathNote.clear();    
 	}
+	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
+
     }
 }
