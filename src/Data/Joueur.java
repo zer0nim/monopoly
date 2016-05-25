@@ -29,10 +29,8 @@ public class Joueur {
     }
     
     public void vendrePropriétés(){
-	System.out.println("propriétés");
 	for(Biens_achetables ba : propriétés){
 	    ba.setPropriétaire(null);
-	    System.out.println("propriétaire: " + ba.getPropriétaire());
 	}
 	propriétés.clear();
     }
