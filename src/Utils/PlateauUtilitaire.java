@@ -12,8 +12,7 @@ public class PlateauUtilitaire {
     
     
     public static int LancerDe() {
-        int de = De6(); //
-        return de;
+        return De6(); //retourne un entier correspondant à un lancé de dé
     }  
     
 }
