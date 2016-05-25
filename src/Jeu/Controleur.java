@@ -26,6 +26,7 @@ public class Controleur {
 		j.vendrePropriétés();
 	}
 	if (resultD == 2 * resultD2){ //si double
+	    System.out.println("rejouer");
 	    jouerUnCoup(j);
 	}
     }
