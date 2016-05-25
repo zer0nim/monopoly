@@ -11,7 +11,7 @@ import Data.*;
 public class Monopoly {
     private ArrayList<Carreau> carreaux;
     private ArrayList<Joueur> joueurs;
-    
+    private ArrayList<Groupe> groupes;
     
     
     public Monopoly() {
