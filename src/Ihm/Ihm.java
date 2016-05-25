@@ -2,6 +2,7 @@ package Ihm;
 
 import Data.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ihm {
@@ -71,29 +72,23 @@ public class Ihm {
     }
     
     
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
     public static int nbJoueur(){
-	Scanner sc = new Scanner(System.in);
-	System.out.print("Inscrire le nombre de joueur : ");
-	int c = sc.nextInt();
-	while (c > 6 || c < 2){
-	    System.out.println("Erreur : Nombre de joueur incorrect");
-	    System.out.print("Inscrire le nombre de joueur (2/6) : ");
-	    c = sc.nextInt();
-	}	
-
+        int c = 0;
+        System.out.print("Inscrire le nombre de joueur : ");
+        while (c > 6 || c < 2){
+            try{
+                Scanner sc = new Scanner(System.in);
+                c = sc.nextInt();
+            } 
+            catch(InputMismatchException e){
+                    System.err.println("Entrer le nombre de joueurs sous format numérique (différent de 0) : ");
+            }
+            if(c > 6 || c < 2){
+                    System.out.print("Entrer un nombre de joueurs entre 2 et 6 :");
+            }
+        }
 	return (c);
-    }
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
-    
+    }    
     
     public static String nomJoueur(int numero){ // Récupérer le nom du joueur
 	Scanner sc = new Scanner(System.in);
