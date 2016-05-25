@@ -13,6 +13,15 @@ public class ProprieteAConstruire extends Biens_achetables{
 
     @Override
     public int CalculLoyer(int resultde){
+        int groupeSize = getGroupe().getCarreau().size();
+	int prix = 0;
+	for (Biens_achetables bien : getPropriétaire().getPropriétés()){
+	    if (bien.getClass().getSimpleName().equals("ProprieteAConstruire")){
+		if((ProprieteAConstruire)bien.getGroupe == getGroupe){
+                    
+                }
+	    }
+	}
 	return(getPrixPassage());
     }
     
