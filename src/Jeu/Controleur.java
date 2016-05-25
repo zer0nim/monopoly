@@ -32,8 +32,12 @@ public class Controleur {
     }
 
     private int lancerDésAvancer(Joueur j){
-	int resultD = LancerDeN(6);
+	int pos = j.getPositionCourante().getNumero();
+        int resultD = LancerDeN(6);
         j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
+        if (j.getPositionCourante().getNumero() < pos) { //si ça nouvelle position est inférieur à la nouvelle
+            j.setCash(j.getCash()+200); // on ajoute 200 de cash, car il est donc passé par le départ
+        }
 	return(resultD);
     }
     
