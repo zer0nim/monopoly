@@ -63,7 +63,7 @@ public class Joueur {
     }
 
     public ArrayList<Biens_achetables> getPropriétés() {
-        return propriétés;
+        return propriétés; //retourne une ArrayList de Biens_achetables, possédé par le joueur
     }
 
     public void setPropriétés(ArrayList<Biens_achetables> propriétés) {
