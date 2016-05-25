@@ -13,13 +13,21 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
-	if (!j.estMort()){
-	    int resultD = lancerDésAvancer(j);
+	int resultD = lancerDésAvancer(j);
+	int resultD2 = lancerDésAvancer(j);
+	
+	if (!j.estMort()){   
+	    resultD += resultD2;
+
 	    affJoueur(j);
 	    j.getPositionCourante().action(j, resultD);
 	}
 	if (j.estMort()){ //pas de else il est peut etre mort en jouant
 		j.vendrePropriétés();
+	}
+	if (resultD == 2 * resultD2){ //si double
+	    Ihm.Afficher("Double au Dé !");
+	    jouerUnCoup(j);
 	}
     }
 
@@ -30,17 +38,9 @@ public class Controleur {
     }
     
     public void creerJoueurs(){
-	int i = 0;
-	while (!Ihm.fini()){
-	    if (getMonopoly().getJoueurs().size() <= 6){
-		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(), monopoly.getCarreaux().get(0)));
-	    }
-	    i++;
-	}
-	if (i < 2){
-	    Ihm.Afficher("Pas assez de joueurs. \nRecommencez.");
-	    monopoly.getJoueurs().clear();
-	    creerJoueurs();
+	int nbJoueur = Ihm.nbJoueur();
+	for (int j = 0; j < nbJoueur ; j++) {
+		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
 	}
     }
     

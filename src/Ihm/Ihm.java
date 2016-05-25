@@ -46,7 +46,15 @@ public class Ihm {
     }
 
     public static void Cimetiere(Joueur j){
+	Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
     	System.out.println("Le Joueur " + j.getNomJoueur() + " est mort ! :(");
+	Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
+    }
+    
+    public static void Winner(Joueur j){
+	Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
+	Ihm.Afficher("Le Joueur " + j.getNomJoueur() + " a gagné !");
+	Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
     }
     
     
@@ -63,22 +71,33 @@ public class Ihm {
     }
     
     
-    
-    public static Boolean fini(){
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    public static int nbJoueur(){
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Inscrire le joueur ? (oui/non) : ");
-	String c = sc.nextLine();
-	while (!c.equals("oui") && !c.equals("non")){
-	    System.out.println("Saisie incorecte !");
-	    System.out.print("Saisir un joueur ? (oui/non) : ");
-	    c = sc.nextLine();
-	}
-	return c.equals("non");
+	System.out.print("Inscrire le nombre de joueur : ");
+	int c = sc.nextInt();
+	while (c > 6 || c < 2){
+	    System.out.println("Erreur : Nombre de joueur incorrect");
+	    System.out.print("Inscrire le nombre de joueur (2/6) : ");
+	    c = sc.nextInt();
+	}	
+
+	return (c);
     }
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
+    //GERER L4ERREUR SI PAS INT §§§§§§§!!!!!!!!!!!!!!!!!!!!
     
-    public static String nomJoueur(){ // Récupérer le nom du joueur
+    
+    public static String nomJoueur(int numero){ // Récupérer le nom du joueur
 	Scanner sc = new Scanner(System.in);
-	System.out.print("Choisir le nom du joueur (2 joueur min) : ");
+	System.out.print("Choisir le nom du joueur " + numero + ": ");
 	return sc.nextLine();
     }
     

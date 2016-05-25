@@ -7,14 +7,12 @@ public class PlateauUtilitaire {
 
     
     private static int De6() {
-        return RANDOM.nextInt(6)+1;
+        return RANDOM.nextInt(6)+1; //retourne un nombre aléatoire entre 1 et 6
     }
     
     
     public static int LancerDe() {
-        int de = 0;
-        de += De6();
-        return de;
+        return De6(); //retourne un entier correspondant à un lancé de dé
     }  
     
 }
