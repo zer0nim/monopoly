@@ -3,6 +3,7 @@ import Ihm.*;
 import Data.*;
 import static Ihm.Ihm.affBiens;
 import static Ihm.Ihm.affJoueur;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Controleur {
@@ -51,6 +52,28 @@ public class Controleur {
 	for (int j = 0; j < nbJoueur ; j++) {
 		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
 	}
+	quiCommence();
+    }
+    
+    public void quiCommence(){
+	Joueur j = null;
+	int resDe, ancRes = 0;
+	ArrayList<Joueur> njoueurs = new ArrayList<>();
+
+	for (Joueur jCourant : monopoly.getJoueurs()){
+	    resDe = LancerDeN(6);
+	    resDe += LancerDeN(6);
+	    if (resDe > ancRes){
+		ancRes = resDe;
+		j = jCourant;
+	    }
+	}
+	int i = 0;
+	for (Joueur jCourant : monopoly.getJoueurs()){
+		njoueurs.add(monopoly.getJoueurs().get(     (monopoly.getJoueurs().indexOf(j) + i) % monopoly.getJoueurs().size()       ));
+		i++;
+	}
+	monopoly.setJoueurs(njoueurs);
     }
     
 

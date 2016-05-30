@@ -115,5 +115,9 @@ public class Monopoly {
     public void setGroupes(ArrayList<Groupe> groupes) {
 	this.groupes = groupes;
     }
+
+    public void setJoueurs(ArrayList<Joueur> joueurs) {
+	this.joueurs = joueurs;
+    }
 }
 
