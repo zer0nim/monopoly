@@ -19,8 +19,8 @@ public abstract class Biens_achetables extends Carreau{
 	if(getPropriétaire() != null){ //bien possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
 		int loy = CalculLoyer(resultde);
-                j.payerLoyer(loy); //j paye le loyer
-		getPropriétaire().recevoirLoyer(loy);
+                j.payerArgent(loy); //j paye le loyer
+		getPropriétaire().recevoirArgent(loy);
 	    }
 	}
 	else{
@@ -38,7 +38,7 @@ public abstract class Biens_achetables extends Carreau{
     public void acheterPropriété(Joueur j){
 	setPropriétaire(j);
 	j.addPropriété(this);
-	j.payerLoyer(getPrixAchat());
+	j.payerArgent(getPrixAchat());
     }
     
     public boolean assezArgent(Joueur j){

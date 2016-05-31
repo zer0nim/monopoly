@@ -12,11 +12,11 @@ public class Joueur {
 	this.setNomJoueur(nomJoueur);
 	this.setPositionCourante(c);
     }
-    public void payerLoyer(int cash) {
+    public void payerArgent(int cash) {
 	setCash(getCash() - cash); //débite le cash du joueur de 'cash'
     }
 
-    public void recevoirLoyer(int cash) {
+    public void recevoirArgent(int cash) {
 	setCash(getCash() + cash); //augmente le cash du joueur de 'cash'
     }
     
