@@ -59,15 +59,43 @@ public class Controleur {
 	Joueur j = null;
 	int resDe, ancRes = 0;
 	ArrayList<Joueur> njoueurs = new ArrayList<>();
+	ArrayList<Joueur> njoueursMemeScore = new ArrayList<>();
 
 	for (Joueur jCourant : monopoly.getJoueurs()){
 	    resDe = LancerDeN(6);
 	    resDe += LancerDeN(6);
-	    if (resDe > ancRes){
+	    if (resDe >= ancRes){
+		if (resDe == ancRes){
+		    njoueurs.add(jCourant);
+		}
+		else{
+		    njoueurs.clear();
+		    njoueurs.add(jCourant);
+		}
 		ancRes = resDe;
-		j = jCourant;
 	    }
 	}
+	while (njoueurs.size() > 1){
+	    ancRes = 0;
+	    njoueursMemeScore = (ArrayList<Joueur>)njoueurs.clone();
+	    njoueurs.clear();
+	    for (Joueur jCourant : njoueursMemeScore){
+		resDe = LancerDeN(6);
+		resDe += LancerDeN(6);
+		if (resDe >= ancRes){
+		    if (resDe == ancRes){
+			njoueurs.add(jCourant);
+		    }
+		    else{
+			njoueurs.clear();
+			njoueurs.add(jCourant);
+		    }
+		    ancRes = resDe;
+		}
+	    }
+	}
+	j = njoueurs.get(0);
+	njoueurs.clear();
 	int i = 0;
 	for (Joueur jCourant : monopoly.getJoueurs()){
 		njoueurs.add(monopoly.getJoueurs().get(     (monopoly.getJoueurs().indexOf(j) + i) % monopoly.getJoueurs().size()       ));
