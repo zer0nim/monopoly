@@ -21,7 +21,11 @@ public class Controleur {
 	    resultD += resultD2;
 
 	    affJoueur(j);
-	    if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
+	    if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
+		((Gare)j.getPositionCourante()).action(j, resultD);
+	    else if (j.getPositionCourante().getClass().getSimpleName().equals("Compagnie"))
+		((Compagnie)j.getPositionCourante()).action(j, resultD);
+	    else if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
 		((ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
 	    else
 		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux());

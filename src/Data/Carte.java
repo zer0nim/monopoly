@@ -72,7 +72,7 @@ public class Carte {
     public void anniversaire(Joueur j, int cash, ArrayList<Joueur> joueurs){
 	for (Joueur jcourant : joueurs){
 	    if (jcourant != j){
-		jcourant.payerArgent(cash);
+		j.payerArgent(cash);
 		j.recevoirArgent(cash);
 	    }
 	}
