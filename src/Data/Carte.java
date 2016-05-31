@@ -1,27 +1,19 @@
 package Data;
 import Data.Enumeration;
-import static Data.Enumeration.ACTIONCHCO;
 
 public class Carte {
     private String description;
+    private Enumeration.ActionChCo typeAction;
 
-    public Carte(String description, Data.Enumeration.ACTIONCHCO ttt) {
+    public Carte(String description, Enumeration.ActionChCo typeAct) {
 	setDescription(description);
+	setTypeAction(typeAct);
     }
     
     public void Action(){
     }
     
-    libération prison
-    reculer
-    avancerDeN
-    avancerJusqu'aAvecCaseDep
-    avancerJusqu'aSansCaseDep
-    payerCash
-    recvoirCash
-    payerCashSelonHotels
-    allerPrison
-    anniversaire
+
     //v--getters setters--v
 
     public String getDescription() {
@@ -30,6 +22,14 @@ public class Carte {
 
     public void setDescription(String description) {
 	this.description = description;
+    }
+
+    public Enumeration.ActionChCo getTypeAction() {
+	return typeAction;
+    }
+
+    public void setTypeAction(Enumeration.ActionChCo typeAction) {
+	this.typeAction = typeAction;
     }
 
 }

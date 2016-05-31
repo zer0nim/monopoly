@@ -1,4 +1,3 @@
-
 package Data;
 
 import java.io.BufferedReader;
@@ -6,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import Data.Enumeration;
 
 public class ChanceCommu extends AutreCarreau{
     private ArrayList<Carte> cartesChance = new ArrayList<>();
@@ -26,10 +26,10 @@ public class ChanceCommu extends AutreCarreau{
 		for(int i=0; i<data.size(); ++i){
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("CH") == 0){
-			    	cartesChance.add(new Carte(data.get(i)[0]));
+			    	cartesChance.add(new Carte(data.get(i)[1], (ActionChCo)data.get(i)[2]));
 			}
 			else if(caseType.compareTo("CO") == 0){
-			    	cartesCommu.add(new Carte(data.get(i)[0]));
+			    	cartesCommu.add(new Carte(data.get(i)[0], (ActionChCo)data.get(i)[2]));
 			}
 		}
 		
