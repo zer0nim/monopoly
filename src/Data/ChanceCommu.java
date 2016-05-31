@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import Data.Enumeration;
 
-public class ChanceCommu extends AutreCarreau{
+public class ChanceCommu{
     private ArrayList<Carte> cartesChance = new ArrayList<>();
     private ArrayList<Carte> cartesCommu = new ArrayList<>();
 
     
-    public ChanceCommu(int numero, String nomCarreau) {
-	super(numero, nomCarreau);
+    public ChanceCommu(){
 	buildChanceCommu("src//main//dataChCo.txt");
     }
     

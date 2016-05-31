@@ -12,7 +12,7 @@ public class Monopoly {
     private ArrayList<Carreau> carreaux;
     private ArrayList<Joueur> joueurs;
     private ArrayList<Groupe> groupes;
-    
+    private ChanceCommu cartesChCo;
     
     public Monopoly() {
 	carreaux = new ArrayList<>();
@@ -20,6 +20,7 @@ public class Monopoly {
 	groupes = new ArrayList<>();
 	
 	CreerPlateau("src//main//data.txt");
+	cartesChCo = new ChanceCommu();
     }
 
     public void CreerPlateau(String dataFilename){
