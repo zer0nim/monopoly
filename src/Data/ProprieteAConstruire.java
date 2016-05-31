@@ -9,6 +9,7 @@ public class ProprieteAConstruire extends Biens_achetables{
     public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 	super(prixAchat, numero, nomCarreau);
 	setGroupe(groupe);
+	setPrixPassage(prixPassage);
     }
 
     @Override
