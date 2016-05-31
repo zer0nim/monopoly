@@ -9,13 +9,6 @@ public abstract class Carreau {
 	this.nomCarreau = nomCarreau;
     }
     
-    
-    
-    
-    
-    public abstract void action(Joueur j, int resultde);
-
-    
     //v--getters setters--v
 
     public int getNumero() {

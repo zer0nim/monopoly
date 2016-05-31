@@ -7,6 +7,9 @@ public class Joueur {
     private int cash = 1500; //solde de départ
     private Carreau positionCourante; //position du joueur j sur le plateau
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>(); //liste des biens achetables possédés par le joueur j
+    
+    private int carteLibPrison = 0;
+    private boolean enPrison = false;
 
     public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
@@ -66,5 +69,21 @@ public class Joueur {
 
     public void setPropriétés(ArrayList<Biens_achetables> propriétés) {
         this.propriétés = propriétés;
+    }
+
+    public int getCarteLibPrison() {
+	return carteLibPrison;
+    }
+
+    public void setCarteLibPrison(int carteLibPrison) {
+	this.carteLibPrison = carteLibPrison;
+    }
+
+    public boolean isEnPrison() {
+	return enPrison;
+    }
+
+    public void setEnPrison(boolean enPrison) {
+	this.enPrison = enPrison;
     }
 }

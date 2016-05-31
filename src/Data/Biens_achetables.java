@@ -14,7 +14,6 @@ public abstract class Biens_achetables extends Carreau{
     
     public abstract int CalculLoyer(int resultde);
 	
-    @Override
     public void action(Joueur j, int resultde){
 	if(getPropriétaire() != null){ //bien possédé
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire

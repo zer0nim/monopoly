@@ -1,13 +1,14 @@
 package Data;
 
+import java.util.ArrayList;
+
 public class AutreCarreau extends Carreau{
 
     public AutreCarreau(int numero, String nomCarreau) {
 	super(numero, nomCarreau);
     }
     
-    @Override
-    public void action(Joueur j, int resultde){
+    public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux){
     }
     
     

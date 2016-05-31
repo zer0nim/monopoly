@@ -7,7 +7,6 @@ public class Enumeration {
     }
     
     public enum ActionChCo {
-    libPrison, reculer, avancerDeN, avancerJusquAvCDep, avancerJusquSansCDep, 
-    payerCash, recvoirCash, payerCashHotels, allerPrison, anniversaire;
+	libPrison, reculerDeN, avancerJusqua, avancerJusquaScaseDep, modifyCash, payerCashHotels, allerPrison, anniversaire;
     }
 }
