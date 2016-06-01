@@ -5,17 +5,48 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import Data.Enumeration;
+import java.util.Collections;
 
 public class ChanceCommu{
     private ArrayList<Carte> cartesChance = new ArrayList<>();
+    private ArrayList<Carte> cartesChanceMélangé = new ArrayList<>();
+
     private ArrayList<Carte> cartesCommu = new ArrayList<>();
+    private ArrayList<Carte> cartesCommuMélangé = new ArrayList<>();
 
     
     public ChanceCommu(){
 	buildChanceCommu("src//main//dataChCo.txt");
     }
     
+    public Carte piocherCarteChance(){
+	if (cartesChanceMélangé.isEmpty())
+	    cartesChanceMélangé = MélangerPaquet(true);
+	Carte carteP = cartesChanceMélangé.get(0);
+	cartesChanceMélangé.remove(cartesChanceMélangé.get(0));
+	return(carteP);
+    }
+    
+    public Carte piocherCarteCommu(){
+	if (cartesCommuMélangé.isEmpty())
+	    cartesCommuMélangé = MélangerPaquet(false);
+	Carte carteP = cartesCommuMélangé.get(0);
+	cartesCommuMélangé.remove(cartesCommuMélangé.get(0));
+	return(carteP);
+    }
+    
+    private ArrayList<Carte> MélangerPaquet(boolean estCarteChance){
+	ArrayList<Carte> cartesM;
+	if (estCarteChance){
+	    cartesM = (ArrayList<Carte>)cartesChance.clone();
+	    Collections.shuffle(cartesM);
+	}
+	else{
+	    cartesM = (ArrayList<Carte>)cartesCommu.clone();
+	    Collections.shuffle(cartesM);
+	}
+	return (cartesM);
+    }
     
     private void buildChanceCommu(String dataFilename)
     {
@@ -25,10 +56,10 @@ public class ChanceCommu{
 		for(int i=0; i<data.size(); ++i){
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("CH") == 0){
-			    	cartesChance.add(new Carte(data.get(i)[1], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3]) ));
+			    	getCartesChance().add(new Carte(data.get(i)[1], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3]) ));
 			}
 			else if(caseType.compareTo("CO") == 0){
-			    	cartesCommu.add(new Carte(data.get(i)[0], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3])));
+			    	getCartesCommu().add(new Carte(data.get(i)[0], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3])));
 			}
 		}
 		
@@ -56,4 +87,36 @@ public class ChanceCommu{
     }
     
     //v--getters setters--v
+
+    public ArrayList<Carte> getCartesChance() {
+	return cartesChance;
+    }
+
+    public void setCartesChance(ArrayList<Carte> cartesChance) {
+	this.cartesChance = cartesChance;
+    }
+
+    public ArrayList<Carte> getCartesChanceMélangé() {
+	return cartesChanceMélangé;
+    }
+
+    public void setCartesChanceMélangé(ArrayList<Carte> cartesChanceMélangé) {
+	this.cartesChanceMélangé = cartesChanceMélangé;
+    }
+
+    public ArrayList<Carte> getCartesCommu() {
+	return cartesCommu;
+    }
+
+    public void setCartesCommu(ArrayList<Carte> cartesCommu) {
+	this.cartesCommu = cartesCommu;
+    }
+
+    public ArrayList<Carte> getCartesCommuMélangé() {
+	return cartesCommuMélangé;
+    }
+
+    public void setCartesCommuMélangé(ArrayList<Carte> cartesCommuMélangé) {
+	this.cartesCommuMélangé = cartesCommuMélangé;
+    }
 }
