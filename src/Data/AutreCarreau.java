@@ -25,16 +25,7 @@ public class AutreCarreau extends Carreau{
 		j.setCash(j.getCash() + getInfo());
 		break;
 	    case "Simple Visite / En Prison":
-                if(j.getPrison() != 0){
-                    if(j.getCarteLibPrison() != 0){
-                        Ihm.Afficher(j.getNomJoueur() + " est en prison. Il vous reste " + j.getPrison() + " tour(s) en prison.");
-                        if(Ihm.demanderCartePrison()){
-                            j.setEnPrison(0);
-                        }
-                    }else{
-
-                    }
-                }
+                System.out.println("A Faire ! Action Départ");
 		break;
 	    case "Parc Gratuit":
 		//j.setCash(j.getCash() + this.info);
