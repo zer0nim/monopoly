@@ -13,10 +13,10 @@ public class AutreCarreau extends Carreau{
     public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ChanceCommu cartesChCo){
 	switch (getNomCarreau()) {
 	    case "Chance":
-		System.out.println("A Faire ! Action Chance");
+		cartesChCo.piocherCarteChance().Action(j, joueurs, carreaux);
 		break;
 	    case "Caisse de Communauté":
-		System.out.println("A Faire ! Action Caisse de Communauté");
+		cartesChCo.piocherCarteCommu().Action(j, joueurs, carreaux);
 		break;
 	    case "Départ":
 		System.out.println("A Faire ! Action Départ");
