@@ -79,9 +79,6 @@ public class Joueur {
 	this.carteLibPrison = carteLibPrison;
     }
 
-    public boolean isEnPrison() {
-	return enPrison == 0;
-    }
     
     public int getPrison(){
                   return enPrison;
