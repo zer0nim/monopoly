@@ -20,6 +20,7 @@ public class Controleur {
 	if (!j.estMort()){   
 	    resultD += resultD2;
 
+	    Ihm.Afficher(String.valueOf(resultD));
 	    affJoueur(j);
 	    if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
 		((Gare)j.getPositionCourante()).action(j, resultD);
