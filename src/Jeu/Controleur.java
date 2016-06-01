@@ -20,7 +20,9 @@ public class Controleur {
 	if (!j.estMort()){   
 	    resultD += resultD2;
 
-	    Ihm.Afficher(String.valueOf(resultD));
+	    //Ihm.Afficher("résultat du lancé de dé :" + String.valueOf(resultD));
+	    //Ihm.Afficher("position du joueur :" + j.getPositionCourante().getNumero());
+
 	    affJoueur(j);
 	    if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
 		((Gare)j.getPositionCourante()).action(j, resultD);
@@ -43,10 +45,12 @@ public class Controleur {
     private int lancerDésAvancer(Joueur j){
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
-	Ihm.Afficher("résultat lancé du dé: " + resultD);
-        j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
+	//Ihm.Afficher("résultat lancé du dé: " + resultD);
+	//Ihm.Afficher("Position avant lancé: " + j.getPositionCourante().getNumero());
+
+        j.setPositionCourante(monopoly.getCarreaux().get((((j.getPositionCourante().getNumero() + resultD)-1)%40)));
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position est: " + j.getPositionCourante().getNumero());
+	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
