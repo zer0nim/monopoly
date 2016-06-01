@@ -51,7 +51,7 @@ public class Controleur {
         j.setPositionCourante(monopoly.getCarreaux().get((((j.getPositionCourante().getNumero() + resultD)-1)%40)));
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
 	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
-            j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
+            //j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
     }
