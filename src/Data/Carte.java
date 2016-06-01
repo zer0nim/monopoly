@@ -51,10 +51,10 @@ public class Carte {
 	j.setPositionCourante(carreaux.get((j.getPositionCourante().getNumero() - n)%40));
     }
     public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){
+	//si case départ donner 200€
 	j.setPositionCourante(carreaux.get(numCase));
     }
     public void avancerJusquaScaseDep(Joueur j, int numCase, ArrayList<Carreau> carreaux){
-	//trouver une façon pour qu'il n'ai pas les 200€ de la case départ
 	avancerJusqua(j, numCase, carreaux);
     }
     public void modifyCash(Joueur j, int cash){

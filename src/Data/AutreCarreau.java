@@ -12,7 +12,6 @@ public class AutreCarreau extends Carreau{
 	
 	switch (getNomCarreau()) {
 	    case "Chance":
-		
 		System.out.println("A Faire ! Action Chance");
 		break;
 	    case "Caisse de Communauté":
