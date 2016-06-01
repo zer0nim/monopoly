@@ -123,5 +123,13 @@ public class Monopoly {
     public void setJoueurs(ArrayList<Joueur> joueurs) {
 	this.joueurs = joueurs;
     }
+
+    public ChanceCommu getCartesChCo() {
+	return cartesChCo;
+    }
+
+    public void setCartesChCo(ChanceCommu cartesChCo) {
+	this.cartesChCo = cartesChCo;
+    }
 }
 

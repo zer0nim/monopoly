@@ -8,10 +8,11 @@ public class AutreCarreau extends Carreau{
 	super(numero, nomCarreau);
     }
     
-    public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux){
+    public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ChanceCommu cartesChCo){
 	
 	switch (getNomCarreau()) {
 	    case "Chance":
+		
 		System.out.print("A Faire ! Action Chance");
 		break;
 	    case "Caisse de Communauté":

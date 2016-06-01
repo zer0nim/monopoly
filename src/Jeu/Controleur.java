@@ -28,7 +28,7 @@ public class Controleur {
 	    else if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
 		((ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
 	    else
-		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux());
+		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux(), monopoly.getCartesChCo());
 	}
 	if (j.estMort()){ //pas de else il est peut etre mort en jouant
 		j.vendrePropriétés();
