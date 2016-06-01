@@ -10,7 +10,6 @@ public class AutreCarreau extends Carreau{
     }
     
     public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ChanceCommu cartesChCo){
-	
 	switch (getNomCarreau()) {
 	    case "Chance":
 		System.out.println("A Faire ! Action Chance");
@@ -37,11 +36,15 @@ public class AutreCarreau extends Carreau{
 		System.out.println("A Faire ! Action Simple Visite / En Prison");
 		break;
 	    case "Parc Gratuit":
-		j.setCash(j.getCash() + this.info);
-                this.setInfo(0);
+		//j.setCash(j.getCash() + this.info);
+                //this.setInfo(0);
 		break;
 	    case "Allez en prison":
-		System.out.println("A Faire ! Action Allez en prison");
+                for(Carreau c : carreaux){
+                    if(c.getNomCarreau() == "Simple Visite / En Prison"){
+                        j.setPositionCourante(c);
+                    }
+                }
 		break;
 	    case "Taxe de Luxe":
 		for(Carreau c : carreaux){
