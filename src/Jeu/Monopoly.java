@@ -50,7 +50,10 @@ public class Monopoly {
 				//public Compagnie(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("AU") == 0){
-				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2])    );
+			    if(data.get(i).length < 4)
+				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], 0));
+			    else
+				carreaux.add(new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3])));
 				//public AutreCarreau(int numero, String nomCarreau) {
 			}
 			else

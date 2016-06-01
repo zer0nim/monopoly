@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AutreCarreau extends Carreau{
 
-    public AutreCarreau(int numero, String nomCarreau) {
+    public AutreCarreau(int numero, String nomCarreau, int info) {
 	super(numero, nomCarreau);
     }
     
