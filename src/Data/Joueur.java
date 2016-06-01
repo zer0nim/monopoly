@@ -9,7 +9,7 @@ public class Joueur {
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>(); //liste des biens achetables possédés par le joueur j
     
     private int carteLibPrison = 0;
-    private boolean enPrison = false;
+    private int enPrison = 0;
 
     public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
@@ -80,10 +80,13 @@ public class Joueur {
     }
 
     public boolean isEnPrison() {
-	return enPrison;
+	return enPrison == 0;
     }
-
-    public void setEnPrison(boolean enPrison) {
+    
+    public int getPrison(){
+                  return enPrison;
+    }
+    public void setEnPrison(int enPrison) {
 	this.enPrison = enPrison;
     }
 }

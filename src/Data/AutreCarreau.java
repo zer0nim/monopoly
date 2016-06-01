@@ -1,6 +1,7 @@
 package Data;
 
 import java.util.ArrayList;
+import Ihm.*;
 
 public class AutreCarreau extends Carreau{
     private int info;
@@ -21,19 +22,19 @@ public class AutreCarreau extends Carreau{
 		System.out.println("A Faire ! Action Départ");
 		break;
 	    case "Impôt sur le revenu":
-		for(Carreau c : carreaux){
-                    if(c.getNomCarreau() == "Parc Gratuit"){
-                        if(j.getCash() <= this.getInfo()){
-                            ((AutreCarreau)c).addInfo(j.getCash());
-                        }else{
-                            ((AutreCarreau)c).addInfo(this.getInfo());
-                        }
-                    }
-                }
 		j.setCash(j.getCash() + getInfo());
 		break;
 	    case "Simple Visite / En Prison":
-		System.out.println("A Faire ! Action Simple Visite / En Prison");
+                if(j.getPrison() != 0){
+                    if(j.getCarteLibPrison() != 0){
+                        Ihm.Afficher(j.getNomJoueur() + " est en prison. Il vous reste " + j.getPrison() + " tour(s) en prison.");
+                        if(Ihm.demanderCartePrison()){
+                            j.setEnPrison(0);
+                        }
+                    }else{
+
+                    }
+                }
 		break;
 	    case "Parc Gratuit":
 		//j.setCash(j.getCash() + this.info);
@@ -45,18 +46,10 @@ public class AutreCarreau extends Carreau{
                         j.setPositionCourante(c);
                     }
                 }
+                j.setEnPrison(3);
 		break;
 	    case "Taxe de Luxe":
-		for(Carreau c : carreaux){
-                    if(c.getNomCarreau() == "Parc Gratuit"){
-                        if(j.getCash() <= this.getInfo()){
-                            ((AutreCarreau)c).addInfo(j.getCash());
-                        }else{
-                            ((AutreCarreau)c).addInfo(this.getInfo());
-                        }
-                    }
-                }
-		j.setCash(j.getCash() + getInfo());
+                j.setCash(j.getCash() + getInfo());
 		break;
 	    default:
 		break;
