@@ -16,10 +16,8 @@ public class Controleur {
     public void jouerUnCoup(Joueur j) {
 	int resultD = lancerDésAvancer(j);
 	int resultD2 = lancerDésAvancer(j);
-	Ihm.Afficher("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTT");
 	if (!j.estMort()){   
 	    resultD += resultD2;
-Ihm.Afficher("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTT");
 	    affJoueur(j);
 	    if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
 		((Gare)j.getPositionCourante()).action(j, resultD);
@@ -42,7 +40,6 @@ Ihm.Afficher("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSS
     private int lancerDésAvancer(Joueur j){
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
-        Ihm.Afficher("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTT");
 	Ihm.Afficher("résultat lancé du dé: " + resultD);
         j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
