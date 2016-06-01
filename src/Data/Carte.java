@@ -67,7 +67,7 @@ public class Carte {
 	//modifyCash(j, (cash*j.getMaisons.size + ((cash-75)*j.getHotels.size)) );
     }
     public void allerPrison(Joueur j, ArrayList<Carreau> carreaux){
-	j.setEnPrison(true);
+	j.setEnPrison(3);
 	avancerJusquaScaseDep(j, 10, carreaux);
     }
     public void anniversaire(Joueur j, int cash, ArrayList<Joueur> joueurs){

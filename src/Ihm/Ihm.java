@@ -99,4 +99,10 @@ public class Ihm {
     public static void Afficher(String msg){
 	System.out.println(msg);
     }
+    
+    public static boolean demanderCartePrison(){
+        Scanner sc = new Scanner(System.in);
+	System.out.print("Voulez vous utiliser votre carte \"Vous êtes libéré de Prison\" pour sortir de prison ? (oui/non)");
+	return (sc.nextLine() == "oui");
+    }
 }
