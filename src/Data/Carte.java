@@ -1,5 +1,5 @@
 package Data;
-import Data.Enumeration;
+import Ihm.*;
 import java.util.ArrayList;
 
 public class Carte {
@@ -14,6 +14,7 @@ public class Carte {
     }
     
     public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux){
+	Ihm.Afficher("Carte pioché: " + getDescription());
 	switch (getTypeAction().name()) {
 	    case "libPrison":
 		libPrison(j);
@@ -59,7 +60,7 @@ public class Carte {
 	avancerJusqua(j, numCase, carreaux);
     }
     public void modifyCash(Joueur j, int cash){
-	j.payerArgent(cash);
+	j.recevoirArgent(cash);
     }
     public void payerCashHotels(Joueur j, int cash){
 	//prix par maison = cash
