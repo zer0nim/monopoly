@@ -52,6 +52,7 @@ public class Carte {
     }
     public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){
 	//si case départ donner 200€
+	
 	j.setPositionCourante(carreaux.get(numCase));
     }
     public void avancerJusquaScaseDep(Joueur j, int numCase, ArrayList<Carreau> carreaux){
