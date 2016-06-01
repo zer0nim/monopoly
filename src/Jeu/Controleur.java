@@ -45,7 +45,7 @@ public class Controleur {
 	Ihm.Afficher("résultat lancé du dé: " + resultD);
         j.setPositionCourante(monopoly.getCarreaux().get((j.getPositionCourante().getNumero() + resultD)%40));
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
+	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position est: " + j.getPositionCourante().getNumero());
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
