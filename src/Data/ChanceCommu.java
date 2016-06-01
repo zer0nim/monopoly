@@ -59,7 +59,7 @@ public class ChanceCommu{
 			    	getCartesChance().add(new Carte(data.get(i)[1], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3]) ));
 			}
 			else if(caseType.compareTo("CO") == 0){
-			    	getCartesCommu().add(new Carte(data.get(i)[0], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3])));
+			    	getCartesCommu().add(new Carte(data.get(i)[1], Enumeration.ActionChCo.valueOf(data.get(i)[2]), Integer.parseInt(data.get(i)[3])));
 			}
 		}
 		
