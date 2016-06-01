@@ -69,6 +69,7 @@ public class Carte {
     }
     public void allerPrison(Joueur j, ArrayList<Carreau> carreaux){
 	j.setEnPrison(3);
+        Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
 	avancerJusquaScaseDep(j, 10, carreaux);
     }
     public void anniversaire(Joueur j, int cash, ArrayList<Joueur> joueurs){

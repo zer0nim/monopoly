@@ -14,19 +14,27 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
+        Ihm.Afficher("");
 	int resultD = lancerDésAvancer(j);
 	int resultD2 = lancerDésAvancer(j);
 	if (!j.estMort()){   
 	    resultD += resultD2;
+            if(j.getPrison() != 0 && resultD == 2 * resultD2){
+                j.setEnPrison(0);
+                Ihm.Afficher("Vous venez de sortir de prison avec un double dé !");
+                j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
+            }
 	    affJoueur(j);
-	    if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
-		((Gare)j.getPositionCourante()).action(j, resultD);
-	    else if (j.getPositionCourante().getClass().getSimpleName().equals("Compagnie"))
-		((Compagnie)j.getPositionCourante()).action(j, resultD);
-	    else if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
-		((ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
-	    else
-		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux(), monopoly.getCartesChCo());
+	    actionCarreau(j, resultD);
+            
+            if(j.getPrison() == -1){
+                j.setEnPrison(0);
+                Ihm.Afficher("résultat lancé du dé: " + (resultD - resultD2));
+                Ihm.Afficher("résultat lancé du dé: " + resultD2);
+                j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
+                affJoueur(j);
+                actionCarreau(j, resultD);
+            }
 	}
 	if (j.estMort()){ //pas de else il est peut etre mort en jouant
 		j.vendrePropriétés();
@@ -37,11 +45,24 @@ public class Controleur {
 	}
     }
 
+    private void actionCarreau(Joueur j, int resultD){
+        if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
+		((Gare)j.getPositionCourante()).action(j, resultD);
+	    else if (j.getPositionCourante().getClass().getSimpleName().equals("Compagnie"))
+		((Compagnie)j.getPositionCourante()).action(j, resultD);
+	    else if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
+		((ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
+	    else
+		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux(), monopoly.getCartesChCo());
+    }
+    
     private int lancerDésAvancer(Joueur j){
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
-	Ihm.Afficher("résultat lancé du dé: " + resultD);
-        j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
+        Ihm.Afficher("résultat lancé du dé: " + resultD);
+        if(j.getPrison() == 0){
+            j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
+        }
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
 	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
