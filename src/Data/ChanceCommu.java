@@ -8,34 +8,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ChanceCommu{
-    private ArrayList<Carte> cartesChance = new ArrayList<>();
-    private ArrayList<Carte> cartesChanceMélangé = new ArrayList<>();
+    private ArrayList<Carte> cartesChance = new ArrayList<>(); //Liste des cartes Chances
+    private ArrayList<Carte> cartesChanceMélangé = new ArrayList<>(); //Liste des cartes Chances dans un ordre aléatoire
 
-    private ArrayList<Carte> cartesCommu = new ArrayList<>();
-    private ArrayList<Carte> cartesCommuMélangé = new ArrayList<>();
+    private ArrayList<Carte> cartesCommu = new ArrayList<>(); //Liste des cartes Communautées
+    private ArrayList<Carte> cartesCommuMélangé = new ArrayList<>(); //Liste des cartes Communautées dans un ordre aléatoire
 
     
     public ChanceCommu(){
-	buildChanceCommu("src//main//dataChCo.txt");
+	buildChanceCommu("src//main//dataChCo.txt"); //Répertoire du fichier contenant les cartes chances est communautées
     }
     
-    public Carte piocherCarteChance(){
-	if (cartesChanceMélangé.isEmpty())
+    public Carte piocherCarteChance(){ //Pioche un carte Chance dans le paquet mélangé
+	if (cartesChanceMélangé.isEmpty()) // si le paquet mélangé est vide, on le mélange
 	    cartesChanceMélangé = MélangerPaquet(true);
 	Carte carteP = cartesChanceMélangé.get(0);
-	cartesChanceMélangé.remove(cartesChanceMélangé.get(0));
+	cartesChanceMélangé.remove(cartesChanceMélangé.get(0)); //Lorsqu'une carte est utilisé, on l'enlève du paquet mélangé
 	return(carteP);
     }
     
-    public Carte piocherCarteCommu(){
-	if (cartesCommuMélangé.isEmpty())
+    public Carte piocherCarteCommu(){ //Pioche un carte Chance dans le paquet mélangé
+	if (cartesCommuMélangé.isEmpty()) // si le paquet mélangé est vide, on le mélang
 	    cartesCommuMélangé = MélangerPaquet(false);
 	Carte carteP = cartesCommuMélangé.get(0);
-	cartesCommuMélangé.remove(cartesCommuMélangé.get(0));
+	cartesCommuMélangé.remove(cartesCommuMélangé.get(0)); //Lorsqu'une carte est utilisé, on l'enlève du paquet mélangé
 	return(carteP);
     }
     
-    private ArrayList<Carte> MélangerPaquet(boolean estCarteChance){
+    private ArrayList<Carte> MélangerPaquet(boolean estCarteChance){ //Mélange les paquets de manière aléatoire
 	ArrayList<Carte> cartesM;
 	if (estCarteChance){
 	    cartesM = (ArrayList<Carte>)cartesChance.clone();
@@ -48,7 +48,7 @@ public class ChanceCommu{
 	return (cartesM);
     }
     
-    private void buildChanceCommu(String dataFilename)
+    private void buildChanceCommu(String dataFilename) //Créer les cartes chances et communautées
     {
 	try{
 		ArrayList<String[]> data = readDataFile(dataFilename, ",");
@@ -72,7 +72,7 @@ public class ChanceCommu{
 	}
     }
 	
-    private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
+    private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException //Permet de lire, ligne par ligne le fichier de création des cartes chances et communautées
     {
 	ArrayList<String[]> data = new ArrayList<>();
 	
