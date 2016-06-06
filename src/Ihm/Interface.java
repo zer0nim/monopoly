@@ -24,12 +24,17 @@ import javax.swing.*;
 public class Interface extends JPanel {
     private JButton jouer;
     private JButton annuler;
+    private JButton lancerDe;
+    private JButton acheter;
+    private JButton finDuTour;
+    private Plateau pl;
     public static JFrame window1; 
     
     public Interface (){
         super();
         setBackground(Color.white);
        initUIComponents();
+       
         
         
     }
@@ -51,7 +56,7 @@ public class Interface extends JPanel {
         lancement.add(jouer);
         jouer.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String message= "Groupe supprimé. ";
+               Fenetre();
                
             }
         });
@@ -64,5 +69,14 @@ public class Interface extends JPanel {
         });
     
 }
+    private void Fenetre(){
+        JFrame frame = new JFrame();
+       frame.setTitle("Partie de Monopoly");
+       frame.setSize(900, 800);
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.add(new Plateau());
+       frame.setVisible(true);
+    }
     
+   
 }
