@@ -36,13 +36,13 @@ public abstract class Biens_achetables extends Carreau{
     }
     
     public void acheterPropriété(Joueur j){
-	setPropriétaire(j);
-	j.addPropriété(this);
-	j.payerArgent(getPrixAchat());
+	setPropriétaire(j); //Changer propriétaire de la case
+	j.addPropriété(this); //Ajouté la case au propriétaire j
+	j.payerArgent(getPrixAchat()); //Enlever le prix de la propriété au joueur j
     }
     
     public boolean assezArgent(Joueur j){
-	return((getPrixAchat() - j.getCash()) <= 0);
+	return((getPrixAchat() - j.getCash()) <= 0); //retourne vrai si le joueur a assez d'argent pour acheter la propriété
     }
        
 
