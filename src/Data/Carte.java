@@ -49,7 +49,7 @@ public class Carte {
 	j.setCarteLibPrison(j.getCarteLibPrison() + 1);
     }
     public void reculerDeN(Joueur j, int n, ArrayList<Carreau> carreaux){
-	j.setPositionCourante(carreaux.get((j.getPositionCourante().getNumero() - n)%40));
+	j.setPositionCourante(carreaux.get(((j.getPositionCourante().getNumero() -n) -1)%40));
     }
     public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){
 	//si case départ donner 200€
