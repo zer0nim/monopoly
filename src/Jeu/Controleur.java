@@ -1,10 +1,10 @@
 package Jeu;
 import Ihm.*;
 import Data.*;
-import static Ihm.Ihm.affBiens;
 import static Ihm.Ihm.affJoueur;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Controleur {
     private Monopoly monopoly;
@@ -17,7 +17,7 @@ public class Controleur {
         Ihm.Afficher("");
 	int resultD = lancerDésAvancer(j);
 	int resultD2 = lancerDésAvancer(j);
-	if (!j.estMort()){   
+	if (!j.estMort()){
 	    resultD += resultD2;
             if(j.getPrison() != 0 && resultD == 2 * resultD2){
                 j.setEnPrison(0);
@@ -42,6 +42,17 @@ public class Controleur {
 	if (resultD == 2 * resultD2){ //si double
 	    Ihm.Afficher("Double au Dé !");
 	    jouerUnCoup(j);
+	}
+	
+	System.out.println("\nFin du tour, appuyer sur entrer pour continuer");
+
+	Scanner input = new Scanner(System.in);
+	String s = null;
+	while ( true )
+	{
+	   s = input.nextLine();
+	   if( !s.equals("\\n") ) 
+	      break;
 	}
     }
 
