@@ -39,6 +39,7 @@ public class Monopoly {
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("P") == 0){
 				carreaux.add(new ProprieteAConstruire(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3]))));
+				getGroupe(CouleurPropriete.valueOf(data.get(i)[3])).setCarreau(   carreaux.get(carreaux.size() - 1)    );
 				//public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
 			}
 			else if(caseType.compareTo("G") == 0){
