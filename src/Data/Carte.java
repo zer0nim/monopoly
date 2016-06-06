@@ -49,15 +49,20 @@ public class Carte {
 	j.setCarteLibPrison(j.getCarteLibPrison() + 1);
     }
     public void reculerDeN(Joueur j, int n, ArrayList<Carreau> carreaux){
-	j.setPositionCourante(carreaux.get((j.getPositionCourante().getNumero() - n)%40));
+	j.setPositionCourante(carreaux.get(((j.getPositionCourante().getNumero() -n) -1)%40));
     }
     public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){
-	//si case départ donner 200€
-	
+	int ancPos = j.getPositionCourante().getNumero();
 	j.setPositionCourante(carreaux.get(numCase));
+	
+	if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
+	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
+            j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
+        }
+	
     }
     public void avancerJusquaScaseDep(Joueur j, int numCase, ArrayList<Carreau> carreaux){
-	avancerJusqua(j, numCase, carreaux);
+	j.setPositionCourante(carreaux.get(numCase));
     }
     public void modifyCash(Joueur j, int cash){
 	j.recevoirArgent(cash);
@@ -75,7 +80,7 @@ public class Carte {
     public void anniversaire(Joueur j, int cash, ArrayList<Joueur> joueurs){
 	for (Joueur jcourant : joueurs){
 	    if (jcourant != j){
-		j.payerArgent(cash);
+		jcourant.payerArgent(cash);
 		j.recevoirArgent(cash);
 	    }
 	}
