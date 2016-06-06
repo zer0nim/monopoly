@@ -43,7 +43,7 @@ public class Controleur {
 	    Ihm.Afficher("Double au Dé !");
 	    jouerUnCoup(j);
 	}
-	
+	/*
 	System.out.println("\nFin du tour, appuyer sur entrer pour continuer");
 
 	Scanner input = new Scanner(System.in);
@@ -53,7 +53,7 @@ public class Controleur {
 	   s = input.nextLine();
 	   if( !s.equals("\\n") ) 
 	      break;
-	}
+	}*/
     }
 
     private void actionCarreau(Joueur j, int resultD){

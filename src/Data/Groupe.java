@@ -24,7 +24,7 @@ public class Groupe {
         return carreau;
     }
 
-    public void setCarreau(ArrayList<Carreau> carreau) {
-        this.carreau = carreau;
+    public void setCarreau(Carreau carreau) {
+        this.carreau.add(carreau);
     }
 }

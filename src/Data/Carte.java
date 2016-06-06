@@ -51,7 +51,7 @@ public class Carte {
     public void reculerDeN(Joueur j, int n, ArrayList<Carreau> carreaux){
 	j.setPositionCourante(carreaux.get(((j.getPositionCourante().getNumero() -n) -1)%40));
     }
-    public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){
+    public void avancerJusqua(Joueur j, int numCase, ArrayList<Carreau> carreaux){ //Faire l'action de la carte ?
 	int ancPos = j.getPositionCourante().getNumero();
 	j.setPositionCourante(carreaux.get(numCase));
 	
