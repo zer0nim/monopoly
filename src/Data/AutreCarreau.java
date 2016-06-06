@@ -26,9 +26,13 @@ public class AutreCarreau extends Carreau{
 		break;
             case "Simple Visite / En Prison":
                 if(j.getPrison() > 1){
+                    if(j.getPrison() == 3){
+                            j.setCarteLibPrison(1);
+                        }
                     if(j.getCarteLibPrison() != 0){
                         if(Ihm.demanderCartePrison()){
                             j.setEnPrison(0);
+                            j.setCarteLibPrison(j.getCarteLibPrison() - 1);
                             Ihm.Afficher("Vous venez de sortir de prison avec votre carte \"Vous êtes libéré de Prison\".");
                         }
                     }
