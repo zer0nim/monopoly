@@ -19,7 +19,6 @@ public class AutreCarreau extends Carreau{
 		cartesChCo.piocherCarteCommu().Action(j, joueurs, carreaux);
 		break;
 	    case "Départ":
-		System.out.println("A Faire ! Action Départ");
 		break;
 	    case "Impôt sur le revenu":
 		j.setCash(j.getCash() + getInfo());
