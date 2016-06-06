@@ -40,7 +40,7 @@ public class Interface extends JPanel {
     JLabel logo = new JLabel(new ImageIcon("src/Image/logo2.jpeg"));
     this.add(logo, BorderLayout.NORTH);
     
-    JLabel plateau = new JLabel(new ImageIcon("src/Image/plateau2.jpg"));
+    JLabel plateau = new JLabel(new ImageIcon("src/Image/assassins-plateau-600.jpg"));
     this.add(plateau, BorderLayout.CENTER);
     
     JPanel lancement = new JPanel ();
