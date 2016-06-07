@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -30,12 +31,15 @@ public class Interface extends JPanel {
     private JTextField champJoueur;
     private JComboBox nbJoueurPossible;
     
+    private ArrayList<JTextField> joueurs;
+    
     private int nbJoueur = 0;
     
     public Interface(){
         super();
         controleur= new Controleur();
 	nbJoueurPossible= new JComboBox();
+	joueurs = new ArrayList<>();
 	
 	setBackground(Color.white);
         initUIComponents();
@@ -57,6 +61,11 @@ public class Interface extends JPanel {
 	jouer.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+		int i = 0;
+		for (JTextField jc : joueurs){
+		    controleur.getMonopoly().getJoueurs().get(i).setNomJoueur(jc.getText());
+		    i++;
+		}
 		Fenetre();
 	    }
 	});
@@ -86,12 +95,13 @@ public class Interface extends JPanel {
 	    prenom.setFont(font);
 		
 	    choixJoueur2.add(prenom);   //Affiche un indice devant
-	    champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
-	    choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
+	    joueurs.add(new JTextField(30));   //Taille de la fenetre de saisie
+	    choixJoueur2.add(joueurs.get(joueurs.size()-1));              //Permet d'affiocher la fenetre de saisie
 
-	    //controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
+	    
+	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0)));
 	    }
-	    //controleur.quiCommence();
+	    controleur.quiCommence();
 
 	this.add(choixJoueur2,BorderLayout.CENTER);
 
