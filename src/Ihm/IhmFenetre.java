@@ -16,7 +16,7 @@ import java.awt.*;
  */
 public class IhmFenetre extends JPanel {
         
-        public static void main(String [] args) {        
+    public static void main(String [] args) {        
        JFrame frame = new JFrame();
        frame.setTitle("Monopoly");
        frame.setSize(900, 800);

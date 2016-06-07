@@ -26,88 +26,80 @@ public class Interface extends JPanel {
     private JButton finDuTour;
     private Plateau pl;
     public static JFrame window1; 
-    private Controleur controleur;
+    private Controleur controleur= new Controleur();
     private JTextField champJoueur;
     private JComboBox nbJoueurPossible= new JComboBox();
     
-    public Interface (){
+    public Interface(){
         super();
         setBackground(Color.white);
-       initUIComponents();
-       
-        
-        
+        initUIComponents();
     }
     
     private void initUIComponents(){
-    this.setLayout(new BorderLayout());
-    
-    JLabel logo = new JLabel(new ImageIcon("src/Image/logo2.jpeg"));
-    this.add(logo, BorderLayout.NORTH);
-    
-    
-    JPanel lancement = new JPanel ();
-    lancement.setLayout(new GridLayout (1,2));
-    this.add(lancement,BorderLayout.SOUTH);
-    
-        jouer = new JButton("Jouer au monopoly");
-        lancement.add(jouer);
-        jouer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Fenetre();
-               
-            }
-        });
-        annuler = new JButton("Quittez le jeu");
-        lancement.add(annuler);
-        annuler.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                 System.exit(0);
-            }
-        });
-        JPanel choixJoueur = new JPanel();
-        choixJoueur.setLayout(new GridLayout(1,2));
-        this.add(choixJoueur,BorderLayout.CENTER);
-        
-            JPanel choixJoueur2 = new JPanel();
-            this.add(choixJoueur2,BorderLayout.NORTH);
-            
-            
-        choixJoueur2.add(new JLabel("Nombre de joueur")); 
-                 for (int i = 1; i<=6;i++ ){
-                    nbJoueurPossible.addItem(i);
-                 }
-                 
-                     int nbJoueur = (int)nbJoueurPossible.getSelectedIndex();
-                    for (int j = 0; j < nbJoueur ; j++) {
-                        
-                        choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
-                    champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
-                    choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
-                    
-                    controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
-                        }
-                        controleur.quiCommence();
-    
-                    
-                    
-                    
-        
-                    
-                    
-                    
-                    
-                    
-                 
-             choixJoueur.add(choixJoueur2);
-        
-       
-        
-    
-}
+	this.setLayout(new BorderLayout());
+
+	JLabel logo = new JLabel(new ImageIcon("src/Image/logo2.jpeg"));
+	this.add(logo, BorderLayout.NORTH);
+
+
+	JPanel lancement = new JPanel ();
+	lancement.setLayout(new GridLayout (1,2));
+	this.add(lancement,BorderLayout.SOUTH);
+
+	    jouer = new JButton("Jouer au monopoly");
+	    lancement.add(jouer);
+	    jouer.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+		    Fenetre();
+
+		}
+	    });
+	    annuler = new JButton("Quittez le jeu");
+	    lancement.add(annuler);
+	    annuler.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		     System.exit(0);
+		}
+	    });
+	    JPanel choixJoueur = new JPanel();
+	    choixJoueur.setLayout(new GridLayout(1,2));
+	    this.add(choixJoueur,BorderLayout.CENTER);
+
+		JPanel choixJoueur2 = new JPanel();
+		this.add(choixJoueur2,BorderLayout.NORTH);
+
+
+	    choixJoueur2.add(new JLabel("Nombre de joueur")); 
+		     for (int i = 1; i<=6;i++ ){
+			nbJoueurPossible.addItem(i);
+		     }
+
+			int nbJoueur = (int)nbJoueurPossible.getSelectedIndex()+1;
+			for (int j = 0; j < nbJoueur ; j++) {
+
+			    choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
+			    champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
+			    choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
+
+			    controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
+			}
+			controleur.quiCommence();
+
+
+
+
+
+
+		 choixJoueur.add(choixJoueur2);
+		 
+		 
+		 
+		 
+    }
     private void Fenetre(){
-        JFrame frame = new JFrame();
+       JFrame frame = new JFrame();
        frame.setTitle("Partie de Monopoly");
        frame.setSize(900, 800);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
