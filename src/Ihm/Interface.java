@@ -65,23 +65,19 @@ public class Interface extends JPanel {
 		System.exit(0);
 	    }
 	});
+	
+	
+	
 	JPanel choixJoueur = new JPanel();
 	choixJoueur.setLayout(new GridLayout(1,2));
-	this.add(choixJoueur,BorderLayout.CENTER);
+	
+	
 
 	JPanel choixJoueur2 = new JPanel();
 	this.add(choixJoueur2,BorderLayout.NORTH);
 
-	choixJoueur2.add(new JLabel("Nombre de joueur"));
-	    for (int i = 1; i<=6;i++ ){
-		nbJoueurPossible.addItem(i);
-	    }
-
-	    setNbJoueur(nbJoueurPossible.getSelectedIndex()+1);
-
-	    choixJoueur2.add(nbJoueurPossible);
-	    
-	     
+	IhmNbJoueur ihmNbj = new IhmNbJoueur();
+	setNbJoueur(ihmNbj.afficherBoiteDialogue());
 	    
 	    for (int j = 0; j < getNbJoueur() ; j++) {
 		choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
@@ -95,8 +91,9 @@ public class Interface extends JPanel {
 
 
 	    choixJoueur.add(choixJoueur2);
-	    this.add(choixJoueur);
+	    	this.add(choixJoueur,BorderLayout.CENTER);
 
+	    
     }
     
     
