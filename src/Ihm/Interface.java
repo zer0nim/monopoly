@@ -76,13 +76,20 @@ public class Interface extends JPanel {
 	JPanel choixJoueur2 = new JPanel();
 	choixJoueur2.setLayout(new GridLayout(getNbJoueur(),1));
 
-	    
-	    for (int j = 0; j < getNbJoueur() ; j++) {
-		choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
-		champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
-		choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
+	this.setSize(500, getNbJoueur()*20);
+	
+        for (int j = 0; j < getNbJoueur() ; j++) {
+	    JLabel prenom = new JLabel("Joueur :");
+	    prenom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		
+	    Font font = new Font("Arial",Font.BOLD,16);
+	    prenom.setFont(font);
+		
+	    choixJoueur2.add(prenom);   //Affiche un indice devant
+	    champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
+	    choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
 
-		//controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
+	    //controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
 	    }
 	    //controleur.quiCommence();
 
@@ -91,6 +98,9 @@ public class Interface extends JPanel {
 	    
     }
     
+    public int ResponsiveHeight(){
+	return (nbJoueur*45)+200;
+    }
     
     private void Fenetre(){
        JFrame frame = new JFrame();

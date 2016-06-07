@@ -15,14 +15,16 @@ import java.awt.*;
  * @author albertar
  */
 public class IhmFenetre extends JPanel {
-        
-    public IhmFenetre() {        
-       JFrame frame = new JFrame();
-       frame.setTitle("Monopoly");
-       frame.setSize(900, 800);
-       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.add(new Interface ());
-       frame.setVisible(true);
+    public IhmFenetre() {
+	JFrame frame = new JFrame();
+	frame.setTitle("Monopoly");
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	Interface inter = new Interface();
+
+	frame.add(inter);
+	frame.setSize(500, inter.ResponsiveHeight());
+
+	frame.setVisible(true);
     }
     
 }
