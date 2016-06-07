@@ -16,6 +16,8 @@ public class Controleur {
         Ihm.Afficher("");
 	int resultD = lancerDésAvancer(j);
 	int resultD2 = lancerDésAvancer(j);
+        //int resultD = 2;
+        //int resultD2 = 2;
 	if (!j.estMort()){
 	    resultD += resultD2;
             if(j.getPrison() != 0 && resultD == 2 * resultD2){
