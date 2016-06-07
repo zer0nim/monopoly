@@ -26,15 +26,18 @@ public class Interface extends JPanel {
     private JButton finDuTour;
     private Plateau pl;
     public static JFrame window1; 
-    private Controleur controleur= new Controleur();
+    private Controleur controleur;
     private JTextField champJoueur;
-    private JComboBox nbJoueurPossible= new JComboBox();
+    private JComboBox nbJoueurPossible;
     
     private int nbJoueur = 0;
     
     public Interface(){
         super();
-        setBackground(Color.white);
+        controleur= new Controleur();
+	nbJoueurPossible= new JComboBox();
+	
+	setBackground(Color.white);
         initUIComponents();
     }
     
@@ -61,23 +64,18 @@ public class Interface extends JPanel {
 	annuler = new JButton("Quittez le jeu");
 	lancement.add(annuler);
 	annuler.addActionListener(new ActionListener() {
+	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		System.exit(0);
 	    }
 	});
 	
-	
-	
-	JPanel choixJoueur = new JPanel();
-	choixJoueur.setLayout(new GridLayout(1,2));
-	
-	
+
+	setNbJoueur(IhmNbJoueur.afficherBoiteDialogue());
 
 	JPanel choixJoueur2 = new JPanel();
-	this.add(choixJoueur2,BorderLayout.NORTH);
+	choixJoueur2.setLayout(new GridLayout(getNbJoueur(),1));
 
-	IhmNbJoueur ihmNbj = new IhmNbJoueur();
-	setNbJoueur(ihmNbj.afficherBoiteDialogue());
 	    
 	    for (int j = 0; j < getNbJoueur() ; j++) {
 		choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
@@ -88,10 +86,7 @@ public class Interface extends JPanel {
 	    }
 	    //controleur.quiCommence();
 
-
-
-	    choixJoueur.add(choixJoueur2);
-	    	this.add(choixJoueur,BorderLayout.CENTER);
+	this.add(choixJoueur2,BorderLayout.CENTER);
 
 	    
     }
