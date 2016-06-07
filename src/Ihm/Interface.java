@@ -51,8 +51,9 @@ public class Interface extends JPanel {
         jouer = new JButton("Jouer au monopoly");
         lancement.add(jouer);
         jouer.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-               Fenetre();
+                Fenetre();
                
             }
         });
@@ -88,6 +89,4 @@ public class Interface extends JPanel {
        frame.add(new Plateau(controleur.getMonopoly().getJoueurs()));
        frame.setVisible(true);
     }
-    
-   
 }

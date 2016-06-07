@@ -4,7 +4,6 @@ import Data.*;
 import static Ihm.Ihm.affJoueur;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Controleur {
     private Monopoly monopoly;
@@ -41,8 +40,18 @@ public class Controleur {
 	}
 	if (resultD == 2 * resultD2){ //si double
 	    Ihm.Afficher("Double au Dé !");
-	    jouerUnCoup(j);
-	}
+            j.incrementCompteDoubleDes();
+            if (j.getCompteDoubleDes() == 3) {
+                j.setPositionCourante(monopoly.getCarreaux().get(10));
+                j.setEnPrison(3);
+                Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+                j.resetCompteDoubleDes();
+            } else {
+                jouerUnCoup(j);
+            }
+	} else {
+            j.resetCompteDoubleDes();
+        }
 	/*
 	System.out.println("\nFin du tour, appuyer sur entrer pour continuer");
 

@@ -10,6 +10,7 @@ public class Joueur {
     
     private int carteLibPrison = 0;
     private int enPrison = 0;
+    private int compteDoubleDes = 0;
 
     public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
@@ -37,6 +38,12 @@ public class Joueur {
 	}
 	propriétés.clear();
     }
+    
+    public void incrementCompteDoubleDes() {    compteDoubleDes++;  }
+    
+    public void resetCompteDoubleDes() {    compteDoubleDes = 0;   }
+    
+    public int getCompteDoubleDes() {   return compteDoubleDes; }
     
     //v--getters setters--v
     public String getNomJoueur() {
