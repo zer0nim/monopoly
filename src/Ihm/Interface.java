@@ -77,12 +77,8 @@ public class Interface extends JPanel {
 		nbJoueurPossible.addItem(i);
 	    }
 
-	    nbJoueurPossible.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		setNbJoueur(nbJoueurPossible.getSelectedIndex()+1);
-	    }
-	    });
+	    setNbJoueur(nbJoueurPossible.getSelectedIndex()+1);
+
 	    choixJoueur2.add(nbJoueurPossible);
 	    
 	     
