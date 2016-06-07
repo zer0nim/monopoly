@@ -5,6 +5,7 @@
  */
 package Ihm;
 
+import Jeu.Controleur;
 import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -24,6 +25,8 @@ public class Interface extends JPanel {
     private JButton finDuTour;
     private Plateau pl;
     public static JFrame window1; 
+    private Controleur controleur;
+    private JComboBox nbJoueur= new JComboBox();
     
     public Interface (){
         super();
@@ -40,8 +43,6 @@ public class Interface extends JPanel {
     JLabel logo = new JLabel(new ImageIcon("src/Image/logo2.jpeg"));
     this.add(logo, BorderLayout.NORTH);
     
-    JLabel plateau = new JLabel(new ImageIcon("src/Image/plateau_monopoly.jpg"));
-    this.add(plateau, BorderLayout.CENTER);
     
     JPanel lancement = new JPanel ();
     lancement.setLayout(new GridLayout (1,2));
@@ -62,6 +63,21 @@ public class Interface extends JPanel {
                  System.exit(0);
             }
         });
+        JPanel choixJoueur = new JPanel();
+        choixJoueur.setLayout(new GridLayout(1,2));
+        this.add(choixJoueur,BorderLayout.CENTER);
+        
+            JPanel choixJoueur2 = new JPanel();
+            this.add(choixJoueur2,BorderLayout.NORTH);
+        choixJoueur2.add(new JLabel("Nombre de joueur")); 
+                 for (int i = 1; i<=6;i++ ){
+                    nbJoueur.addItem(i);
+                 }
+                 choixJoueur2.add(nbJoueur);
+             choixJoueur.add(choixJoueur2);
+        
+       
+        
     
 }
     private void Fenetre(){
@@ -69,7 +85,7 @@ public class Interface extends JPanel {
        frame.setTitle("Partie de Monopoly");
        frame.setSize(900, 800);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.add(new Plateau());
+       frame.add(new Plateau(controleur.getMonopoly().getJoueurs()));
        frame.setVisible(true);
     }
     
