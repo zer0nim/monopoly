@@ -9,6 +9,7 @@ public class Main {
     private static ArrayList<Joueur> deathNote;
 
     public static void main(String[] args) {
+	/*
 	deathNote = new ArrayList<>(); //ArrayList qui permet de lister les joueurs à éliminer
 	
 	Controleur controleur = new Controleur();
@@ -16,7 +17,7 @@ public class Main {
 	/*for(Carreau c : monop.getCarreaux()){
 	    Ihm.affBiens(c);
 	}*/
-	
+	/*
 	while(controleur.getMonopoly().getJoueurs().size() > 1){ //tant qu'il y a au moins 2 joueurs
 	    for (Joueur j : controleur.getMonopoly().getJoueurs()){ //On boucle sur les joueurs encore en jeu
 		if (controleur.getMonopoly().getJoueurs().size() > 1){//tant qu'il y a au moins 2 joueurs
@@ -34,6 +35,7 @@ public class Main {
 	    deathNote.clear(); //Puis on vide cette list pour le prochain passage
 	}
 	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
-
+*/
+	IhmFenetre ihmf = new IhmFenetre();
     }
 }

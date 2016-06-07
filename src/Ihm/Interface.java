@@ -88,9 +88,9 @@ public class Interface extends JPanel {
 		champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
 		choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
 
-		controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
+		//controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
 	    }
-	    controleur.quiCommence();
+	    //controleur.quiCommence();
 
 
 
