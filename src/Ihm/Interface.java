@@ -5,6 +5,7 @@
  */
 package Ihm;
 
+import Data.Joueur;
 import Jeu.Controleur;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -26,7 +27,8 @@ public class Interface extends JPanel {
     private Plateau pl;
     public static JFrame window1; 
     private Controleur controleur;
-    private JComboBox nbJoueur= new JComboBox();
+    private JTextField champJoueur;
+    private JComboBox nbJoueurPossible= new JComboBox();
     
     public Interface (){
         super();
@@ -70,11 +72,34 @@ public class Interface extends JPanel {
         
             JPanel choixJoueur2 = new JPanel();
             this.add(choixJoueur2,BorderLayout.NORTH);
+            
+            
         choixJoueur2.add(new JLabel("Nombre de joueur")); 
                  for (int i = 1; i<=6;i++ ){
-                    nbJoueur.addItem(i);
+                    nbJoueurPossible.addItem(i);
                  }
-                 choixJoueur2.add(nbJoueur);
+                 
+                     int nbJoueur = (int)nbJoueurPossible.getSelectedIndex();
+                    for (int j = 0; j < nbJoueur ; j++) {
+                        
+                        choixJoueur2.add(new JLabel("Prenom :"));   //Affiche un indice devant
+                    champJoueur = new JTextField(30);   //Taille de la fenetre de saisie
+                    choixJoueur2.add(champJoueur);              //Permet d'affiocher la fenetre de saisie
+                    
+                    controleur.getMonopoly().setJoueur(new Joueur(champJoueur.toString(), controleur.getMonopoly().getCarreaux().get(0)));
+                        }
+                        controleur.quiCommence();
+    
+                    
+                    
+                    
+        
+                    
+                    
+                    
+                    
+                    
+                 
              choixJoueur.add(choixJoueur2);
         
        
