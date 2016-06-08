@@ -1,4 +1,5 @@
 package Ihm;
+
 import java.awt.*;
 import java.awt.event.*;
 import Data.*;
@@ -12,7 +13,6 @@ public class Plateau extends JPanel {
     private JButton acheter;
     private JButton finDuTour;
     private DefaultTableModel model;
-
 
     public JPanel Bouton() {
 	JPanel bouttonAction = new JPanel();
@@ -40,24 +40,29 @@ public class Plateau extends JPanel {
 	    public void actionPerformed(ActionEvent e) {
 	    }
 	});
-	return(bouttonAction);
+	return (bouttonAction);
     }
 
-    
-    
     public JPanel TabJoueur(ArrayList<Joueur> joueurs) {
 
 	JPanel tableauJoueurs = new JPanel();
-	tableauJoueurs.setLayout(new GridLayout(2, 1));
+	tableauJoueurs.setLayout(new BorderLayout());
 	this.add(tableauJoueurs, BorderLayout.EAST);
 
-	model = new DefaultTableModel();
+	model = new DefaultTableModel() {
+
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+		return false;//This causes all cells to be not editable
+	    }
+	};
+	JTable table = new JTable(model);
+
 	String[] entetes = {"Joueur", "Cash"};
 	model.setColumnIdentifiers(entetes);
-
-	JTable table = new JTable(model);
-	tableauJoueurs.add(table.getTableHeader());
-	tableauJoueurs.add(table);
+	
+	tableauJoueurs.add(table.getTableHeader(), BorderLayout.NORTH);
+	tableauJoueurs.add(table, BorderLayout.CENTER);
 
 	String[] valeur = new String[2];
 	for (Joueur jCourant : joueurs) {
@@ -65,7 +70,8 @@ public class Plateau extends JPanel {
 	    valeur[1] = Integer.toString(jCourant.getCash());
 	    model.addRow(valeur);
 	}
-	return(tableauJoueurs);
+
+	return (tableauJoueurs);
     }
 
     public JPanel InfoJoueur(Joueur j) {
@@ -74,7 +80,7 @@ public class Plateau extends JPanel {
 	this.add(infoJoueur, BorderLayout.WEST);
 
 	infoJoueur.add(new JLabel("Nom du Joueur"));
-	
-	return(infoJoueur);
+
+	return (infoJoueur);
     }
 }
