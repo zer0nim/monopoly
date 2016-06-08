@@ -5,8 +5,8 @@ public abstract class Carreau {
     private String nomCarreau;
 
     public Carreau(int numero, String nomCarreau) {
-	this.numero = numero;
-	this.nomCarreau = nomCarreau;
+	this.numero = numero; //Emplacement du carreau sur le plateau de jeu
+	this.nomCarreau = nomCarreau; //Nom du carreau (Exemple : "Rue de Vaugirard"
     }
     
     //v--getters setters--v
