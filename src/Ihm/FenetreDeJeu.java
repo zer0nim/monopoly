@@ -1,5 +1,6 @@
 package Ihm;
 
+import Data.Biens_achetables;
 import Data.Joueur;
 import Jeu.Controleur;
 import java.awt.BorderLayout;
@@ -38,11 +39,18 @@ public class FenetreDeJeu {
 	panelPrincipal.add(pl.Bouton(), BorderLayout.SOUTH);
 		
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
+	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(1));
+	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(3));
+	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(5));
+	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(8));
+		jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(9));
+
+
 	
 	JPanel PaneauInfosJoueurs = new JPanel();
-	PaneauInfosJoueurs.setLayout(new GridLayout(2,1));
-	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant));
-	PaneauInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()));
+	PaneauInfosJoueurs.setLayout(new BorderLayout());
+	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant), BorderLayout.NORTH);
+	PaneauInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
 	panelPrincipal.add(PaneauInfosJoueurs, BorderLayout.EAST);
 
 	
