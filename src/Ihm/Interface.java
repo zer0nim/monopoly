@@ -85,7 +85,7 @@ public class Interface extends JPanel {
 	    JLabel prenom = new JLabel("Joueur :");
 	    prenom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-	    Font font = new Font("Arial", Font.BOLD, 16);
+	    Font font = new Font("Arial", Font.BOLD, 16); //Police d'écriture Arial en Gras et de taille 16
 	    prenom.setFont(font);
 
 	    ChoixNomJoueurs.add(prenom);
