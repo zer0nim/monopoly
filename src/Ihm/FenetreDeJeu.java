@@ -17,7 +17,7 @@ public class FenetreDeJeu {
     private Plateau pl;
 
     public FenetreDeJeu(Controleur controleur) {
-	pl = new Plateau(controleur.getMonopoly().getJoueurs());
+	pl = new Plateau();
 	frame = new JFrame();
 	frame.setTitle("Partie de Monopoly");
 	frame.setSize(900, 800);
@@ -26,7 +26,10 @@ public class FenetreDeJeu {
 	panelPrincipal = new JPanel();
 	panelPrincipal.setLayout(new BorderLayout());
 	
-	panelPrincipal.add(, BorderLayout.NORTH);
+	panelPrincipal.add(pl.Bouton(), BorderLayout.SOUTH);
+	
+	panelPrincipal.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
+	
 	frame.add(pl);
 	frame.setVisible(true);
     }

@@ -12,21 +12,9 @@ public class Plateau extends JPanel {
     private JButton acheter;
     private JButton finDuTour;
     private DefaultTableModel model;
-    private Joueur j;
-    
-    private JFrame window1 = new JFrame();
 
-    public Plateau(ArrayList<Joueur> joueurs) {
-	super();
-	setBackground(Color.white);
-	this.setLayout(new BorderLayout());
-	Bouton();
-	TabJoueur(j, joueurs);
-	InfoJoueur(j);
 
-    }
-
-    public void Bouton() {
+    public JPanel Bouton() {
 	JPanel bouttonAction = new JPanel();
 	bouttonAction.setLayout(new GridLayout(1, 3));
 	this.add(bouttonAction, BorderLayout.SOUTH);
@@ -36,8 +24,6 @@ public class Plateau extends JPanel {
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		String message = "Annuler. ";
-		JOptionPane.showMessageDialog(window1, message, "Modification", JOptionPane.PLAIN_MESSAGE);
 	    }
 	});
 	acheter = new JButton("Acheter le logement");
@@ -45,8 +31,6 @@ public class Plateau extends JPanel {
 	acheter.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		String message = "Modifications Sauvegardés";
-		JOptionPane.showMessageDialog(window1, message, "Modification", JOptionPane.PLAIN_MESSAGE);
 	    }
 	});
 	finDuTour = new JButton("Fin du tour");
@@ -54,13 +38,14 @@ public class Plateau extends JPanel {
 	finDuTour.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		String message = "Groupe supprimé. ";
-		JOptionPane.showMessageDialog(window1, message, "Groupe", JOptionPane.PLAIN_MESSAGE);
 	    }
 	});
+	return(bouttonAction);
     }
 
-    public void TabJoueur(Joueur j, ArrayList<Joueur> joueurs) {
+    
+    
+    public JPanel TabJoueur(ArrayList<Joueur> joueurs) {
 
 	JPanel tableauJoueurs = new JPanel();
 	tableauJoueurs.setLayout(new GridLayout(2, 1));
@@ -80,14 +65,16 @@ public class Plateau extends JPanel {
 	    valeur[1] = Integer.toString(jCourant.getCash());
 	    model.addRow(valeur);
 	}
-
+	return(tableauJoueurs);
     }
 
-    public void InfoJoueur(Joueur j) {
+    public JPanel InfoJoueur(Joueur j) {
 	JPanel infoJoueur = new JPanel();
 	infoJoueur.setLayout(new GridLayout(8, 2));
 	this.add(infoJoueur, BorderLayout.WEST);
 
 	infoJoueur.add(new JLabel("Nom du Joueur"));
+	
+	return(infoJoueur);
     }
 }
