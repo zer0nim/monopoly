@@ -1,11 +1,8 @@
 package Data;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.*;
 
 public class ChanceCommu{
     private ArrayList<Carte> cartesChance = new ArrayList<>(); //Liste des cartes Chances

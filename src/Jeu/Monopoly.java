@@ -1,11 +1,8 @@
 package Jeu;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import Data.*;
+import java.io.*;
 
 
 public class Monopoly {
