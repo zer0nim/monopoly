@@ -3,6 +3,7 @@ package Ihm;
 import Data.Joueur;
 import Jeu.Controleur;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,12 +36,15 @@ public class FenetreDeJeu {
 	panelPrincipal.setLayout(new BorderLayout());
 	
 	panelPrincipal.add(pl.Bouton(), BorderLayout.SOUTH);
-	
-	panelPrincipal.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.EAST);
-	
+		
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
 	
-	panelPrincipal.add(pl.InfoJoueur(jCourant), BorderLayout.WEST);
+	JPanel PaneauInfosJoueurs = new JPanel();
+	PaneauInfosJoueurs.setLayout(new GridLayout(2,1));
+	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant));
+	PaneauInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()));
+	panelPrincipal.add(PaneauInfosJoueurs, BorderLayout.EAST);
+
 	
 	panelPrincipal.add(ihmPlateau.getJc(), BorderLayout.CENTER);
 	

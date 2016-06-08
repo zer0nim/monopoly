@@ -60,7 +60,7 @@ public class Plateau extends JPanel {
 
 	String[] entetes = {"Joueur", "Cash"};
 	model.setColumnIdentifiers(entetes);
-	
+
 	tableauJoueurs.add(table.getTableHeader(), BorderLayout.NORTH);
 	tableauJoueurs.add(table, BorderLayout.CENTER);
 
@@ -79,7 +79,18 @@ public class Plateau extends JPanel {
 	infoJoueur.setLayout(new GridLayout(8, 2));
 	this.add(infoJoueur, BorderLayout.WEST);
 
-	infoJoueur.add(new JLabel("Nom du Joueur"));
+	infoJoueur.add(new JLabel("Nom du Joueur: " + j.getNomJoueur()));
+	infoJoueur.add(new JLabel("Argent: " + j.getCash()));
+	infoJoueur.add(new JLabel("Position Courante: " + j.getPositionCourante().getNumero()));
+	infoJoueur.add(new JLabel("Cartes Sortie de Prison: " + j.getCarteLibPrison()));
+	infoJoueur.add(new JLabel("En prison: " + ((j.getPrison() == 0) ? "non" : "oui")));
+	
+	infoJoueur.add(new JLabel("biens du joueur: "));
+	for (Biens_achetables bien : j.getPropriétés()){
+	    infoJoueur.add(new JLabel("Numéro: " + bien.getNumero()));
+	    infoJoueur.add(new JLabel("Nom: " + bien.getNomCarreau()));
+
+	}
 
 	return (infoJoueur);
     }
