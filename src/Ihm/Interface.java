@@ -86,7 +86,7 @@ public class Interface extends JPanel {
 	JPanel ChoixNomJoueurs = new JPanel();
 	ChoixNomJoueurs.setLayout(new GridLayout(nbJoueur,1));
 	
-        for (int j = 0; j < nbJoueur ; j++) {  //boucle pour ajouter les champs de saisie du nom de joueurSS
+        for (int j = 0; j < nbJoueur ; j++) {  //boucle pour ajouter les champs de saisie du nom de joueurs
 	    JLabel prenom = new JLabel("Joueur :");
 	    prenom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		
