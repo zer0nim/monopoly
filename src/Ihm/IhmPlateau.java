@@ -1,5 +1,6 @@
 package Ihm;
 
+import Data.Biens_achetables;
 import Data.Carreau;
 import Jeu.Monopoly;
 import javax.swing.JPanel;
@@ -53,12 +54,12 @@ public class IhmPlateau {
 			    if (x == 0) {
 				int posx = (int) (margex + (espaceEntre * x));
 				int posy = (int) (margey + hautCarreau + ((y - 1) * cotéCarreau) + (espaceEntre * y));
-				drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
+				drawRect(g1, posx, posy, (int) hautCarreau, (int) cotéCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
 			    else {
 				int posx = (int) (margex + espaceFirstLast + (espaceEntre * x));
 				int posy = (int) (margey + hautCarreau + ((y - 1) * cotéCarreau) + (espaceEntre * y));
-				drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
+				drawRect(g1, posx, posy, (int) hautCarreau, (int) cotéCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
 			}
 			else if (y == 0) {//premiere ligne
@@ -107,7 +108,7 @@ public class IhmPlateau {
 	g.setColor(new Color(218, 233, 212));
 	g.fillRect(x, y, larg, haut);
 	
-	g.setFont(new Font("Droid Sans", Font.PLAIN, 8));
+	g.setFont(new Font("Droid Sans", Font.PLAIN, 9));
 
 	g.setColor(Color.black);
 	
@@ -115,24 +116,30 @@ public class IhmPlateau {
 	String[] parts = nomc.split(" ");
 	
 	int i = 0;
+	int lign = 0;
 	String str;
 	while (i < parts.length){
 	    str = parts[i];
 	    if ((i+1) < parts.length){
 		if ((parts[i].length() + parts[1+i].length()) < 13){
 		    str += " " + parts[i +1];
-		    g.drawString(str, x+2, (y+10)+i*8);
+		    g.drawString(str, x+2, (y+10)+lign*10);
 		    i++;
 		}
 		else{
-		    g.drawString(str, x+2, (y+10)+i*8);
+		    g.drawString(str, x+2, (y+10)+lign*10);
 		}
 	    }
 	    else{
-		g.drawString(str, x+2, (y+10)+i*8);
+		g.drawString(str, x+2, (y+10)+lign*10);
 	    }
 	    i++;
+	    lign++;
 	}
+	
+	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables"))
+	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+10, y+(haut-10));
+
     }
 
     public JCanvas getJc() {
