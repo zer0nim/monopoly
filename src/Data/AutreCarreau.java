@@ -48,8 +48,8 @@ public class AutreCarreau extends Carreau {
 		//this.setInfo(0);
 		break;
 	    case "Allez en prison": //Si on tombe sur "Allez en Prison, on est immédiatement positionné dessus
-		j.setPositionCourante(carreaux.get(10));
-		j.setEnPrison(3);
+		j.setPositionCourante(carreaux.get(10));//récupère le carreau Prison
+		j.setEnPrison(3); //Bloque le joueur en prison pendant 3 tours
 		Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
 		break;
 	    case "Taxe de Luxe": //Enlève la somme getInfo() de la case "Taxe de Luxe"
