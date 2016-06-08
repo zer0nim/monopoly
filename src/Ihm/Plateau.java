@@ -75,23 +75,50 @@ public class Plateau extends JPanel {
     }
 
     public JPanel InfoJoueur(Joueur j) {
-	JPanel infoJoueur = new JPanel();
-	infoJoueur.setLayout(new GridLayout(8, 2));
-	this.add(infoJoueur, BorderLayout.WEST);
+	JPanel panelInfoJoueur = new JPanel();
+	panelInfoJoueur.setLayout(new BorderLayout());
 
+	JPanel infoJoueur= new JPanel();
+	infoJoueur.setLayout(new GridLayout(8, 2));
+
+	
 	infoJoueur.add(new JLabel("Nom du Joueur: " + j.getNomJoueur()));
 	infoJoueur.add(new JLabel("Argent: " + j.getCash()));
 	infoJoueur.add(new JLabel("Position Courante: " + j.getPositionCourante().getNumero()));
 	infoJoueur.add(new JLabel("Cartes Sortie de Prison: " + j.getCarteLibPrison()));
 	infoJoueur.add(new JLabel("En prison: " + ((j.getPrison() == 0) ? "non" : "oui")));
+
+	panelInfoJoueur.add(infoJoueur, BorderLayout.CENTER);
 	
-	infoJoueur.add(new JLabel("biens du joueur: "));
-	for (Biens_achetables bien : j.getPropriétés()){
-	    infoJoueur.add(new JLabel("Numéro: " + bien.getNumero()));
-	    infoJoueur.add(new JLabel("Nom: " + bien.getNomCarreau()));
+	JPanel propJoueur= new JPanel();
+	propJoueur.setLayout(new BorderLayout());
+	
+	propJoueur.add(new JLabel("biens du joueur: "), BorderLayout.NORTH);
+	model = new DefaultTableModel() {
 
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+		return false;//This causes all cells to be not editable
+	    }
+	};
+	JTable table = new JTable(model);
+
+	String[] entetes = {"Numéro", "Nom"};
+	model.setColumnIdentifiers(entetes);
+
+	String[] valeur = new String[2];
+
+	for (Biens_achetables bien : j.getPropriétés()) {
+	    valeur[0] = Integer.toString(bien.getNumero());
+	    valeur[1] = bien.getNomCarreau();
+	    model.addRow(valeur);
 	}
+	
+	propJoueur.add(table.getTableHeader(), BorderLayout.CENTER);
+	propJoueur.add(table, BorderLayout.SOUTH);
+	
+	panelInfoJoueur.add(propJoueur, BorderLayout.SOUTH);
 
-	return (infoJoueur);
+	return (panelInfoJoueur);
     }
 }
