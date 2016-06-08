@@ -1,56 +1,119 @@
-package affPlateau;
+package Ihm;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import javax.swing.JFrame;
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class IhmPlateau {
+	private JCanvas jc;
 
     public IhmPlateau() {
-	JCanvas jc = new JCanvas();
-
-	JFrame framePlateau = new JFrame();
-	framePlateau.setTitle("Plateau");
-	framePlateau.setSize(800, 800);
-	framePlateau.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	framePlateau.add(jc);
-	framePlateau.setVisible(true);
-    }
+	jc = new JCanvas();
+    }    
 
     public class JCanvas extends JPanel {
 
-	@Override
-	public void paint(Graphics g) {
-	    Dimension dimension = getSize(); // Taille de la zone de dessin
+	    @Override
+	    public void paint(Graphics g1) {
+		Graphics2D g = (Graphics2D) g1;
+		    Dimension dimension = getSize(); // Taille de la zone de dessin
+		    
+		    double plusPetitCotéF = dimension.height;
+		    if (dimension.width < plusPetitCotéF)
+			    plusPetitCotéF = dimension.width;
+		    
+		    double CotéPlateau = (plusPetitCotéF*0.95);
+		    
+		    double espaceEntre = (CotéPlateau*0.005);
+		    double cotéCarreau = ((CotéPlateau - (9 * espaceEntre)) / 12);
+		    double hautCarreau = (1.5)*cotéCarreau;
+		    double margex = (dimension.width - CotéPlateau)/2;
+		    double margey = (dimension.height - CotéPlateau)/2;
 
-	    double plusPetitCotéF = dimension.height;
-	    if (dimension.width < plusPetitCotéF) {
-		plusPetitCotéF = dimension.width;
-	    }
+		    
+		    //System.out.println("plus petit coté fenetre: " + plusPetitCotéF + " coté plateau: " + CotéPlateau + " margex: " + margex + " margey: " + margey);
+		    //System.out.println("espace entre: " + espaceEntre + " cotéCarreau: " + cotéCarreau);
+		    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));		    
+		    g.setStroke(new BasicStroke(2.5f));
+		    for (int y = 0 ; y < 11 ; y++){
+			for (int x = 0 ; x < 11 ; x++){
+			    if ((x == 0 || x == 10) || (y == 0 || y == 10)){
+				double espaceFirstLast = hautCarreau + (cotéCarreau*9);
 
-	    double CotéPlateau = (plusPetitCotéF * 0.98);
-
-	    double espaceEntre = (CotéPlateau * 0.005);
-	    double cotéCarreau = ((CotéPlateau - (9 * espaceEntre)) / 10);
-	    double margex = (dimension.width - CotéPlateau) / 2;
-	    double margey = (dimension.height - CotéPlateau) / 2;
-
-	    //System.out.println("plus petit coté fenetre: " + plusPetitCotéF + " coté plateau: " + CotéPlateau + " margex: " + margex + " margey: " + margey);
-	    //System.out.println("espace entre: " + espaceEntre + " cotéCarreau: " + cotéCarreau);
-	    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));
-	    g.setColor(new Color(160, 197, 98));
-
-	    for (int y = 0; y < 10; y++) {
-		for (int x = 0; x < 10; x++) {
-		    if ((x == 0 || x == 9) || (y == 0 || y == 9)) {
-			g.fillRect((int) ((cotéCarreau * x) + (espaceEntre * x) + margex), (int) ((cotéCarreau * y) + (espaceEntre * y) + margey), (int) cotéCarreau, (int) cotéCarreau);
+				if (y != 0 && y != 10){
+				    if (x == 0){
+					g.setColor(Color.black);
+					g.drawRect((int)(margex+(espaceEntre*x)), (int)(margey+hautCarreau+((y-1)*cotéCarreau)+(espaceEntre*y)),(int)hautCarreau,(int)cotéCarreau);
+					g.setColor(new Color(218,233,212));
+					g.fillRect((int)(margex+(espaceEntre*x)), (int)(margey+hautCarreau+((y-1)*cotéCarreau)+(espaceEntre*y)),(int)hautCarreau,(int)cotéCarreau);
+				    }
+				    else{
+					g.setColor(Color.black);
+					g.drawRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+hautCarreau+((y-1)*cotéCarreau)+(espaceEntre*y)),(int)hautCarreau,(int)cotéCarreau);
+					g.setColor(new Color(218,233,212));
+					g.fillRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+hautCarreau+((y-1)*cotéCarreau)+(espaceEntre*y)),(int)hautCarreau,(int)cotéCarreau);
+				    }
+				}
+				else{
+				    if (y == 0){//premiere ligne
+					if (x != 0 && x != 10){
+					    	g.setColor(Color.black);
+						g.drawRect((int)(margex+hautCarreau+((x-1)*cotéCarreau)+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)cotéCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+hautCarreau+((x-1)*cotéCarreau)+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)cotéCarreau,(int)hautCarreau);
+					}
+					else{
+					    if (x == 0){
+						g.setColor(Color.black);
+						g.drawRect((int)(margex+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+					    }
+					    else{
+						g.setColor(Color.black);
+						g.drawRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+					    }
+					}	
+				    }
+				    else{
+					if (x != 0 && x != 10){
+						g.setColor(Color.black);
+						g.drawRect((int)(margex+hautCarreau+((x-1)*cotéCarreau)+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)cotéCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+hautCarreau+((x-1)*cotéCarreau)+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)cotéCarreau,(int)hautCarreau);
+					}
+					else{
+					    if (x == 0){
+						g.setColor(Color.black);
+						g.drawRect((int)(margex+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+					    }
+					    else{
+						g.setColor(Color.black);
+						g.drawRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+						g.setColor(new Color(218,233,212));
+						g.fillRect((int)(margex+espaceFirstLast+(espaceEntre*x)), (int)(margey+espaceFirstLast+(espaceEntre*y)),(int)hautCarreau,(int)hautCarreau);
+					    }
+					}
+				    }
+				}
+			    }
+			}
 		    }
-		}
 	    }
-	}
 
     }
+    public JCanvas getJc() {
+	return jc;
+    }
 
+    public void setJc(JCanvas jc) {
+	this.jc = jc;
+    }           
 }
