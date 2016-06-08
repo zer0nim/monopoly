@@ -36,6 +36,6 @@ public class Main {
 	}
 	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
 */
-	IhmFenetre ihmf = new IhmFenetre();
+	Interface ihmf = new Interface();
     }
 }

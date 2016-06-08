@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ihm;
 
 import Data.Joueur;
@@ -15,10 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author albertar
- */
 public class Interface extends JPanel {
     private JButton jouer;
     private JButton annuler;
@@ -31,18 +22,27 @@ public class Interface extends JPanel {
     private JTextField champJoueur;
     private JComboBox nbJoueurPossible;
     
-    private ArrayList<JTextField> joueurs;
+    private ArrayList<JTextField> champNomjoueurs;
     
     private int nbJoueur = 0;
     
     public Interface(){
-        super();
+	JFrame frame = new JFrame();
+	frame.setTitle("Monopoly");
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         controleur= new Controleur();
 	nbJoueurPossible= new JComboBox();
-	joueurs = new ArrayList<>();
+	champNomjoueurs = new ArrayList<>();
 	
 	setBackground(Color.white);
         initUIComponents();
+	
+	frame.add(this);
+	
+	frame.setSize(500, ResponsiveHeight());
+
+	frame.setVisible(true);
     }
     
     private void initUIComponents(){
@@ -56,13 +56,13 @@ public class Interface extends JPanel {
 	lancement.setLayout(new GridLayout (1,2));
 	this.add(lancement,BorderLayout.SOUTH);
 
-	jouer = new JButton("Jouer au monopoly");
+	jouer = new JButton("Jouer au monopoly");  //crée les joueurs et lance la partie
 	lancement.add(jouer);
 	jouer.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		int i = 0;
-		for (JTextField jc : joueurs){
+		for (JTextField jc : champNomjoueurs){
 		    controleur.getMonopoly().getJoueurs().get(i).setNomJoueur(jc.getText());
 		    i++;
 		}
@@ -80,35 +80,35 @@ public class Interface extends JPanel {
 	});
 	
 
-	setNbJoueur(IhmNbJoueur.afficherBoiteDialogue());
+	setNbJoueur(IhmNbJoueur.afficherBoiteDialogue()); //demande a l'utilisateur le nombre de joueurs via un widgetS
 
-	JPanel choixJoueur2 = new JPanel();
-	choixJoueur2.setLayout(new GridLayout(getNbJoueur(),1));
-
-	this.setSize(500, getNbJoueur()*20);
+	//------vvv---paneau de selection nom joueur---vvv
+	JPanel ChoixNomJoueurs = new JPanel();
+	ChoixNomJoueurs.setLayout(new GridLayout(getNbJoueur(),1));
 	
-        for (int j = 0; j < getNbJoueur() ; j++) {
+        for (int j = 0; j < getNbJoueur() ; j++) {  //boucle pour ajouter les champs de saisie du nom de joueurSS
 	    JLabel prenom = new JLabel("Joueur :");
 	    prenom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		
 	    Font font = new Font("Arial",Font.BOLD,16);
 	    prenom.setFont(font);
 		
-	    choixJoueur2.add(prenom);   //Affiche un indice devant
-	    joueurs.add(new JTextField(30));   //Taille de la fenetre de saisie
-	    choixJoueur2.add(joueurs.get(joueurs.size()-1));              //Permet d'affiocher la fenetre de saisie
+	    ChoixNomJoueurs.add(prenom);
+	    champNomjoueurs.add(new JTextField(30)); //ajoute un champ de selection dans la liste champNomjoueurs
+	    ChoixNomJoueurs.add(champNomjoueurs.get(champNomjoueurs.size()-1)); //récupere derniers champ de selection de la liste champNomjoueurs et l'ajoute dans le JPanel
 
 	    
-	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0)));
+	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0))); //crée un joueur avec nom par defaut
 	    }
-	    controleur.quiCommence();
+	    controleur.quiCommence(); //lance le dé pour savoir qui commence
+	//------^^^---paneau de selection nom joueur---^^^
 
-	this.add(choixJoueur2,BorderLayout.CENTER);
+	this.add(ChoixNomJoueurs,BorderLayout.CENTER); // ajout de ChoixNomJoueurs dans la fenetre
 
 	    
     }
     
-    public int ResponsiveHeight(){
+    public int ResponsiveHeight(){ //permet a ihmFenetre de dimensionner la fenetre selon le nombre de joueurs
 	return (nbJoueur*45)+200;
     }
     
