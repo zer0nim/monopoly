@@ -27,7 +27,7 @@ public class FenetreDeJeu {
 	frame.setSize(900, 800);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
-	ihmPlateau = new IhmPlateau();
+	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
 
 	
 	panelPrincipal = new JPanel();
