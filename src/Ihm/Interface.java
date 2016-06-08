@@ -66,7 +66,7 @@ public class Interface extends JPanel {
 		    controleur.getMonopoly().getJoueurs().get(i).setNomJoueur(jc.getText());
 		    i++;
 		}
-		Fenetre();
+		FenetreDeJeu();
 	    }
 	});
 	
@@ -80,13 +80,13 @@ public class Interface extends JPanel {
 	});
 	
 
-	setNbJoueur(IhmNbJoueur.afficherBoiteDialogue()); //demande a l'utilisateur le nombre de joueurs via un widgetS
+	nbJoueur = (IhmNbJoueur.afficherBoiteDialogue()); //demande a l'utilisateur le nombre de joueurs via un widgetS
 
 	//------vvv---paneau de selection nom joueur---vvv
 	JPanel ChoixNomJoueurs = new JPanel();
-	ChoixNomJoueurs.setLayout(new GridLayout(getNbJoueur(),1));
+	ChoixNomJoueurs.setLayout(new GridLayout(nbJoueur,1));
 	
-        for (int j = 0; j < getNbJoueur() ; j++) {  //boucle pour ajouter les champs de saisie du nom de joueurSS
+        for (int j = 0; j < nbJoueur ; j++) {  //boucle pour ajouter les champs de saisie du nom de joueurSS
 	    JLabel prenom = new JLabel("Joueur :");
 	    prenom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		
@@ -108,24 +108,16 @@ public class Interface extends JPanel {
 	    
     }
     
-    public int ResponsiveHeight(){ //permet a ihmFenetre de dimensionner la fenetre selon le nombre de joueurs
+    public int ResponsiveHeight(){ //permet de dimensionner la fenetre selon le nombre de joueurs
 	return (nbJoueur*45)+200;
     }
     
-    private void Fenetre(){
+    private void FenetreDeJeu(){
        JFrame frame = new JFrame();
        frame.setTitle("Partie de Monopoly");
        frame.setSize(900, 800);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(new Plateau(controleur.getMonopoly().getJoueurs()));
        frame.setVisible(true);
-    }
-
-    public int getNbJoueur() {
-	return nbJoueur;
-    }
-
-    public void setNbJoueur(int nbJoueur) {
-	this.nbJoueur = nbJoueur;
     }
 }
