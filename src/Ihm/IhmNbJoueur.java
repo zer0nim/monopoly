@@ -1,7 +1,6 @@
 package Ihm;
 
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class IhmNbJoueur {
 
