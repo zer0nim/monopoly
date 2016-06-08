@@ -138,10 +138,10 @@ public class IhmPlateau {
 	}
 	
 	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables"))
-	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+10, y+(haut-10));
+	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2), y+(haut-10));
 
     }
-
+//couleurs groupe, pion joueurs, (tarif)taxeDeLuxe/ImpotRevenu
     public JCanvas getJc() {
 	return jc;
     }
