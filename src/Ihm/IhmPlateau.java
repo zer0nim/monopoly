@@ -30,7 +30,7 @@ public class IhmPlateau {
 		plusPetitCotéF = dimension.width;
 	    }
 
-	    double CotéPlateau = (plusPetitCotéF * 0.95);
+	    double CotéPlateau = (plusPetitCotéF * 0.98);
 
 	    double espaceEntre = (CotéPlateau * 0.005);
 	    double cotéCarreau = ((CotéPlateau - (9 * espaceEntre)) / 12);
@@ -107,7 +107,7 @@ public class IhmPlateau {
 	g.setColor(new Color(218, 233, 212));
 	g.fillRect(x, y, larg, haut);
 	
-	g.setFont(new Font("Arial", Font.PLAIN, 8));
+	g.setFont(new Font("Droid Sans", Font.PLAIN, 8));
 
 	g.setColor(Color.black);
 	
@@ -115,17 +115,24 @@ public class IhmPlateau {
 	String[] parts = nomc.split(" ");
 	
 	int i = 0;
+	String str;
 	while (i < parts.length){
-	    String str = parts[i];
+	    str = parts[i];
 	    if ((i+1) < parts.length){
-		if ((parts[i].length() + parts[i+1].length()) < 10)
-		    str += " " + parts[i++ +1];
+		if ((parts[i].length() + parts[1+i].length()) < 13){
+		    str += " " + parts[i +1];
+		    g.drawString(str, x+2, (y+10)+i*8);
+		    i++;
+		}
+		else{
+		    g.drawString(str, x+2, (y+10)+i*8);
+		}
 	    }
-	    g.drawString(str, x+2, (y+10)+i*10);
-
+	    else{
+		g.drawString(str, x+2, (y+10)+i*8);
+	    }
 	    i++;
 	}
-
     }
 
     public JCanvas getJc() {
