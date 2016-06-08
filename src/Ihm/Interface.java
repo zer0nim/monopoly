@@ -22,13 +22,14 @@ public class Interface extends JPanel {
     private JTextField champJoueur;
     private JComboBox nbJoueurPossible;
     
+    private JFrame frame;
     private ArrayList<JTextField> champNomjoueurs;
     
     private int nbJoueur = 0;
     
     public Interface(){
-	JFrame frame = new JFrame();
-	frame.setTitle("Monopoly");
+	frame = new JFrame();
+	frame.setTitle("Choix nom joueurs");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         controleur= new Controleur();
@@ -66,6 +67,7 @@ public class Interface extends JPanel {
 		    controleur.getMonopoly().getJoueurs().get(i).setNomJoueur(jc.getText());
 		    i++;
 		}
+		
 		FenetreDeJeu();
 	    }
 	});
