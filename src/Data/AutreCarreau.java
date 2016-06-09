@@ -25,23 +25,25 @@ public class AutreCarreau extends Carreau {
 		j.setCash(j.getCash() + getInfo());
 		break;
 	    case "Simple Visite / En Prison": //Case Prison ou Visite
-		if (j.getPrison() > 1) {
-		    if (j.getCarteLibPrison() != 0) { //Si il possède la carte "Vous êtes libéré de Prison"
-			if (Ihm.demanderCartePrison()) {
-			    j.setEnPrison(0);
-			    j.setCarteLibPrison(j.getCarteLibPrison() - 1);
-			    Ihm.Afficher("Vous venez de sortir de prison avec votre carte \"Vous êtes libéré de Prison\".");
-			}
-		    }
-		    if (j.getPrison() != 0) { //Sinon il reste en prison
-			j.setEnPrison(j.getPrison() - 1);
-			Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
-		    }
-		} else if (j.getPrison() == 1) { //POur son dernier tour il paye une amende de 50$
-		    j.setCash(j.getCash() - 50);
-		    j.setEnPrison(-1);
-		    Ihm.Afficher("Vous avez fini votre peine de prison. Vous venez de payer une amende de 50$");
-		}
+                if(j.getPrison() > 1){
+                    if(j.getCarteLibPrison() != 0){
+                        if(Ihm.demanderOuiNon("Voulez vous utiliser votre carte \"Vous êtes libéré de Prison\" pour sortir de prison ? (oui/non)")){
+                            j.setEnPrison(-1);
+                            j.setCarteLibPrison(j.getCarteLibPrison() - 1);
+                            Ihm.Afficher("Vous venez de sortir de prison avec votre carte \"Vous êtes libéré de Prison\".");
+                        }else{
+                            Ihm.Afficher("Vous avez choisi de ne pas utiliser votre carte de prison !");
+                        }
+                    }
+                    if(j.getPrison() != 0){ //Sinon il reste en prison
+                        j.setEnPrison(j.getPrison()-1);
+                        Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+                    }
+                }else if(j.getPrison() == 1){ //POur son dernier tour il paye une amende de 50$
+                    j.setCash(j.getCash()-50);
+                    j.setEnPrison(-1);
+                    Ihm.Afficher("Vous avez fini votre peine de prison. Vous venez de payer une amende de 50$");
+                }
 		break;
 	    case "Parc Gratuit":
 		//j.setCash(j.getCash() + this.info);

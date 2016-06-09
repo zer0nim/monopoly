@@ -35,9 +35,13 @@ public class Monopoly {
 		for(int i=0; i<data.size(); ++i){
 			String caseType = data.get(i)[0];
 			if(caseType.compareTo("P") == 0){
-				carreaux.add(new ProprieteAConstruire(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3]))));
-				getGroupe(CouleurPropriete.valueOf(data.get(i)[3])).setCarreau(   carreaux.get(carreaux.size() - 1)    );
+				ArrayList<Integer> Loyers = new ArrayList<>();
+                                for(int j = 6; j <= 10; j++){
+                                    Loyers.add(Integer.parseInt(data.get(i)[j]));
+                                }
+				carreaux.add(new ProprieteAConstruire(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])), Loyers, Integer.parseInt(data.get(i)[11]), Integer.parseInt(data.get(i)[12])));
 				//public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
+                                ((ProprieteAConstruire)carreaux.get(carreaux.size()-1)).getGroupe().setCarreau(((ProprieteAConstruire)carreaux.get(carreaux.size()-1)));
 			}
 			else if(caseType.compareTo("G") == 0){
 				carreaux.add(new Gare(Integer.parseInt(data.get(i)[3]), Integer.parseInt(data.get(i)[1]), data.get(i)[2]));
