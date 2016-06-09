@@ -123,4 +123,12 @@ public class Plateau extends JPanel {
 
 	return (panelInfoJoueur);
     }
+    
+    public JPanel deAnimation(){
+        JPanel animation = new JPanel(new BorderLayout());
+        Icon icon = new ImageIcon("src/Image/animationDes.gif");
+        JLabel label = new JLabel(icon);
+        animation.add(label, BorderLayout.CENTER);
+        return animation;
+    }
 }

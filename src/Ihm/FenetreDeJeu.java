@@ -42,6 +42,7 @@ public class FenetreDeJeu {
 	JPanel PaneauInfosJoueurs = new JPanel();
 	PaneauInfosJoueurs.setLayout(new BorderLayout());
 	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant), BorderLayout.NORTH);
+        PaneauInfosJoueurs.add(pl.deAnimation(), BorderLayout.CENTER);
 	PaneauInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
 	panelPrincipal.add(PaneauInfosJoueurs, BorderLayout.EAST);
 
