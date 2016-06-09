@@ -13,11 +13,12 @@ public class Plateau extends JPanel {
     private JButton lancerDe;
     private JButton acheter;
     private JButton finDuTour;
+    private JButton construire;
     private DefaultTableModel model;
 
     public JPanel Bouton(ControleurGraphique controleur) {
 	JPanel bouttonAction = new JPanel();
-	bouttonAction.setLayout(new GridLayout(1, 3));
+	bouttonAction.setLayout(new GridLayout(1, 4));
 	this.add(bouttonAction, BorderLayout.SOUTH);
 
 	lancerDe = new JButton("Lancer le Dé");
@@ -26,11 +27,26 @@ public class Plateau extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
                 controleur.jouerUnCoup();
+                controleur.setAnimationDeVisible(true);
+                Timer timer = new Timer(1500, new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        controleur.setAnimationDe();
+                    }
+                });
+                timer.start();
 	    }
 	});
-	acheter = new JButton("Acheter le logement");
+	acheter = new JButton("Acheter le terrain");
 	bouttonAction.add(acheter);
 	acheter.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	    }
+	});
+        construire = new JButton("Construire");
+	bouttonAction.add(construire);
+	construire.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 	    }

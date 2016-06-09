@@ -16,6 +16,7 @@ public class FenetreDeJeu {
     private Joueur jCourant;
     private static ArrayList<Joueur> deathNote;
     private IhmPlateau ihmPlateau;
+    private JPanel animationDe;
     
     JPanel panelPrincipal;
     private Plateau pl;
@@ -37,13 +38,16 @@ public class FenetreDeJeu {
 		
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
 
-
+        animationDe = pl.deAnimation();
+        animationDe.setVisible(false);
 	
 	JPanel PaneauInfosJoueurs = new JPanel();
 	PaneauInfosJoueurs.setLayout(new BorderLayout());
 	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant), BorderLayout.NORTH);
-        PaneauInfosJoueurs.add(pl.deAnimation(), BorderLayout.CENTER);
-	PaneauInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
+        JPanel PaneauIntermediaireInfosJoueurs = new JPanel(new BorderLayout());
+        PaneauIntermediaireInfosJoueurs.add(animationDe, BorderLayout.NORTH);
+	PaneauIntermediaireInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
+        PaneauInfosJoueurs.add(PaneauIntermediaireInfosJoueurs, BorderLayout.SOUTH);
 	panelPrincipal.add(PaneauInfosJoueurs, BorderLayout.EAST);
 
 	
@@ -67,4 +71,20 @@ public class FenetreDeJeu {
             Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
         }
     }
+
+    /**
+     * @return the animationDe
+     */
+    public JPanel getAnimationDe() {
+        return animationDe;
+    }
+
+    /**
+     * @param animationDe the animationDe to set
+     */
+    public void setAnimationDe(JPanel animationDe) {
+        this.animationDe = animationDe;
+    }
+    
+    
 }

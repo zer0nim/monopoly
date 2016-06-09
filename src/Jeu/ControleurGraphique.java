@@ -2,14 +2,19 @@ package Jeu;
 import Ihm.*;
 import Data.*;
 import static Ihm.Ihm.affJoueur;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class ControleurGraphique {
     private Monopoly monopoly;
     private Joueur jCourant;
     private boolean appuye;
     private Interface interfacee;
+    private int resultD;
+    private int resultD2;
     
     public ControleurGraphique(Interface inter){
 	this.monopoly = new Monopoly();
@@ -18,8 +23,8 @@ public class ControleurGraphique {
 
     public void jouerUnCoup() {
         //Ihm.Afficher("");
-	int resultD = lancerDésAvancer(jCourant);
-	int resultD2 = lancerDésAvancer(jCourant);
+	resultD = lancerDésAvancer(jCourant);
+	resultD2 = lancerDésAvancer(jCourant);
         //int resultD = 2;
         //int resultD2 = 2;
 	/*if (!jCourant.estMort()){
@@ -215,5 +220,20 @@ public class ControleurGraphique {
      */
     public Interface getInterfacee() {
         return interfacee;
+    }
+    
+    public void setAnimationDeVisible(boolean visible){
+        getInterfacee().getFenetre().getAnimationDe().setVisible(visible);
+    }
+    
+    public void setAnimationDe(){
+        JPanel de = new JPanel(new BorderLayout());
+        JLabel resultat1 = new JLabel(Integer.toString(resultD-resultD2));
+        JLabel resultat2 = new JLabel(Integer.toString(resultD2));
+        JLabel plus = new JLabel("+");
+        de.add(resultat1, BorderLayout.EAST);
+        de.add(plus, BorderLayout.CENTER);
+        de.add(resultat2, BorderLayout.WEST);
+        getInterfacee().getFenetre().setAnimationDe(de);
     }
 }
