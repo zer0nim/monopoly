@@ -1,7 +1,7 @@
 package Ihm;
 
 import Data.Joueur;
-import Jeu.Controleur;
+import Jeu.ControleurGraphique;
 import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -15,10 +15,11 @@ public class Interface extends JPanel {
     private JButton jouer;
     private JButton annuler;
 
-    private Controleur controleur;
+    private ControleurGraphique controleur;
     private JFrame frame;
     private ArrayList<JTextField> champNomjoueurs;
     private int nbJoueur;
+    private FenetreDeJeu fenetre;
 
     public Interface() {
 	frame = new JFrame();
@@ -27,7 +28,7 @@ public class Interface extends JPanel {
 
 	nbJoueur = 0;
 
-	controleur = new Controleur();
+	controleur = new ControleurGraphique(this);
 	champNomjoueurs = new ArrayList<>();
 
 	setBackground(Color.white);
@@ -62,7 +63,8 @@ public class Interface extends JPanel {
 		}
 		frame.setVisible(false);
 		frame.dispose();
-		FenetreDeJeu fenetreJeu = new FenetreDeJeu(controleur);
+		fenetre = new FenetreDeJeu(controleur);
+                getFenetre().ControlDesTours(controleur);
 	    }
 	});
 
@@ -104,4 +106,12 @@ public class Interface extends JPanel {
     public int ResponsiveHeight() { //permet de dimensionner la fenetre selon le nombre de joueurs
 	return (nbJoueur * 45) + 200;
     }
+
+    /**
+     * @return the fenetre
+     */
+    public FenetreDeJeu getFenetre() {
+        return fenetre;
+    }
+   
 }
