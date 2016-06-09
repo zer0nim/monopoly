@@ -36,11 +36,6 @@ public class FenetreDeJeu {
 	panelPrincipal.add(pl.Bouton(), BorderLayout.SOUTH);
 		
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
-	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(1));
-	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(3));
-	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(5));
-	jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(8));
-		jCourant.addPropriété((Biens_achetables)controleur.getMonopoly().getCarreaux().get(9));
 
 
 	
