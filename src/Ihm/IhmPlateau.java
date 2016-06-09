@@ -183,7 +183,7 @@ public class IhmPlateau {
 	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-5));
 	//------------^^^----Texte-Carreau-----^^^
     }
-//couleurs groupe, pion joueurs, (tarif)taxeDeLuxe/ImpotRevenu
+//pion joueurs, (tarif)taxeDeLuxe/ImpotRevenu
     public JCanvas getJc() {
 	return jc;
     }
