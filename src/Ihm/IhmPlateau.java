@@ -2,7 +2,7 @@ package Ihm;
 
 import Data.Biens_achetables;
 import Data.Carreau;
-import Data.CouleurPropriete;
+import Data.Joueur;
 import Data.ProprieteAConstruire;
 import Jeu.Monopoly;
 import javax.swing.JPanel;
@@ -10,7 +10,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class IhmPlateau {
-
     private Monopoly monopoly;
     private JCanvas jc;
 
@@ -23,7 +22,7 @@ public class IhmPlateau {
 
 	@Override
 	public void paint(Graphics g1) {
-	    ArrayList<Carreau> carreaux = monopoly.getCarreaux();
+	    ArrayList<Carreau> carreaux = getMonopoly().getCarreaux();
 
 	    Graphics2D g = (Graphics2D) g1;
 	    Dimension dimension = getSize(); // Taille de la zone de dessin
@@ -43,7 +42,7 @@ public class IhmPlateau {
 
 	    //System.out.println("plus petit coté fenetre: " + plusPetitCotéF + " coté plateau: " + CotéPlateau + " margex: " + margex + " margey: " + margey);
 	    //System.out.println("espace entre: " + espaceEntre + " cotéCarreau: " + cotéCarreau);
-	    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));		    
+	    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));	    
 	    g.setStroke(new BasicStroke(2.5f));
 	    int numC = 0;
 	    int[] coresp = {0,1,2,3,4,5,6,7,8,9,10,39,11,38,12,37,13,36,14,35,15,34,16,33,17,32,18,31,19,30,29,28,27,26,25,24,23,22,21,20};
@@ -110,6 +109,7 @@ public class IhmPlateau {
 	g.setColor(new Color(218, 233, 212));
 	g.fillRect(x, y, larg, haut);
 	
+	//------------vvv----Couleurs-Groupes-----vvv
 	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")){ //donc si possede groupe
 	    String couleur = ((ProprieteAConstruire)carreau).getGroupe().getCouleur().toString();
 	    
@@ -144,6 +144,8 @@ public class IhmPlateau {
 
 	    g.fillRect(x, y, larg, hauteurGroupe);//aff couleurgroupe
 	}
+	//------------^^^----Couleurs-Groupes-----^^^
+	
 	
 	//------------vvv----Texte-Carreau-----vvv
 	g.setFont(new Font("Droid Sans", Font.PLAIN, 9));
@@ -182,13 +184,35 @@ public class IhmPlateau {
 	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables"))
 	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-5));
 	//------------^^^----Texte-Carreau-----^^^
+	
+	
+	//------------vvv----Pions-Joueurs-----vvv	
+	String nomImage;
+	int comptPions = 0;
+	for (Joueur jCourt : getMonopoly().getJoueurs()){
+	    if (jCourt.getPositionCourante().equals(carreau)){
+		nomImage = jCourt.getPion().toString();
+
+		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png");
+		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/4)):(x+(comptPions-3)*(larg/4))),   (int)((y+haut)-(haut/6 * ((comptPions < 3)? 1:2.2))),    (int)(larg/4.5),    (int)( (int)(haut/4.5)*0.5), null);
+		comptPions ++;
+	    }
+	}
+	
+	
+	//------------^^^----Pions-Joueurs-----^^^
+
     }
-//pion joueurs, (tarif)taxeDeLuxe/ImpotRevenu
+    
     public JCanvas getJc() {
 	return jc;
     }
 
     public void setJc(JCanvas jc) {
 	this.jc = jc;
+    }
+    
+    public Monopoly getMonopoly() {
+	return monopoly;
     }
 }
