@@ -5,57 +5,61 @@ import static Ihm.Ihm.affJoueur;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Controleur {
+public class ControleurGraphique {
     private Monopoly monopoly;
+    private Joueur jCourant;
+    private boolean appuye;
+    private Interface interfacee;
     
-    public Controleur(){
+    public ControleurGraphique(Interface inter){
 	this.monopoly = new Monopoly();
+        this.interfacee =  inter;
     }
 
-    public void jouerUnCoup(Joueur j) {
-        Ihm.Afficher("");
-	int resultD = lancerDésAvancer(j);
-	int resultD2 = lancerDésAvancer(j);
+    public void jouerUnCoup() {
+        //Ihm.Afficher("");
+	int resultD = lancerDésAvancer(jCourant);
+	int resultD2 = lancerDésAvancer(jCourant);
         //int resultD = 2;
         //int resultD2 = 2;
-	if (!j.estMort()){
+	/*if (!jCourant.estMort()){
 	    resultD += resultD2;
-            if(j.getPrison() != 0 && resultD == 2 * resultD2){
-                j.setEnPrison(0);
+            if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
+                jCourant.setEnPrison(0);
                 Ihm.Afficher("Vous venez de sortir de prison avec un double dé !");
-                j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
+                jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
             }
-	    affJoueur(j);
-	    actionCarreau(j, resultD);
-            construire(j);
+	    affJoueur(jCourant);
+	    actionCarreau(jCourant, resultD);
+            jCourant.achetterConstruction(true);
             
-            if(j.getPrison() == -1){
-                j.setEnPrison(0);
+            if(jCourant.getPrison() == -1){
+                jCourant.setEnPrison(0);
                 Ihm.Afficher("résultat lancé du dé: " + (resultD - resultD2));
                 Ihm.Afficher("résultat lancé du dé: " + resultD2);
-                j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
-                affJoueur(j);
-                actionCarreau(j, resultD);
-                construire(j);
+                jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
+                affJoueur(jCourant);
+                actionCarreau(jCourant, resultD);
+                jCourant.achetterConstruction(true);
             }
 	}
-	if (j.estMort()){ //pas de else il est peut etre mort en jouant
-		j.vendrePropriétés();
+	if (jCourant.estMort()){ //pas de else il est peut etre mort en jouant
+		jCourant.vendrePropriétés();
 	}
 	if (resultD == 2 * resultD2){ //si double
 	    Ihm.Afficher("Double au Dé !");
-            j.incrementCompteDoubleDes();
-            if (j.getCompteDoubleDes() == 3) {
-                j.setPositionCourante(monopoly.getCarreaux().get(10));
-                j.setEnPrison(3);
-                Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
-                j.resetCompteDoubleDes();
+            jCourant.incrementCompteDoubleDes();
+            if (jCourant.getCompteDoubleDes() == 3) {
+                jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
+                jCourant.setEnPrison(3);
+                Ihm.Afficher(jCourant.getNomJoueur() + " est en prison. Il lui reste " + jCourant.getPrison() + " tour(s) en prison.");
+                jCourant.resetCompteDoubleDes();
             } else {
-                jouerUnCoup(j);
+                jouerUnCoup();
             }
 	} else {
-            j.resetCompteDoubleDes();
-        }
+            jCourant.resetCompteDoubleDes();
+        }*/
 	/*
 	System.out.println("\nFin du tour, appuyer sur entrer pour continuer");
 
@@ -67,6 +71,9 @@ public class Controleur {
 	   if( !s.equals("\\n") ) 
 	      break;
 	}*/
+        jCourant = setJoueurSuivant(jCourant);
+        getInterfacee().getFenetre().ControlDesTours(this);
+        
     }
 
     private void actionCarreau(Joueur j, int resultD){
@@ -87,7 +94,7 @@ public class Controleur {
         if(j.getPrison() >= 0){
             j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         }
-        if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
+        if (j.getPositionCourante().getNumero() < ancPos) { //si ça njCourantouvelle position est inférieur à la nouvelle
 	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
@@ -167,38 +174,46 @@ public class Controleur {
         this.monopoly = monopoly;
     }
     
-    public ArrayList<Integer> setCompteConstructions(){
-        int compteMaison = 0;
-        int compteHotel = 0;
-        for(Joueur j : monopoly.getJoueurs()){
-            for(Biens_achetables prop : j.getPropriétés()){
-                if(prop.getClass().getSimpleName().contains("ProprieteAConstruire")){
-                    for(Construction cons : ((ProprieteAConstruire)prop).getConstructions()){
-                        if(cons.getType() == "maison"){
-                            compteMaison+= 1;
-                        }else{
-                            compteHotel+= 1;
-                        }
-                    }
+    public void setJoueurCourant(Joueur j){
+        jCourant = j;
+    }
+
+    /**
+     * @return the appuye
+     */
+    public boolean isAppuye() {
+        return appuye;
+    }
+
+    /**
+     * @param appuye the appuye to set
+     */
+    public void setAppuye(boolean appuye) {
+        this.appuye = appuye;
+    }
+    
+    public Joueur setJoueurSuivant(Joueur j){
+        Joueur joueur = monopoly.getJoueurs().get(0);
+        for(int i = 0; i < monopoly.getJoueurs().size(); i++){
+            if(monopoly.getJoueurs().get(i).equals(j)){
+                if(i == monopoly.getJoueurs().size() - 1){
+                    joueur = monopoly.getJoueurs().get(0);
+                }else{
+                    joueur = monopoly.getJoueurs().get(i+1);
                 }
             }
         }
-        ArrayList<Integer> comptes = new ArrayList<>();
-        comptes.add(compteMaison);
-        comptes.add(compteHotel);
-        return comptes;
+        return joueur;
     }
     
-    public void construire(Joueur j){
-        ArrayList<Integer> comptes = setCompteConstructions();
-        boolean maisons = false;
-        boolean hotels = false;
-        if(comptes.get(0) < 32){
-            maisons = true;
-        }
-        if(comptes.get(1) < 12){
-            hotels = true;
-        }
-        j.achetterConstruction(true, maisons, hotels);
+    public Joueur getJoueurCourant(){
+        return jCourant;
+    }
+
+    /**
+     * @return the interfacee
+     */
+    public Interface getInterfacee() {
+        return interfacee;
     }
 }

@@ -145,7 +145,7 @@ public class Joueur {
         return propGroupe;
     }
     
-    public void setProprietePourConstruire(){ //########### Vérifier si on peut construire dessus
+    public void setProprietePourConstruire(boolean maisons, boolean hotels){ //########### Vérifier si on peut construire dessus
         listeConstructionsDispo.clear();
         setGroupe();
         for(Groupe groupe : groupes){ // Cas : rien de construit, quelques maisons construites
@@ -164,19 +164,19 @@ public class Joueur {
                 }
             }
             for(ProprieteAConstruire prop : getProprietesGroupe(groupe)){
-                if(prop.getNbConstructions() < nbConstructions || nbConstructions == 0 || (!change && nbConstructions < 4)){
+                if((prop.getNbConstructions() < nbConstructions || nbConstructions == 0 || (!change && nbConstructions < 4)) && maisons){
                     listeConstructionsDispo.add(new Object[] {prop, "maison", nbConstructions, prop.getLoyers().get(nbConstructions), prop.getPrixMaison(), 0});
                 }
-                if(!change && nbConstructions == 4 && prop.getConstructions().size() != 1){
+                if((!change && nbConstructions == 4 && prop.getConstructions().size() != 1) && hotels){
                     listeConstructionsDispo.add(new Object[] {prop, "hotel", nbConstructions, prop.getLoyers().get(4), prop.getPrixHotel(), 0});
                 }
             }
         }
     }
     
-    public void achetterConstruction(boolean demande){
+    public void achetterConstruction(boolean demande, boolean maisons, boolean hotels){
         setGroupe();
-        setProprietePourConstruire();
+        setProprietePourConstruire(maisons, hotels);
         Ihm.Afficher(nomJoueur);
                 Ihm.Afficher("Vos constructions");
                 for(Biens_achetables prop : getPropriétés()){
@@ -204,7 +204,7 @@ public class Joueur {
                         Ihm.Afficher("Prop ajoutée");
                     }else{
                         Ihm.Afficher("Vous n'avez pas assez d'argent !");
-                        achetterConstruction(false);
+                        achetterConstruction(false, maisons, hotels);
                     }
                 }
             }

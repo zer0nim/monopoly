@@ -2,7 +2,7 @@ package Ihm;
 
 import Data.Biens_achetables;
 import Data.Joueur;
-import Jeu.Controleur;
+import Jeu.ControleurGraphique;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class FenetreDeJeu {
     JPanel panelPrincipal;
     private Plateau pl;
 
-    public FenetreDeJeu(Controleur controleur){
+    public FenetreDeJeu(ControleurGraphique controleur){
 	pl = new Plateau();
 	frame = new JFrame();
 	frame.setTitle("Partie de Monopoly");
@@ -33,7 +33,7 @@ public class FenetreDeJeu {
 	panelPrincipal = new JPanel();
 	panelPrincipal.setLayout(new BorderLayout());
 	
-	panelPrincipal.add(pl.Bouton(), BorderLayout.SOUTH);
+	panelPrincipal.add(pl.Bouton(controleur), BorderLayout.SOUTH);
 		
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
 
@@ -51,28 +51,19 @@ public class FenetreDeJeu {
 	frame.add(panelPrincipal);
 	frame.setVisible(true);
 	
-	ControlDesTours(controleur);
     }
-    public void ControlDesTours(Controleur controleur) {
-	/*deathNote = new ArrayList<>(); //ArrayList qui permet de lister les joueurs à éliminer
+    
+    public void ControlDesTours(ControleurGraphique controleur) {
+	deathNote = new ArrayList<>(); //ArrayList qui permet de lister les joueurs à éliminer
 	
-    	while(controleur.getMonopoly().getJoueurs().size() > 1){ //tant qu'il y a au moins 2 joueurs
-	    for (Joueur j : controleur.getMonopoly().getJoueurs()){ //On boucle sur les joueurs encore en jeu
-		if (controleur.getMonopoly().getJoueurs().size() > 1){//tant qu'il y a au moins 2 joueurs
-		    jCourant = j;
-		    controleur.jouerUnCoup(j); //chaque joueur jous un coup
-		    if(j.estMort()){ //si le joueur à 0 ou moins de cash
-			Ihm.Cimetiere(j); //affiche que le joueur est éliminé
-			deathNote.add(j); //ajoute le joueur à la liste d'élimination
-		    }
-		}
-		
+    	if(controleur.getMonopoly().getJoueurs().size() > 1){ //tant qu'il y a au moins 2 joueurs
+            controleur.setJoueurCourant(jCourant); //chaque joueur jous un coup
+            if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
+                controleur.getMonopoly().getJoueurs().remove(jCourant);
 	    }
-	    for (Joueur j : deathNote){ //pour chaque joueur de la liste d'élimination
-		controleur.getMonopoly().getJoueurs().remove(j); //On élimine les joueur du monopoly
-	    }
-	    deathNote.clear(); //Puis on vide cette list pour le prochain passage
-	}
-	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
-    */}
+            jCourant = controleur.getJoueurCourant();
+	}else{
+            Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
+        }
+    }
 }

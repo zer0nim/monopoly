@@ -3,6 +3,7 @@ package Ihm;
 import java.awt.*;
 import java.awt.event.*;
 import Data.*;
+import Jeu.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +15,7 @@ public class Plateau extends JPanel {
     private JButton finDuTour;
     private DefaultTableModel model;
 
-    public JPanel Bouton() {
+    public JPanel Bouton(ControleurGraphique controleur) {
 	JPanel bouttonAction = new JPanel();
 	bouttonAction.setLayout(new GridLayout(1, 3));
 	this.add(bouttonAction, BorderLayout.SOUTH);
@@ -24,6 +25,7 @@ public class Plateau extends JPanel {
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+                controleur.jouerUnCoup();
 	    }
 	});
 	acheter = new JButton("Acheter le logement");

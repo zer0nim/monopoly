@@ -34,14 +34,7 @@ public class ProprieteAConstruire extends Biens_achetables{
                     loyer = getLoyers().get(getConstructions().size()-1);
                 }
            }else{
-               for(ProprieteAConstruire prop : getPropriétaire().getProprietesGroupe(this.getGroupe())){
-                   nbCons += prop.getConstructions().size();
-                }
-               if(nbCons != 0){
-                   loyer = getLoyers().get(0);
-               }else{
-                   loyer = prixPassage * 2;
-               }
+                loyer = prixPassage * 2;
            }
         }
 	return(loyer);
