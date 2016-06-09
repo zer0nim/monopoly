@@ -1,7 +1,11 @@
 package Data;
 
+import javax.swing.ComboBoxModel;
+
 
 public class Enumeration {
+
+    public static ComboBoxModel Pions;
     public enum Pions { //Différents pions que les joueurs pourront choisir
 	Chapeau, Voiture, Bateau, DéÀCoudre, Chaussure, Brouette, Chien, FerÀRepasser, Cavalier, Canon, SacDeBillets;
     }

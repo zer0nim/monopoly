@@ -18,6 +18,7 @@ public class Joueur {
     private int carteLibPrison = 0;
     private int enPrison = 0;
     private int compteDoubleDes = 0;
+    private Enumeration.Pions pion;
 
     public Joueur(String nomJoueur, Carreau c){
 	this.setNomJoueur(nomJoueur);
@@ -208,5 +209,13 @@ public class Joueur {
                 }
             }
         }
+    }
+
+    public Enumeration.Pions getPion() {
+	return pion;
+    }
+
+    public void setPion(Enumeration.Pions pion) {
+	this.pion = pion;
     }
 }
