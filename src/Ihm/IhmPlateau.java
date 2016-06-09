@@ -2,6 +2,8 @@ package Ihm;
 
 import Data.Biens_achetables;
 import Data.Carreau;
+import Data.CouleurPropriete;
+import Data.ProprieteAConstruire;
 import Jeu.Monopoly;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -108,12 +110,52 @@ public class IhmPlateau {
 	g.setColor(new Color(218, 233, 212));
 	g.fillRect(x, y, larg, haut);
 	
+	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")){ //donc si possede groupe
+	    String couleur = ((ProprieteAConstruire)carreau).getGroupe().getCouleur().toString();
+	    
+	    switch (couleur) {
+	    	case "bleuFonce":
+		    g.setColor(new Color(1,104,181));
+		    break;
+	    	case "orange":
+		    g.setColor(new Color(245,144,2));
+		    break;
+	    	case "mauve":
+		    g.setColor(new Color(212,115,212));
+		    break;
+	    	case "violet":
+		    g.setColor(new Color(127,72,140));
+		    break;
+	    	case "bleuCiel":
+		    g.setColor(new Color(146,211,244));
+		    break;
+	    	case "jaune":
+		    g.setColor(new Color(255,236,1));
+		    break;
+	    	case "vert":
+		    g.setColor(new Color(31,165,76));
+		    break;
+	    	default:
+		    //rouge
+		    g.setColor(new Color(229,2,19));
+		    break;
+	    }
+	    int hauteurGroupe = (haut > larg)? larg/4 : haut/4;
+
+	    g.fillRect(x, y, larg, hauteurGroupe);//aff couleurgroupe
+	}
+	
+	//------------vvv----Texte-Carreau-----vvv
 	g.setFont(new Font("Droid Sans", Font.PLAIN, 9));
 
 	g.setColor(Color.black);
 	
 	String nomc = carreau.getNomCarreau();
 	String[] parts = nomc.split(" ");
+	
+	int margeH = 10;
+	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")) //donc si possede groupe
+	    margeH = 26;
 	
 	int i = 0;
 	int lign = 0;
@@ -123,23 +165,23 @@ public class IhmPlateau {
 	    if ((i+1) < parts.length){
 		if ((parts[i].length() + parts[1+i].length()) < 13){
 		    str += " " + parts[i +1];
-		    g.drawString(str, x+2, (y+10)+lign*10);
+		    g.drawString(str, x+2, (y+margeH)+lign*10);
 		    i++;
 		}
 		else{
-		    g.drawString(str, x+2, (y+10)+lign*10);
+		    g.drawString(str, x+2, (y+margeH)+lign*10);
 		}
 	    }
 	    else{
-		g.drawString(str, x+2, (y+10)+lign*10);
+		g.drawString(str, x+2, (y+margeH)+lign*10);
 	    }
 	    i++;
 	    lign++;
 	}
 	
 	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables"))
-	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2), y+(haut-10));
-
+	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-5));
+	//------------^^^----Texte-Carreau-----^^^
     }
 //couleurs groupe, pion joueurs, (tarif)taxeDeLuxe/ImpotRevenu
     public JCanvas getJc() {
