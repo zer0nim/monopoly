@@ -45,7 +45,7 @@ public class IhmPlateau {
 	    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));	    
 	    g.setStroke(new BasicStroke(2.5f));
 	  
-	    g.setColor(new Color(146,169,143));
+	    g.setColor(new Color(146,169,143));// Couleur de fond
 	    g.fillRect(0, 0, dimension.width, dimension.height);
 	    
 	    Image imgCentre = Toolkit.getDefaultToolkit().getImage("src//Image//CentreJeu.png");

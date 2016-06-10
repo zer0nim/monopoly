@@ -33,12 +33,14 @@ public class FenetreDeJeu {
 	frame.setTitle("Partie de Monopoly"); //nom de la fenêtre
 	frame.setSize(1000, 900); //taille de la fenêtre 1000 de large sur 900 de haut
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
+		
 	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
 
 	
 	panelPrincipal = new JPanel();
 	panelPrincipal.setLayout(new BorderLayout());
+	
+	panelPrincipal.setBackground(new Color(146,169,143));
 	
         boutons = pl.Bouton(controleur); //JPanel contenant les boutons "Lancer les dés", "Acheter le bien", "Construire" et "Fin de tour"
         
