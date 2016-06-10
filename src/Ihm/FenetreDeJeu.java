@@ -27,11 +27,11 @@ public class FenetreDeJeu {
     JPanel panelPrincipal;
     private Plateau pl;
 
-    public FenetreDeJeu(ControleurGraphique controleur){
+    public FenetreDeJeu(ControleurGraphique controleur){ //créer la fenêtre du jeu
 	pl = new Plateau();
 	frame = new JFrame();
-	frame.setTitle("Partie de Monopoly");
-	frame.setSize(1000, 900);
+	frame.setTitle("Partie de Monopoly"); //nom de la fenêtre
+	frame.setSize(1000, 900); //taille de la fenêtre 1000 de large sur 900 de haut
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
@@ -40,10 +40,11 @@ public class FenetreDeJeu {
 	panelPrincipal = new JPanel();
 	panelPrincipal.setLayout(new BorderLayout());
 	
-        boutons = pl.Bouton(controleur);
+        boutons = pl.Bouton(controleur); //JPanel contenant les boutons "Lancer les dés", "Acheter le bien", "Construire" et "Fin de tour"
         
 	panelPrincipal.add(boutons, BorderLayout.SOUTH);
-		
+	
+	controleur.quiCommence();
 	jCourant = controleur.getMonopoly().getJoueurs().get(0); //initialise le joueur courant
         controleur.setJoueurCourant(jCourant);
         
@@ -81,7 +82,7 @@ public class FenetreDeJeu {
     
     public void ControlDesTours(ControleurGraphique controleur) {
 	deathNote = new ArrayList<>(); //ArrayList qui permet de lister les joueurs à éliminer
-    	if(controleur.getMonopoly().getJoueurs().size() > 1){
+    	if(controleur.getMonopoly().getJoueurs().size() > 1){ //si reste plus de 1 joueur
             setEnabledButton(new Integer[]{1,0,0,0});
             jCourant = controleur.getJoueurCourant();//tant qu'il y a au moins 2 joueurs
             if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
