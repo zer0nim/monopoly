@@ -20,12 +20,23 @@ public class Plateau extends JPanel {
     private DefaultTableModel model2;
     private Timer timer;
 
+    public int PopupConstruction() {
+	String[] list = {"Proposition numero 1", "Proposition numero 2", "Proposition numero 3", "Proposition numero 4", "Proposition numero 5"};
+	JComboBox jcb = new JComboBox(list);
+		
+	JOptionPane.showConfirmDialog(null, jcb, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
+	return (Integer.valueOf( jcb.getSelectedIndex()) );
+    }
+    
     public JPanel Bouton(ControleurGraphique controleur) {
 	JPanel bouttonAction = new JPanel();
+	
 	bouttonAction.setLayout(new GridLayout(1, 4));
 	this.add(bouttonAction, BorderLayout.SOUTH);
 
 	lancerDe = new JButton("Lancer les dés");
+	lancerDe.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(lancerDe);
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
@@ -42,10 +53,11 @@ public class Plateau extends JPanel {
                     }
                 });
                 timer.start();
-                
 	    }
 	});
 	acheter = new JButton("Acheter le bien");
+	acheter.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(acheter);
 	acheter.addActionListener(new ActionListener() {
 	    @Override
@@ -58,6 +70,8 @@ public class Plateau extends JPanel {
 	});
         acheter.setEnabled(false);
         construire = new JButton("Construire");
+	construire.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(construire);
 	construire.addActionListener(new ActionListener() {
 	    @Override
@@ -67,6 +81,8 @@ public class Plateau extends JPanel {
 	});
         construire.setEnabled(false);
 	finDuTour = new JButton("Fin du tour");
+	finDuTour.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(finDuTour);
 	finDuTour.addActionListener(new ActionListener() {
 	    @Override
@@ -90,7 +106,7 @@ public class Plateau extends JPanel {
 	JPanel tableauJoueurs = new JPanel();
 	tableauJoueurs.setLayout(new BorderLayout());
 	this.add(tableauJoueurs, BorderLayout.EAST);
-
+	
 	model = new DefaultTableModel() {
 
 	    @Override
@@ -100,7 +116,11 @@ public class Plateau extends JPanel {
 	};
 	JTable table = new JTable(model);
 
+	table.setBackground(new Color(204,227,199));
+	table.getTableHeader().setBackground(new Color(219,236,215));
+	
 	String[] entetes = {"Joueur", "Cash"};
+	
 	model.setColumnIdentifiers(entetes);
 
 	tableauJoueurs.add(table.getTableHeader(), BorderLayout.NORTH);
@@ -120,8 +140,12 @@ public class Plateau extends JPanel {
 	JPanel panelInfoJoueur = new JPanel();
 	panelInfoJoueur.setLayout(new BorderLayout());
 
+	panelInfoJoueur.setBackground(new Color(124,155,120));
+
 	JPanel infoJoueur= new JPanel();
 	infoJoueur.setLayout(new GridLayout(6, 1));
+
+	infoJoueur.setBackground(new Color(124,155,120));
 
 	infoJoueur.add(new JLabel("Nom du Joueur: " + j.getNomJoueur()));
 	infoJoueur.add(new JLabel("Argent: " + j.getCash()));
@@ -148,7 +172,9 @@ public class Plateau extends JPanel {
 	
 	JPanel propJoueur= new JPanel();
 	propJoueur.setLayout(new BorderLayout());
-	
+
+	propJoueur.setBackground(new Color(124,155,120));
+
 	propJoueur.add(new JLabel("Propriétés du joueur: "), BorderLayout.NORTH);
 	model = new DefaultTableModel() {
 
@@ -159,6 +185,9 @@ public class Plateau extends JPanel {
 	};
 	JTable table = new JTable(model);
 
+	table.setBackground(new Color(204,227,199));
+	table.getTableHeader().setBackground(new Color(219,236,215));
+	
 	String[] entetes = {"Numéro", "Nom"};
 	model.setColumnIdentifiers(entetes);
 
@@ -175,7 +204,9 @@ public class Plateau extends JPanel {
         
         JPanel consJoueur= new JPanel();
 	consJoueur.setLayout(new BorderLayout());
-	
+
+	consJoueur.setBackground(new Color(124,155,120));
+
 	consJoueur.add(new JLabel("Constructions du joueur: "), BorderLayout.NORTH);
 	model2 = new DefaultTableModel() {
 
@@ -186,6 +217,9 @@ public class Plateau extends JPanel {
 	};
 	JTable table2 = new JTable(model2);
 
+	table2.setBackground(new Color(204,227,199));
+	table2.getTableHeader().setBackground(new Color(219,236,215));
+	
 	String[] entetes2 = {"Nom", "Type", "Nombre"};
 	model2.setColumnIdentifiers(entetes2);
 
@@ -220,6 +254,9 @@ public class Plateau extends JPanel {
     public JPanel deAnimation(){
         JPanel animation = new JPanel(new BorderLayout());
         Icon icon = new ImageIcon("src/Image/animationDes.gif");
+
+	animation.setBackground(new Color(124,155,120));
+
         JLabel label = new JLabel(icon);
         animation.add(label, BorderLayout.CENTER);
         animation.add(new JLabel(""), BorderLayout.NORTH);
@@ -228,6 +265,9 @@ public class Plateau extends JPanel {
     
     public JPanel communication(String type, Object[] data){
         JPanel communication = new JPanel(new BorderLayout());
+
+	communication.setBackground(new Color(124,155,120));
+	
         communication.setPreferredSize(new Dimension(communication.getSize().width, 50));
         if(type == "Affichage"){
             JLabel label = new JLabel((String)data[0], JLabel.CENTER);

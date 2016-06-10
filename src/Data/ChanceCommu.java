@@ -36,11 +36,11 @@ public class ChanceCommu{
     
     private ArrayList<Carte> MélangerPaquet(boolean estCarteChance){ //Mélange les paquets de manière aléatoire
 	ArrayList<Carte> cartesM;
-	if (estCarteChance){
+	if (estCarteChance){ //Si 'est une carte chance
 	    cartesM = (ArrayList<Carte>)cartesChance.clone();
 	    Collections.shuffle(cartesM);
 	}
-	else{
+	else{ // sinon c'est une carte communautée
 	    cartesM = (ArrayList<Carte>)cartesCommu.clone();
 	    Collections.shuffle(cartesM);
 	}

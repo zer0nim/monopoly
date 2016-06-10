@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class FenetreDeJeu {
 
@@ -32,15 +33,16 @@ public class FenetreDeJeu {
 	frame = new JFrame();
 	frame.setTitle("Partie de Monopoly"); //nom de la fenêtre
 	frame.setSize(1000, 900); //taille de la fenêtre 1000 de large sur 900 de haut
+	
+	frame.setMinimumSize(new Dimension(770,640));
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
 
 	
 	panelPrincipal = new JPanel();
-	panelPrincipal.setLayout(new BorderLayout());
 	
-	panelPrincipal.setBackground(new Color(146,169,143));
+	panelPrincipal.setLayout(new BorderLayout());
 	
         boutons = pl.Bouton(controleur); //JPanel contenant les boutons "Lancer les dés", "Acheter le bien", "Construire" et "Fin de tour"
         
@@ -53,10 +55,14 @@ public class FenetreDeJeu {
         animationDe = pl.deAnimation();
         animationDe.getComponent(0).setVisible(false);
         
-        communcication = pl.communication("Affichage", new Object[]{"Appuer sur \"Lancer les dés\" pour commencer la partie."});
+        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie."});
 	
 	PaneauInfosJoueurs = new JPanel();
+	
+	PaneauInfosJoueurs.setBackground(new Color(124,155,120));
+
 	PaneauInfosJoueurs.setLayout(new BorderLayout());
+		
 	PaneauInfosJoueurs.add(pl.InfoJoueur(jCourant), BorderLayout.NORTH);
         PaneauIntermediaireInfosJoueurs = new JPanel(new BorderLayout());
         PaneauIntermediaireInfosJoueurs.add(animationDe, BorderLayout.NORTH);
@@ -131,6 +137,9 @@ public class FenetreDeJeu {
             PaneauInfosJoueurs.remove(PaneauInfosJoueurs.getComponent(i));
         }
         JPanel info = new JPanel(new BorderLayout());
+	
+	info.setBackground(new Color(124,155,120));
+	
         info.add(pl.InfoJoueur(jCourant), BorderLayout.NORTH);
 	PaneauIntermediaireInfosJoueurs.add(pl.TabJoueur(controleur.getMonopoly().getJoueurs()), BorderLayout.SOUTH);
         info.add(PaneauIntermediaireInfosJoueurs, BorderLayout.SOUTH);
