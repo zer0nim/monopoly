@@ -35,7 +35,7 @@ public class ControleurGraphique {
 	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
             interfacee.getFenetre().setInfosJoueurs(this);
-            //construire(jCourant);
+            construire(jCourant);
             if(!test){
                 interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
@@ -46,7 +46,7 @@ public class ControleurGraphique {
                 jCourant.setEnPrison(0);
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
                 actionCarreau(jCourant, resultD);
-                //construire(jCourant);
+                construire(jCourant);
             }
 	}
 	if (jCourant.estMort()){ //pas de else il est peut etre mort en jouant
@@ -214,7 +214,7 @@ public class ControleurGraphique {
         if(comptes.get(1) < 12){
             hotels = true;
         }
-        j.achetterConstruction(true, maisons, hotels);
+        j.achetterConstruction(maisons, hotels);
     }
     
     public void setJoueurCourant(Joueur j){
@@ -281,5 +281,11 @@ public class ControleurGraphique {
     
     public int getResultatD(){
         return resultD;
+    }
+    
+    public void achetterTout(){
+        Joueur j = getMonopoly().getJoueurs().get(0);
+        j.addPropriété((Biens_achetables) controleur.getJoueurCourant().getPositionCourante());
+        getInterfacee().getFenetre().setInfosJoueurs(controleur);
     }
 }

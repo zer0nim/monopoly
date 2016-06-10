@@ -27,16 +27,18 @@ public class ProprieteAConstruire extends Biens_achetables{
     public int CalculLoyer(int resultde){
         int loyer = prixPassage;
         int nbCons = 0;
-        if(possedeGroupe()){
-           if(getConstructions().size() != 0){
-                if(getConstructions().get(0).getType() == "hotel"){
-                    loyer = getLoyers().get(4);
+        if(getPropriétaire() != null){
+            if(possedeGroupe()){
+                if(getConstructions().size() != 0){
+                     if(getConstructions().get(0).getType() == "hotel"){
+                         loyer = getLoyers().get(4);
+                     }else{
+                         loyer = getLoyers().get(getConstructions().size()-1);
+                     }
                 }else{
-                    loyer = getLoyers().get(getConstructions().size()-1);
+                     loyer = prixPassage * 2;
                 }
-           }else{
-                loyer = prixPassage * 2;
-           }
+             }
         }
 	return(loyer);
     }

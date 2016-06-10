@@ -6,6 +6,7 @@ import Data.*;
 import Jeu.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
@@ -18,13 +19,53 @@ public class Plateau extends JPanel {
     private JButton construire;
     private DefaultTableModel model;
     private DefaultTableModel model2;
+    private DefaultTableModel model3;
     private Timer timer;
 
-    public int PopupConstruction() {
-	String[] list = {"Proposition numero 1", "Proposition numero 2", "Proposition numero 3", "Proposition numero 4", "Proposition numero 5"};
+    public int PopupConstruction(ControleurGraphique controleur) {
+        ArrayList<String> liste = new ArrayList<>();
+        model3 = new DefaultTableModel() {
+
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+		return false;//This causes all cells to be not editable
+	    }
+	};
+        JPanel listeConstructions = new JPanel(new BorderLayout());
+	JTable table3 = new JTable(model3);
+
+	table3.setBackground(new Color(204,227,199));
+	table3.getTableHeader().setBackground(new Color(219,236,215));
+	
+	String[] entetes = {"Numéro", "Carreau", "Nom", "Type", "Nombre", "Prix Achat", "Loyer"};
+	
+	model3.setColumnIdentifiers(entetes);
+
+	listeConstructions.add(table3.getTableHeader(), BorderLayout.NORTH);
+	listeConstructions.add(table3, BorderLayout.CENTER);
+
+	String[] valeur = new String[7];
+        int i = 0;
+	for (Object[] cons : controleur.getJoueurCourant().getLiseConstructionsDispo()) {
+	    valeur[0] = Integer.toString(i);
+	    valeur[1] = Integer.toString(((ProprieteAConstruire)cons[0]).getNumero());
+            valeur[2] = ((ProprieteAConstruire)cons[0]).getNomCarreau();
+            valeur[3] = ((String)cons[1]);
+            if(((String)cons[1]) == "hotel"){
+                valeur[4] = "1";
+            }else{
+                valeur[4] = Integer.toString(((ProprieteAConstruire)cons[0]).getConstructions().size() + 1);
+            }
+            valeur[5] = Integer.toString(((Integer)cons[4]));
+            valeur[6] = Integer.toString(((Integer)cons[3]));
+	    model3.addRow(valeur);
+            i++;
+            liste.add(valeur[0] +" "+valeur[1] +" "+valeur[2] +" "+valeur[3] +" "+valeur[4] +" "+valeur[5] +" "+valeur[6]);
+	}
+        String[] list = liste.toArray(new String[7]);
 	JComboBox jcb = new JComboBox(list);
-		
-	JOptionPane.showConfirmDialog(null, jcb, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
+	listeConstructions.add(jcb, BorderLayout.SOUTH);	
+	JOptionPane.showConfirmDialog(null, listeConstructions, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
 	return (Integer.valueOf( jcb.getSelectedIndex()) );
     }
     

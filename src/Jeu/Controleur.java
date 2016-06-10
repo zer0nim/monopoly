@@ -199,6 +199,6 @@ public class Controleur {
         if(comptes.get(1) < 12){
             hotels = true;
         }
-        j.achetterConstruction(true, maisons, hotels);
+        j.achetterConstruction(maisons, hotels);
     }
 }

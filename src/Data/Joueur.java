@@ -9,12 +9,14 @@ import java.util.Collections;
 
 public class Joueur {
     private String nomJoueur; // nom du joueur j
-    private int cash = 1500; //solde de départ
+    private int cash = 150000000; //solde de départ
     private Carreau positionCourante; //position du joueur j sur le plateau
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>(); //liste des biens achetables possédés par le joueur j
     private HashSet<Groupe> groupes = new HashSet<>(); //liste des groupes où le joueur possède toutes les propriétés
     private HashSet<Object[]> listeConstructionsDispo = new HashSet<>();
     private HashSet<ProprieteAConstruire> proprietesAConstruire = new HashSet<>();
+    private boolean maison;
+    private boolean hotel;
     
     private int carteLibPrison = 0;
     private int enPrison = 0;
@@ -177,35 +179,33 @@ public class Joueur {
         }
     }
     
-    public void achetterConstruction(boolean demande, boolean maisons, boolean hotels){
+    public void achetterConstruction(boolean maisons, boolean hotels){
         setGroupe();
         setProprietePourConstruire(maisons, hotels);
+        this.maison = maisons;
+        this.hotel = hotels;
         if(!groupes.isEmpty() && !listeConstructionsDispo.isEmpty()){ // ##################################### Verifier s'il reste des cons à acheter
-            boolean veutAchetter = false;
             controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,1,-1});
-            if(demande){
-                if(Ihm.demanderOuiNon("Voulez vous construire une maison ou un hotel sur une de vos propriétés ? (oui/non)")){
-                    veutAchetter = true;
-                }
-            }
-            if((demande && veutAchetter) || !demande){
-                Object[] constructionAchettee = Ihm.afficherConstructions(listeConstructionsDispo);
-                if((Integer)(constructionAchettee[5]) != 1){
-                    ProprieteAConstruire prop = (ProprieteAConstruire) constructionAchettee[0];
-                    int prixAchat = (Integer)constructionAchettee[4];           
-                    if(getCash() >= prixAchat){
-                        setCash(getCash()-prixAchat);
-                        prop.addConstructions(new Construction(prop, this, (String) constructionAchettee[1]));
-                        Ihm.Afficher("Prop ajoutée");
-                        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,0,-1});
-                    }else{
-                        Ihm.Afficher("Vous n'avez pas assez d'argent !");
-                        achetterConstruction(false, maisons, hotels);
-                    }
-                }
+        }
+    }
+        
+    public void construire(){
+        Object[] constructionAchettee = Ihm.afficherConstructions(listeConstructionsDispo);
+        if((Integer)(constructionAchettee[5]) != 1){
+            ProprieteAConstruire prop = (ProprieteAConstruire) constructionAchettee[0];
+            int prixAchat = (Integer)constructionAchettee[4];           
+            if(getCash() >= prixAchat){
+                setCash(getCash()-prixAchat);
+                prop.addConstructions(new Construction(prop, this, (String) constructionAchettee[1]));
+                Ihm.Afficher("Prop ajoutée");
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,0,-1});
+            }else{
+                Ihm.Afficher("Vous n'avez pas assez d'argent !");
+                construire();
             }
         }
     }
+
 
     public Enumeration.Pions getPion() {
 	return pion;
@@ -213,5 +213,9 @@ public class Joueur {
 
     public void setPion(Enumeration.Pions pion) {
 	this.pion = pion;
+    }
+    
+    public HashSet<Object[]> getLiseConstructionsDispo(){
+        return listeConstructionsDispo;
     }
 }
