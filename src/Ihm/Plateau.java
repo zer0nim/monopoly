@@ -20,6 +20,14 @@ public class Plateau extends JPanel {
     private DefaultTableModel model2;
     private Timer timer;
 
+    public int PopupConstruction() {
+	String[] list = {"Proposition numero 1", "Proposition numero 2", "Proposition numero 3", "Proposition numero 4", "Proposition numero 5"};
+	JComboBox jcb = new JComboBox(list);
+		
+	JOptionPane.showConfirmDialog(null, jcb, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
+	return (Integer.valueOf( jcb.getSelectedIndex()) );
+    }
+    
     public JPanel Bouton(ControleurGraphique controleur) {
 	JPanel bouttonAction = new JPanel();
 	
@@ -45,7 +53,6 @@ public class Plateau extends JPanel {
                     }
                 });
                 timer.start();
-                
 	    }
 	});
 	acheter = new JButton("Acheter le bien");
@@ -69,6 +76,9 @@ public class Plateau extends JPanel {
 	construire.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+
+		System.out.print(PopupConstruction());
+		//faire qqChose de la valeur
 	    }
 	});
         construire.setEnabled(false);
