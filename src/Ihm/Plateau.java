@@ -27,6 +27,8 @@ public class Plateau extends JPanel {
 	this.add(bouttonAction, BorderLayout.SOUTH);
 
 	lancerDe = new JButton("Lancer les dés");
+	lancerDe.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(lancerDe);
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
@@ -47,6 +49,8 @@ public class Plateau extends JPanel {
 	    }
 	});
 	acheter = new JButton("Acheter le bien");
+	acheter.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(acheter);
 	acheter.addActionListener(new ActionListener() {
 	    @Override
@@ -59,6 +63,8 @@ public class Plateau extends JPanel {
 	});
         acheter.setEnabled(false);
         construire = new JButton("Construire");
+	construire.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(construire);
 	construire.addActionListener(new ActionListener() {
 	    @Override
@@ -67,6 +73,8 @@ public class Plateau extends JPanel {
 	});
         construire.setEnabled(false);
 	finDuTour = new JButton("Fin du tour");
+	finDuTour.setBackground(new Color(219,236,215));
+	
 	bouttonAction.add(finDuTour);
 	finDuTour.addActionListener(new ActionListener() {
 	    @Override
