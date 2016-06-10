@@ -34,6 +34,7 @@ public class ControleurGraphique {
             }
 	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
+            interfacee.getFenetre().setInfosJoueurs(this);
             //construire(jCourant);
             if(!test){
                 interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
@@ -59,12 +60,12 @@ public class ControleurGraphique {
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
                 jCourant.setEnPrison(3);
                 jCourant.resetCompteDoubleDes();
+                interfacee.getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
             } else {
                 interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait un double dé. Vous pouvez jouer un nouveau tour. "});
                 interfacee.getFenetre().setEnabledButton(new Integer[]{1,-1,-1,0});
             }
 	} else {
-            interfacee.getFenetre().setEnabledButton(new Integer[]{0,-1,-1,1});
             jCourant.resetCompteDoubleDes();
         }
 	/*
@@ -83,7 +84,7 @@ public class ControleurGraphique {
         
     }
 
-    private void actionCarreau(Joueur j, int resultD){
+    public void actionCarreau(Joueur j, int resultD){
         if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
 		((Gare)j.getPositionCourante()).action(j, resultD);
 	    else if (j.getPositionCourante().getClass().getSimpleName().equals("Compagnie"))
@@ -276,5 +277,9 @@ public class ControleurGraphique {
     
     public void setCom(String type, Object[] data){
         interfacee.getFenetre().setCommunication(type, data);
+    }
+    
+    public int getResultatD(){
+        return resultD;
     }
 }

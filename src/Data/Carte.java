@@ -19,7 +19,7 @@ public class Carte {
 
     public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ControleurGraphique controleur) {
         this.controleur = controleur;
-        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
         controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Carte pioché => " + getDescription()});
 	switch (getTypeAction().name()) {
 	    case "libPrison":
