@@ -103,8 +103,13 @@ public class Plateau extends JPanel {
 	acheter.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-                controleur.getJoueurCourant().addPropriété((Biens_achetables) controleur.getJoueurCourant().getPositionCourante());
-		((Biens_achetables)controleur.getJoueurCourant().getPositionCourante()).setPropriétaire(controleur.getJoueurCourant());
+		Biens_achetables bienCourant = ((Biens_achetables)controleur.getJoueurCourant().getPositionCourante());
+		Joueur joueurCourant = controleur.getJoueurCourant();
+		
+                joueurCourant.addPropriété(bienCourant);
+		bienCourant.setPropriétaire(joueurCourant);
+		joueurCourant.payerArgent(bienCourant.getPrixAchat());
+		
                 controleur.setCom("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Vous venez d'acheter " + controleur.getJoueurCourant().getPositionCourante().getNomCarreau() + "."});
                 controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1, 0,-1,-1});
                 controleur.getInterfacee().getFenetre().setInfosJoueurs(controleur);
