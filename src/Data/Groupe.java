@@ -9,9 +9,7 @@ public class Groupe {
     public Groupe(CouleurPropriete couleur) {
 	this.couleur = couleur;
     }
-    
-    
-    
+
     public CouleurPropriete getCouleur() {
         return couleur;
     }

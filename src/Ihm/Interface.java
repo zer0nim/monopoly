@@ -2,7 +2,6 @@ package Ihm;
 
 import Data.*;
 import Jeu.ControleurGraphique;
-import java.awt.Color;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
@@ -61,8 +60,6 @@ public class Interface extends JPanel {
 	jouer.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent e) {
 
-
-
 		int i = 0;
 		ArrayList<Integer> indPionsSelect = new ArrayList<>();
 		JComboBox jcb;
@@ -71,7 +68,7 @@ public class Interface extends JPanel {
 		indPionsSelect.add(jcb.getSelectedIndex());
 		
 		while (champDePions.size()-1 > i && !indPionsSelect.contains( champDePions.get(i+1).getSelectedIndex() )) { //boucle de vérification pas deux fois le meme pion
-		    i++;
+		    i++; //incrémente i
 		    
 		    jcb = champDePions.get(i);
 		    		    indPionsSelect.add(jcb.getSelectedIndex());
@@ -131,10 +128,10 @@ public class Interface extends JPanel {
 	    ChoixInfoJoueurs.add(prenom);
 	    
 	    
-	    champNomjoueurs.add(new JTextField(30));
+	    champNomjoueurs.add(new JTextField(30)); //Champ de saisie des noms
 	    ChoixInfoJoueurs.add(champNomjoueurs.get(champNomjoueurs.size() - 1));
 	    
-	    champDePions.add(new JComboBox(ItemType.values()));
+	    champDePions.add(new JComboBox(ItemType.values())); //Champ de selection des pions
 	    ChoixInfoJoueurs.add(champDePions.get(champDePions.size() - 1));
 	
 	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0), controleur)); //crée un joueur avec nom par defaut
@@ -148,17 +145,17 @@ public class Interface extends JPanel {
     
     public boolean verifNoms(ArrayList<JTextField> champNomj){
 	boolean estOk = true;
-	for(JTextField texteCourant : champNomj){
-	    if(texteCourant.getText().equals("")){
+	for(JTextField texteCourant : champNomj){ //Pour chaque ChampNomj
+	    if(texteCourant.getText().equals("")){ //Si un champ nom est vide
 		estOk = false;
 	    }
 	}
-	Set<String> set = new HashSet<>();
+	Set<String> set = new HashSet<>(); //permet de ne pas écrire les valeurs double
 	for(JTextField texteCourant : champNomj){
 	    set.add(texteCourant.getText());
 	}
 	
-	if(set.size() < champNomj.size()){
+	if(set.size() < champNomj.size()){ //Si des joueurs on le même nom
 	    estOk = false;
 	}
 	

@@ -1,9 +1,6 @@
 package Ihm;
 
-import Data.Biens_achetables;
-import Data.Carreau;
-import Data.Joueur;
-import Data.ProprieteAConstruire;
+import Data.*;
 import Jeu.Monopoly;
 import javax.swing.JPanel;
 import java.awt.*;
@@ -197,11 +194,11 @@ public class IhmPlateau {
 	//------------vvv----Pions-Joueurs-----vvv	
 	String nomImage;
 	int comptPions = 0;
-	for (Joueur jCourt : getMonopoly().getJoueurs()){
+	for (Joueur jCourt : getMonopoly().getJoueurs()){ //boucle sur les joueurs
 	    if (jCourt.getPositionCourante().equals(carreau)){
 		nomImage = jCourt.getPion().toString();
 
-		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png");
+		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png"); //selectionne l'image du pion correspondant à celui du joueur jCourt
 		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/3)):(x+(comptPions-3)*(larg/3))),   (int)((y+haut)-(haut/3.6 * ((comptPions < 3)? 1:1.7))),    (int)(larg/3.5),    (int)( (int)(larg/3.5)*0.71), null);
  		comptPions ++;
 	    }
