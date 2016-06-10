@@ -53,7 +53,7 @@ public class FenetreDeJeu {
         animationDe = pl.deAnimation();
         animationDe.getComponent(0).setVisible(false);
         
-        communcication = pl.communication("Affichage", new Object[]{"Appuer sur \"Lancer les dés\" pour commencer la partie."});
+        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie."});
 	
 	PaneauInfosJoueurs = new JPanel();
 	
