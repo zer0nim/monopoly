@@ -44,6 +44,10 @@ public class IhmPlateau {
 	    //System.out.println("espace entre: " + espaceEntre + " cotéCarreau: " + cotéCarreau);
 	    //System.out.println("grand carré: " + ( (cotéCarreau*10) + (espaceEntre*9) ));	    
 	    g.setStroke(new BasicStroke(2.5f));
+	    
+	    Image imgCentre = Toolkit.getDefaultToolkit().getImage("src//Image//CentreJeu.png");
+	    g.drawImage(imgCentre, (int)(margex+hautCarreau+2), (int)(margey+hautCarreau+2), (int)(CotéPlateau - (hautCarreau*2)), (int)(CotéPlateau - (hautCarreau*2)), null);
+	    
 	    int numC = 0;
 	    int[] coresp = {0,1,2,3,4,5,6,7,8,9,10,39,11,38,12,37,13,36,14,35,15,34,16,33,17,32,18,31,19,30,29,28,27,26,25,24,23,22,21,20};
 	    for (int y = 0; y < 11; y++) {
@@ -106,7 +110,7 @@ public class IhmPlateau {
     public void drawRect(Graphics g, int x, int y, int larg, int haut, Carreau carreau) {
 	g.setColor(Color.black);
 	g.drawRect(x, y, larg, haut);
-	g.setColor(new Color(218, 233, 212));
+	g.setColor(new Color(204,227,199));
 	g.fillRect(x, y, larg, haut);
 	
 	//------------vvv----Couleurs-Groupes-----vvv
