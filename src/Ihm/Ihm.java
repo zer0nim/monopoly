@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Ihm {
 
-    public static void affJoueur(Joueur j) {
+    public static void affJoueur(Joueur j) { // FAIT
         System.out.println("------------------Tour--------------------");
         System.out.println("------------------------------------------");
 
@@ -18,7 +18,7 @@ public class Ihm {
         Ihm.affBiens(j.getPositionCourante());
     }
 
-    public static void affBiens(Carreau c) {
+    public static void affBiens(Carreau c) { // FAIT
         if (c.getClass().getSimpleName().equals("ProprieteAConstruire") || c.getClass().getSimpleName().equals("Gare") || c.getClass().getSimpleName().equals("Compagnie")) {
             affBiens_achetables((Biens_achetables) c);
         } else {
@@ -26,7 +26,7 @@ public class Ihm {
         }
     }
 
-    public static void affBiens_achetables(Biens_achetables ba) {
+    public static void affBiens_achetables(Biens_achetables ba) { // FAIT
         System.out.println("-------");
         System.out.println("Numéro: " + ba.getNumero());
         System.out.println("Nom: " + ba.getNomCarreau());
@@ -40,7 +40,7 @@ public class Ihm {
         System.out.println("-------");
     }
 
-    public static void affAutreCarreau(AutreCarreau ac) {
+    public static void affAutreCarreau(AutreCarreau ac) { // FAIT
         System.out.println("-------");
         System.out.println("Numéro: " + ac.getNumero());
         System.out.println("Nom: " + ac.getNomCarreau() + "\n");

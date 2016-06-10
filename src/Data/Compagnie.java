@@ -1,10 +1,12 @@
 
 package Data;
 
+import Jeu.ControleurGraphique;
+
 public class Compagnie extends Biens_achetables{
 
-    public Compagnie(int prixAchat, int numero, String nomCarreau) {
-	super(prixAchat, numero, nomCarreau);
+    public Compagnie(int prixAchat, int numero, String nomCarreau, ControleurGraphique controleur) {
+	super(prixAchat, numero, nomCarreau, controleur);
     }
     
     

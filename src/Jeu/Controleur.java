@@ -9,7 +9,7 @@ public class Controleur {
     private Monopoly monopoly;
     
     public Controleur(){
-	this.monopoly = new Monopoly();
+	//this.monopoly = new Monopoly();
     }
 
     public void jouerUnCoup(Joueur j) {
@@ -102,7 +102,7 @@ public class Controleur {
     public void creerJoueurs(){
 	int nbJoueur = Ihm.nbJoueur();
 	for (int j = 0; j < nbJoueur ; j++) {
-		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
+		//monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
 	}
 	quiCommence();
     }

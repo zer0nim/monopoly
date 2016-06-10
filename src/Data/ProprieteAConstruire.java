@@ -2,6 +2,7 @@ package Data;
 
 import java.util.ArrayList;
 import Ihm.*;
+import Jeu.ControleurGraphique;
 
 public class ProprieteAConstruire extends Biens_achetables{
 	private int prixPassage;
@@ -12,8 +13,8 @@ public class ProprieteAConstruire extends Biens_achetables{
         private int prixHotel;
     
     
-    public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe, ArrayList<Integer> loyers, int prixMaison, int prixHotel) {
-	super(prixAchat, numero, nomCarreau);
+    public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe, ArrayList<Integer> loyers, int prixMaison, int prixHotel, ControleurGraphique controleur) {
+	super(prixAchat, numero, nomCarreau, controleur);
 	setGroupe(groupe);
 	setPrixPassage(prixPassage);
         constructions = new ArrayList<>();

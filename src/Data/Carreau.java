@@ -1,5 +1,7 @@
 package Data;
 
+import Jeu.ControleurGraphique;
+
 public abstract class Carreau {
     private int numero;
     private String nomCarreau;

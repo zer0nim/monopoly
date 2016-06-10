@@ -3,6 +3,7 @@ package Data;
 import java.util.ArrayList;
 import java.util.HashSet;
 import Ihm.*;
+import Jeu.ControleurGraphique;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -19,10 +20,12 @@ public class Joueur {
     private int enPrison = 0;
     private int compteDoubleDes = 0;
     private Enumeration.Pions pion;
+    private ControleurGraphique controleur;
 
-    public Joueur(String nomJoueur, Carreau c){
+    public Joueur(String nomJoueur, Carreau c, ControleurGraphique controleur){
 	this.setNomJoueur(nomJoueur);
 	this.setPositionCourante(c);
+        this.controleur = controleur;
     }
     public void payerArgent(int cash) {
 	setCash(getCash() - cash); //débite le cash du joueur de 'cash'
@@ -177,17 +180,9 @@ public class Joueur {
     public void achetterConstruction(boolean demande, boolean maisons, boolean hotels){
         setGroupe();
         setProprietePourConstruire(maisons, hotels);
-        Ihm.Afficher(nomJoueur);
-                Ihm.Afficher("Vos constructions");
-                for(Biens_achetables prop : getPropriétés()){
-                    if(prop.getClass().getSimpleName().contains("ProprieteAConstruire")){
-                        for(Construction cons : ((ProprieteAConstruire)prop).getConstructions()){
-                            Ihm.Afficher(cons.getTerrain().getNomCarreau() + " " + cons.getType());
-                        }
-                    }
-                }
         if(!groupes.isEmpty() && !listeConstructionsDispo.isEmpty()){ // ##################################### Verifier s'il reste des cons à acheter
             boolean veutAchetter = false;
+            controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,1,-1});
             if(demande){
                 if(Ihm.demanderOuiNon("Voulez vous construire une maison ou un hotel sur une de vos propriétés ? (oui/non)")){
                     veutAchetter = true;

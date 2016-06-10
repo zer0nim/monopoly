@@ -138,7 +138,7 @@ public class Interface extends JPanel {
 	    champDePions.add(new JComboBox(ItemType.values()));
 	    ChoixInfoJoueurs.add(champDePions.get(champDePions.size() - 1));
 	
-	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0))); //crée un joueur avec nom par defaut
+	    controleur.getMonopoly().setJoueur(new Joueur("noName", controleur.getMonopoly().getCarreaux().get(0), controleur)); //crée un joueur avec nom par defaut
 	}
 	controleur.quiCommence(); //lance le dé pour savoir qui commence
 	//------^^^---paneau de selection nom joueur---^^^

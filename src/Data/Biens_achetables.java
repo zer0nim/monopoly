@@ -2,14 +2,17 @@
 package Data;
 
 import Ihm.*;
+import Jeu.ControleurGraphique;
 
 public abstract class Biens_achetables extends Carreau{
     private int prixAchat, prixPassage;
     private Joueur propriétaire;
+    private ControleurGraphique controleur;
 
-    public Biens_achetables(int prixAchat, int numero, String nomCarreau) {
+    public Biens_achetables(int prixAchat, int numero, String nomCarreau, ControleurGraphique controleur) {
 	super(numero, nomCarreau);
 	this.prixAchat = prixAchat;
+        this.controleur = controleur;
     }
     
     public abstract int CalculLoyer(int resultde);
@@ -20,18 +23,18 @@ public abstract class Biens_achetables extends Carreau{
 		int loy = CalculLoyer(resultde);
                 j.payerArgent(loy); //j paye le loyer
 		getPropriétaire().recevoirArgent(loy);
-		Ihm.Afficher(j.getNomJoueur() + " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur());
+                controleur.getInterfacee().getFenetre().setCommunication("Affichage",new Object[]{j.getNomJoueur()+ " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur()+"."});
 	    }
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
-		if (Ihm.propositionAchat(j, this)){
-		    acheterPropriété(j);
-		}
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,1,-1,-1});
+		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous pouvez achetter " + getNomCarreau() + " pour " + Integer.toString(getPrixAchat()) + "€ ?"});
 	    }
 	    else{
-		Ihm.Afficher("Pas assez d'argent pour acheter !");
-	    }
+		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,-1});
+                controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous n'avez pas assez d'argent pour acheter " + getNomCarreau() + "."});
+            }
 	}
     }
     

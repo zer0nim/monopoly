@@ -1,11 +1,13 @@
 package Data;
 
+import Jeu.ControleurGraphique;
+
 public class Gare extends Biens_achetables{
 
     
     
-    public Gare(int prixAchat, int numero, String nomCarreau) {
-	super(prixAchat, numero, nomCarreau); //héritage de biens_Achetables
+    public Gare(int prixAchat, int numero, String nomCarreau, ControleurGraphique controleur) {
+	super(prixAchat, numero, nomCarreau, controleur); //héritage de biens_Achetables
     }
     
     

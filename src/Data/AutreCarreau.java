@@ -2,47 +2,45 @@ package Data;
 
 import java.util.ArrayList;
 import Ihm.*;
+import Jeu.ControleurGraphique;
 
 public class AutreCarreau extends Carreau {
 
     private int info;
+    private ControleurGraphique controleur;
 
-    public AutreCarreau(int numero, String nomCarreau, int info) {
+    public AutreCarreau(int numero, String nomCarreau, int info, ControleurGraphique controleur) {
 	super(numero, nomCarreau);
+        this.controleur = controleur;
     }
 
     public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ChanceCommu cartesChCo) {
 	switch (getNomCarreau()) {
 	    case "Chance": //Si on tombe sur la case, carte chance
-		cartesChCo.piocherCarteChance().Action(j, joueurs, carreaux);
+		cartesChCo.piocherCarteChance().Action(j, joueurs, carreaux, controleur);
 		break;
 	    case "Caisse de Communauté": //Si on tombe sur la case, carte communauté
-		cartesChCo.piocherCarteCommu().Action(j, joueurs, carreaux);
+		cartesChCo.piocherCarteCommu().Action(j, joueurs, carreaux, controleur);
 		break;
 	    case "Départ": //Si on tombe sur la case départ, ne rien faire
 		break;
 	    case "Impôt sur le revenu": //Si on tombe sur la case "Impôt sur le revenu"
 		j.setCash(j.getCash() + getInfo());
+                controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez l'impôt sur le revenu, vous perdez donc 200€"});
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
 		break;
 	    case "Simple Visite / En Prison": //Case Prison ou Visite
                 if(j.getPrison() > 1){
                     if(j.getCarteLibPrison() != 0){
-                        if(Ihm.demanderOuiNon("Voulez vous utiliser votre carte \"Vous êtes libéré de Prison\" pour sortir de prison ? (oui/non)")){
-                            j.setEnPrison(-1);
-                            j.setCarteLibPrison(j.getCarteLibPrison() - 1);
-                            Ihm.Afficher("Vous venez de sortir de prison avec votre carte \"Vous êtes libéré de Prison\".");
-                        }else{
-                            Ihm.Afficher("Vous avez choisi de ne pas utiliser votre carte de prison !");
-                        }
-                    }
-                    if(j.getPrison() != 0){ //Sinon il reste en prison
-                        j.setEnPrison(j.getPrison()-1);
-                        Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+                        controleur.setCom("DemandePrison", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison pour encore " + j.getPrison() + " tours. Vous disposez d'une carte \"Vous êtes libéré de Prison\".", controleur});
+                    }else{
+                       purgerPeine(j); 
                     }
                 }else if(j.getPrison() == 1){ //POur son dernier tour il paye une amende de 50$
                     j.setCash(j.getCash()-50);
                     j.setEnPrison(-1);
-                    Ihm.Afficher("Vous avez fini votre peine de prison. Vous venez de payer une amende de 50$");
+                    Ihm.Afficher("Truc -1");
+                    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez fini votre de peine de prison. Vous avez payé 50€ d'amande."});
                 }
 		break;
 	    case "Parc Gratuit":
@@ -52,11 +50,13 @@ public class AutreCarreau extends Carreau {
 	    case "Allez en prison": //Si on tombe sur "Allez en Prison, on est immédiatement positionné dessus
 		j.setPositionCourante(carreaux.get(10));//récupère le carreau Prison
 		j.setEnPrison(3); //Bloque le joueur en prison pendant 3 tours
-		Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours."});
 		break;
 	    case "Taxe de Luxe": //Enlève la somme getInfo() de la case "Taxe de Luxe"
 		j.setCash(j.getCash() + getInfo());
-		break;
+                controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez la taxe de Luxe, vous perdez donc 100€"});
+		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
+                break;
 	    default:
 		break;
 	}
@@ -81,5 +81,21 @@ public class AutreCarreau extends Carreau {
     public void addInfo(int info) {
 	this.info += info;
     }
-
+    
+    public void libPrisonCarte(Joueur j){
+        j.setEnPrison(-1);
+        j.setCarteLibPrison(j.getCarteLibPrison() - 1);
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{1,0,0,-1});
+        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes sorti de prison avec votre carte \"Vous êtes libéré de Prison\"."});
+    }
+    
+    public void purgerPeine(Joueur j){
+        if(j.getPrison() != 0){ //Sinon il reste en prison
+            j.setEnPrison(j.getPrison()-1);
+            controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,-1});
+            controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison our encore " + j.getPrison() + " tours."});
+        }else{
+            Ihm.Afficher("Sortie de praison");
+        }
+    }
 }

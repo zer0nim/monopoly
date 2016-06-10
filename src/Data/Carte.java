@@ -1,6 +1,7 @@
 package Data;
 
 import Ihm.*;
+import Jeu.ControleurGraphique;
 import java.util.ArrayList;
 
 public class Carte {
@@ -8,6 +9,7 @@ public class Carte {
     private String description;
     private Enumeration.ActionChCo typeAction;
     private int infoAction;
+    private ControleurGraphique controleur;
 
     public Carte(String description, Enumeration.ActionChCo typeAct, int infoAction) {
 	setDescription(description);
@@ -15,8 +17,10 @@ public class Carte {
 	setInfoAction(infoAction);
     }
 
-    public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux) {
-	Ihm.Afficher("Carte pioché: " + getDescription());
+    public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ControleurGraphique controleur) {
+        this.controleur = controleur;
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
+        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Carte pioché => " + getDescription()});
 	switch (getTypeAction().name()) {
 	    case "libPrison":
 		libPrison(j);
@@ -60,7 +64,7 @@ public class Carte {
 	j.setPositionCourante(carreaux.get(numCase));
 
 	if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
+	    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous venez de compléter un tour. Vous empocher donc un salaire de 200€."});
 	    j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
 	}
 
@@ -82,7 +86,7 @@ public class Carte {
 
     public void allerPrison(Joueur j, ArrayList<Carreau> carreaux) {
 	j.setEnPrison(3);
-	Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+	controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours."});
 	avancerJusquaScaseDep(j, 10, carreaux);
     }
 

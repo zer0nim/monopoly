@@ -1,5 +1,6 @@
 package Data;
 
+import Jeu.ControleurGraphique;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.*;
@@ -10,10 +11,11 @@ public class ChanceCommu{
 
     private ArrayList<Carte> cartesCommu = new ArrayList<>(); //Liste des cartes Communautées
     private ArrayList<Carte> cartesCommuMélangé = new ArrayList<>(); //Liste des cartes Communautées dans un ordre aléatoire
-
+    private ControleurGraphique controleur;
     
-    public ChanceCommu(){
+    public ChanceCommu(ControleurGraphique controleur){
 	buildChanceCommu("src//main//dataChCo.txt"); //Répertoire du fichier contenant les cartes chances est communautées
+        this.controleur = controleur;
     }
     
     public Carte piocherCarteChance(){ //Pioche un carte Chance dans le paquet mélangé

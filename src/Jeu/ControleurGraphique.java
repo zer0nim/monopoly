@@ -3,6 +3,8 @@ import Ihm.*;
 import Data.*;
 import static Ihm.Ihm.affJoueur;
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.Label;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JLabel;
@@ -15,56 +17,63 @@ public class ControleurGraphique {
     private Interface interfacee;
     private int resultD;
     private int resultD2;
+    private boolean test = true;
     
     public ControleurGraphique(Interface inter){
-	this.monopoly = new Monopoly();
+	this.monopoly = new Monopoly(this);
         this.interfacee =  inter;
     }
-
+    
+    public void lancerDes(){
+        resultD = lancerDésAvancer(jCourant);
+	resultD2 = lancerDésAvancer(jCourant);
+    }
     public void jouerUnCoup() {
         //Ihm.Afficher("");
-	resultD = lancerDésAvancer(jCourant);
-	resultD2 = lancerDésAvancer(jCourant);
         //int resultD = 2;
         //int resultD2 = 2;
-	/*if (!jCourant.estMort()){
+	if (!jCourant.estMort()){
 	    resultD += resultD2;
             if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
                 jCourant.setEnPrison(0);
-                Ihm.Afficher("Vous venez de sortir de prison avec un double dé !");
+                interfacee.getFenetre().setCommunication("Affichage", new Object[]{jCourant.getNomJoueur() + " vient de sortir de prison avec un double dé."});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
             }
-	    affJoueur(jCourant);
+	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
-            jCourant.achetterConstruction(true);
-            
+            //construire(jCourant);
+            if(test){
+                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
+                jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
+                jCourant.setEnPrison(3);
+                test =false;
+            }
             if(jCourant.getPrison() == -1){
                 jCourant.setEnPrison(0);
-                Ihm.Afficher("résultat lancé du dé: " + (resultD - resultD2));
-                Ihm.Afficher("résultat lancé du dé: " + resultD2);
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
-                affJoueur(jCourant);
                 actionCarreau(jCourant, resultD);
-                jCourant.achetterConstruction(true);
+                //construire(jCourant);
             }
 	}
 	if (jCourant.estMort()){ //pas de else il est peut etre mort en jouant
 		jCourant.vendrePropriétés();
 	}
+        interfacee.getFenetre().setInfosJoueurs(this);
 	if (resultD == 2 * resultD2){ //si double
-	    Ihm.Afficher("Double au Dé !");
             jCourant.incrementCompteDoubleDes();
             if (jCourant.getCompteDoubleDes() == 3) {
+                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
                 jCourant.setEnPrison(3);
-                Ihm.Afficher(jCourant.getNomJoueur() + " est en prison. Il lui reste " + jCourant.getPrison() + " tour(s) en prison.");
                 jCourant.resetCompteDoubleDes();
             } else {
-                jouerUnCoup();
+                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait un double dé. Vous pouvez jouer un nouveau tour. "});
+                interfacee.getFenetre().setEnabledButton(new Integer[]{1,-1,-1,0});
             }
 	} else {
+            interfacee.getFenetre().setEnabledButton(new Integer[]{0,-1,-1,1});
             jCourant.resetCompteDoubleDes();
-        }*/
+        }
 	/*
 	System.out.println("\nFin du tour, appuyer sur entrer pour continuer");
 
@@ -76,8 +85,8 @@ public class ControleurGraphique {
 	   if( !s.equals("\\n") ) 
 	      break;
 	}*/
-        jCourant = setJoueurSuivant(jCourant);
-        getInterfacee().getFenetre().ControlDesTours(this);
+
+
         
     }
 
@@ -95,8 +104,8 @@ public class ControleurGraphique {
     private int lancerDésAvancer(Joueur j){
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
-        Ihm.Afficher("résultat lancé du dé: " + resultD);
-        if(j.getPrison() >= 0){
+        if(j.getPrison() == 0){
+            Ihm.Afficher(Integer.toString(j.getPrison()));
             j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         }
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça njCourantouvelle position est inférieur à la nouvelle
@@ -114,7 +123,7 @@ public class ControleurGraphique {
     public void creerJoueurs(){
 	int nbJoueur = Ihm.nbJoueur();
 	for (int j = 0; j < nbJoueur ; j++) {
-		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
+		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0), this));
 	}
 	quiCommence();
     }
@@ -179,6 +188,41 @@ public class ControleurGraphique {
         this.monopoly = monopoly;
     }
     
+    public ArrayList<Integer> setCompteConstructions(){
+        int compteMaison = 0;
+        int compteHotel = 0;
+        for(Joueur j : monopoly.getJoueurs()){
+            for(Biens_achetables prop : j.getPropriétés()){
+                if(prop.getClass().getSimpleName().contains("ProprieteAConstruire")){
+                    for(Construction cons : ((ProprieteAConstruire)prop).getConstructions()){
+                        if(cons.getType() == "maison"){
+                            compteMaison+= 1;
+                        }else{
+                            compteHotel+= 1;
+                        }
+                    }
+                }
+            }
+        }
+        ArrayList<Integer> comptes = new ArrayList<>();
+        comptes.add(compteMaison);
+        comptes.add(compteHotel);
+        return comptes;
+    }
+    
+    public void construire(Joueur j){
+        ArrayList<Integer> comptes = setCompteConstructions();
+        boolean maisons = false;
+        boolean hotels = false;
+        if(comptes.get(0) < 32){
+            maisons = true;
+        }
+        if(comptes.get(1) < 12){
+            hotels = true;
+        }
+        j.achetterConstruction(true, maisons, hotels);
+    }
+    
     public void setJoueurCourant(Joueur j){
         jCourant = j;
     }
@@ -197,7 +241,7 @@ public class ControleurGraphique {
         this.appuye = appuye;
     }
     
-    public Joueur setJoueurSuivant(Joueur j){
+    public void setJoueurSuivant(Joueur j){
         Joueur joueur = monopoly.getJoueurs().get(0);
         for(int i = 0; i < monopoly.getJoueurs().size(); i++){
             if(monopoly.getJoueurs().get(i).equals(j)){
@@ -208,7 +252,7 @@ public class ControleurGraphique {
                 }
             }
         }
-        return joueur;
+        jCourant = joueur;
     }
     
     public Joueur getJoueurCourant(){
@@ -222,18 +266,19 @@ public class ControleurGraphique {
         return interfacee;
     }
     
-    public void setAnimationDeVisible(boolean visible){
-        getInterfacee().getFenetre().getAnimationDe().setVisible(visible);
+    public void setAnimationDeVisible(){
+        getInterfacee().getFenetre().setResultatDe(new JPanel(), false);
     }
     
     public void setAnimationDe(){
         JPanel de = new JPanel(new BorderLayout());
-        JLabel resultat1 = new JLabel(Integer.toString(resultD-resultD2));
-        JLabel resultat2 = new JLabel(Integer.toString(resultD2));
-        JLabel plus = new JLabel("+");
-        de.add(resultat1, BorderLayout.EAST);
-        de.add(plus, BorderLayout.CENTER);
-        de.add(resultat2, BorderLayout.WEST);
-        getInterfacee().getFenetre().setAnimationDe(de);
+        JLabel resultat = new JLabel(Integer.toString(resultD) + " + " + Integer.toString(resultD2) + " = " + Integer.toString(resultD + resultD2), JLabel.CENTER);
+        resultat.setFont(new Font(resultat.getFont().getName(), resultat.getFont().getStyle(), 30));
+        de.add(resultat, BorderLayout.CENTER);
+        getInterfacee().getFenetre().setResultatDe(de, true);
+    }
+    
+    public void setCom(String type, Object[] data){
+        interfacee.getFenetre().setCommunication(type, data);
     }
 }
