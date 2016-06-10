@@ -6,8 +6,7 @@ import Data.*;
 import Jeu.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Plateau extends JPanel {
