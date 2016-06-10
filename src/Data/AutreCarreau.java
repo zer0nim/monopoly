@@ -27,7 +27,6 @@ public class AutreCarreau extends Carreau {
 	    case "Impôt sur le revenu": //Si on tombe sur la case "Impôt sur le revenu"
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez l'impôt sur le revenu, vous perdez donc 200€"});
-                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
 		break;
 	    case "Simple Visite / En Prison": //Case Prison ou Visite
                 if(j.getPrison() > 1){
@@ -55,12 +54,11 @@ public class AutreCarreau extends Carreau {
 	    case "Taxe de Luxe": //Enlève la somme getInfo() de la case "Taxe de Luxe"
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez la taxe de Luxe, vous perdez donc 100€"});
-		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
                 break;
 	    default:
 		break;
 	}
-
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
     }
 
     //v--getters setters--v
@@ -85,14 +83,15 @@ public class AutreCarreau extends Carreau {
     public void libPrisonCarte(Joueur j){
         j.setEnPrison(-1);
         j.setCarteLibPrison(j.getCarteLibPrison() - 1);
-        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{1,0,0,-1});
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
         controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes sorti de prison avec votre carte \"Vous êtes libéré de Prison\"."});
+        controleur.actionCarreau(controleur.getJoueurCourant(), controleur.getResultatD());
     }
     
     public void purgerPeine(Joueur j){
         if(j.getPrison() != 0){ //Sinon il reste en prison
             j.setEnPrison(j.getPrison()-1);
-            controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,-1});
+            controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
             controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison our encore " + j.getPrison() + " tours."});
         }else{
             Ihm.Afficher("Sortie de praison");

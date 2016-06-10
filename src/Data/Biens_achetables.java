@@ -19,6 +19,7 @@ public abstract class Biens_achetables extends Carreau{
 	
     public void action(Joueur j, int resultde){
 	if(getPropriétaire() != null){ //bien possédé
+            controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
 	    if(getPropriétaire() != j){ //j n'est pas le propriétaire
 		int loy = CalculLoyer(resultde);
                 j.payerArgent(loy); //j paye le loyer
@@ -28,11 +29,11 @@ public abstract class Biens_achetables extends Carreau{
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
-                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,1,-1,-1});
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,1,-1,1});
 		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous pouvez achetter " + getNomCarreau() + " pour " + Integer.toString(getPrixAchat()) + "€ ?"});
 	    }
 	    else{
-		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,-1});
+		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous n'avez pas assez d'argent pour acheter " + getNomCarreau() + "."});
             }
 	}

@@ -30,7 +30,7 @@ public class Plateau extends JPanel {
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,-1,-1,-1});
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
                 controleur.setAnimationDeVisible();
                 controleur.lancerDes();
                 timer = new Timer(1500, new ActionListener(){
@@ -62,6 +62,7 @@ public class Plateau extends JPanel {
 	construire.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
+                
 	    }
 	});
         construire.setEnabled(false);
@@ -230,7 +231,7 @@ public class Plateau extends JPanel {
         communication.setPreferredSize(new Dimension(communication.getSize().width, 50));
         if(type == "Affichage"){
             JLabel label = new JLabel((String)data[0], JLabel.CENTER);
-            communication.add(label, BorderLayout.CENTER);
+            communication.add(label, BorderLayout.CENTER);            
         }else if(type == "DemandePrison") {
             JLabel label = new JLabel((String)data[0], JLabel.CENTER);
             JButton buttonYes = new JButton("Utiliser la carte");
