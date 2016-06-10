@@ -189,8 +189,8 @@ public class Joueur {
         }
     }
         
-    public void construire(){
-        Object[] constructionAchettee = Ihm.afficherConstructions(listeConstructionsDispo);
+    public void construire(Object[] constru){
+        Object[] constructionAchettee = constru;
         if((Integer)(constructionAchettee[5]) != 1){
             ProprieteAConstruire prop = (ProprieteAConstruire) constructionAchettee[0];
             int prixAchat = (Integer)constructionAchettee[4];           
@@ -201,7 +201,7 @@ public class Joueur {
                 controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,0,-1});
             }else{
                 Ihm.Afficher("Vous n'avez pas assez d'argent !");
-                construire();
+                //###### Plateau action bouton construire
             }
         }
     }

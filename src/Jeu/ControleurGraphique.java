@@ -282,10 +282,4 @@ public class ControleurGraphique {
     public int getResultatD(){
         return resultD;
     }
-    
-    public void achetterTout(){
-        Joueur j = getMonopoly().getJoueurs().get(0);
-        j.addPropriété((Biens_achetables) controleur.getJoueurCourant().getPositionCourante());
-        getInterfacee().getFenetre().setInfosJoueurs(controleur);
-    }
 }

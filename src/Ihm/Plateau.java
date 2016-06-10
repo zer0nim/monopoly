@@ -22,7 +22,7 @@ public class Plateau extends JPanel {
     private DefaultTableModel model3;
     private Timer timer;
 
-    public int PopupConstruction(ControleurGraphique controleur) {
+    public String PopupConstruction(ControleurGraphique controleur) {
         ArrayList<String> liste = new ArrayList<>();
         model3 = new DefaultTableModel() {
 
@@ -60,13 +60,13 @@ public class Plateau extends JPanel {
             valeur[6] = Integer.toString(((Integer)cons[3]));
 	    model3.addRow(valeur);
             i++;
-            liste.add(valeur[0] +" "+valeur[1] +" "+valeur[2] +" "+valeur[3] +" "+valeur[4] +" "+valeur[5] +" "+valeur[6]);
+            liste.add(valeur[0] +", "+valeur[1] +", "+valeur[2] +", "+valeur[3] +", "+valeur[4] +", "+valeur[5] +", "+valeur[6]);
 	}
         String[] list = liste.toArray(new String[7]);
 	JComboBox jcb = new JComboBox(list);
 	listeConstructions.add(jcb, BorderLayout.SOUTH);	
 	JOptionPane.showConfirmDialog(null, listeConstructions, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
-	return (Integer.valueOf( jcb.getSelectedIndex()) );
+	return (( jcb.getSelectedItem().toString()) );
     }
     
     public JPanel Bouton(ControleurGraphique controleur) {
@@ -118,7 +118,7 @@ public class Plateau extends JPanel {
 	construire.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-                
+                //construire(); passer en object param
 	    }
 	});
         construire.setEnabled(false);
