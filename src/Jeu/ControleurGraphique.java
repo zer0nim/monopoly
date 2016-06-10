@@ -42,7 +42,7 @@ public class ControleurGraphique {
 	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
             //construire(jCourant);
-            if(test){
+            if(!test){
                 interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
                 jCourant.setEnPrison(3);

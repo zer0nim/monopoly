@@ -69,7 +69,7 @@ public class FenetreDeJeu {
 	frame.add(panelPrincipal);
 	frame.setVisible(true);
 	
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.revalidate();

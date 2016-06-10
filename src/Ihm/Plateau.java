@@ -73,6 +73,7 @@ public class Plateau extends JPanel {
                 controleur.setJoueurSuivant(controleur.getJoueurCourant());
                 controleur.getInterfacee().getFenetre().ControlDesTours(controleur);
                 controleur.getInterfacee().getFenetre().setInfosJoueurs(controleur);
+                controleur.getInterfacee().getFenetre().setCommunication("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Lancez les dés pour commencer votre tour."});
 	    }
 	});
         finDuTour.setEnabled(false);
