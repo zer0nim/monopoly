@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import Data.*;
 import Jeu.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -119,16 +120,30 @@ public class Plateau extends JPanel {
 	panelInfoJoueur.setLayout(new BorderLayout());
 
 	JPanel infoJoueur= new JPanel();
-	infoJoueur.setLayout(new GridLayout(8, 2));
+	infoJoueur.setLayout(new GridLayout(6, 1));
 
-	
 	infoJoueur.add(new JLabel("Nom du Joueur: " + j.getNomJoueur()));
 	infoJoueur.add(new JLabel("Argent: " + j.getCash()));
 	infoJoueur.add(new JLabel("Position Courante: " + j.getPositionCourante().getNumero()));
 	infoJoueur.add(new JLabel("Cartes Sortie de Prison: " + j.getCarteLibPrison()));
 	infoJoueur.add(new JLabel("En prison: " + ((j.getPrison() == 0) ? "non" : "oui")));
 
-	panelInfoJoueur.add(infoJoueur, BorderLayout.CENTER);
+	//----------vvv----logo-joueur----vvv
+	String nomImage = j.getPion().toString();
+
+	String path = ("src//Image//Pions//" + nomImage + ".png");
+	
+	ImageIcon icon = new ImageIcon(path);
+	Image img = icon.getImage();
+	BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+	Graphics g = bi.createGraphics();
+	g.drawImage(img, 0, 0, 20, 14, null);
+	ImageIcon newIcon = new ImageIcon(bi);
+
+	panelInfoJoueur.add(new JLabel(newIcon), BorderLayout.CENTER);
+	//----------^^^----logo-joueur----^^^
+
+	panelInfoJoueur.add(infoJoueur, BorderLayout.NORTH);
 	
 	JPanel propJoueur= new JPanel();
 	propJoueur.setLayout(new BorderLayout());
