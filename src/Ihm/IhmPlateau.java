@@ -181,9 +181,10 @@ public class IhmPlateau {
 	    lign++;
 	}
 	
-	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables"))
-	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-5));
-	//------------^^^----Texte-Carreau-----^^^
+	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables")){
+	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-2));
+	}
+ 	//------------^^^----Texte-Carreau-----^^^
 	
 	
 	//------------vvv----Pions-Joueurs-----vvv	
@@ -194,8 +195,8 @@ public class IhmPlateau {
 		nomImage = jCourt.getPion().toString();
 
 		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png");
-		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/4)):(x+(comptPions-3)*(larg/4))),   (int)((y+haut)-(haut/6 * ((comptPions < 3)? 1:2.2))),    (int)(larg/4.5),    (int)( (int)(haut/4.5)*0.5), null);
-		comptPions ++;
+		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/3)):(x+(comptPions-3)*(larg/3))),   (int)((y+haut)-(haut/3.6 * ((comptPions < 3)? 1:1.7))),    (int)(larg/3.5),    (int)( (int)(larg/3.5)*0.71), null);
+ 		comptPions ++;
 	    }
 	}
 	
