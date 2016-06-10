@@ -1,7 +1,7 @@
 package Jeu;
+
 import Ihm.*;
 import Data.*;
-import static Ihm.Ihm.affJoueur;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -25,9 +25,6 @@ public class ControleurGraphique {
 	resultD2 = lancerDésAvancer(jCourant);
     }
     public void jouerUnCoup() {
-        //Ihm.Afficher("");
-        //int resultD = 2;
-        //int resultD2 = 2;
 	if (!jCourant.estMort()){
 	    resultD += resultD2;
             if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
