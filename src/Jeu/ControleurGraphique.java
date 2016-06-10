@@ -24,7 +24,7 @@ public class ControleurGraphique {
         resultD = lancerDésAvancer(jCourant);
 	resultD2 = lancerDésAvancer(jCourant);
     }
-    public void jouerUnCoup() {
+    public void jouerUnCoup() {  //Afficher les doubles dans un deuxieme Comunnication
 	if (!jCourant.estMort()){
 	    resultD += resultD2;
             if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
