@@ -268,6 +268,9 @@ public class ControleurGraphique {
     
     public void setAnimationDe(){
         JPanel de = new JPanel(new BorderLayout());
+
+	de.setBackground(new Color(124,155,120));
+
         JLabel resultat = new JLabel(Integer.toString(resultD) + " + " + Integer.toString(resultD2) + " = " + Integer.toString(resultD + resultD2), JLabel.CENTER);
         resultat.setFont(new Font(resultat.getFont().getName(), resultat.getFont().getStyle(), 30));
         de.add(resultat, BorderLayout.CENTER);

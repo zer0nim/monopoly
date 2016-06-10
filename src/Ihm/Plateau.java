@@ -22,6 +22,7 @@ public class Plateau extends JPanel {
 
     public JPanel Bouton(ControleurGraphique controleur) {
 	JPanel bouttonAction = new JPanel();
+	
 	bouttonAction.setLayout(new GridLayout(1, 4));
 	this.add(bouttonAction, BorderLayout.SOUTH);
 
@@ -89,7 +90,7 @@ public class Plateau extends JPanel {
 	JPanel tableauJoueurs = new JPanel();
 	tableauJoueurs.setLayout(new BorderLayout());
 	this.add(tableauJoueurs, BorderLayout.EAST);
-
+	
 	model = new DefaultTableModel() {
 
 	    @Override
@@ -119,8 +120,12 @@ public class Plateau extends JPanel {
 	JPanel panelInfoJoueur = new JPanel();
 	panelInfoJoueur.setLayout(new BorderLayout());
 
+	panelInfoJoueur.setBackground(new Color(124,155,120));
+
 	JPanel infoJoueur= new JPanel();
 	infoJoueur.setLayout(new GridLayout(6, 1));
+
+	infoJoueur.setBackground(new Color(124,155,120));
 
 	infoJoueur.add(new JLabel("Nom du Joueur: " + j.getNomJoueur()));
 	infoJoueur.add(new JLabel("Argent: " + j.getCash()));
@@ -147,7 +152,9 @@ public class Plateau extends JPanel {
 	
 	JPanel propJoueur= new JPanel();
 	propJoueur.setLayout(new BorderLayout());
-	
+
+	propJoueur.setBackground(new Color(124,155,120));
+
 	propJoueur.add(new JLabel("Propriétés du joueur: "), BorderLayout.NORTH);
 	model = new DefaultTableModel() {
 
@@ -174,7 +181,9 @@ public class Plateau extends JPanel {
         
         JPanel consJoueur= new JPanel();
 	consJoueur.setLayout(new BorderLayout());
-	
+
+	consJoueur.setBackground(new Color(124,155,120));
+
 	consJoueur.add(new JLabel("Constructions du joueur: "), BorderLayout.NORTH);
 	model2 = new DefaultTableModel() {
 
@@ -219,6 +228,9 @@ public class Plateau extends JPanel {
     public JPanel deAnimation(){
         JPanel animation = new JPanel(new BorderLayout());
         Icon icon = new ImageIcon("src/Image/animationDes.gif");
+
+	animation.setBackground(new Color(124,155,120));
+
         JLabel label = new JLabel(icon);
         animation.add(label, BorderLayout.CENTER);
         animation.add(new JLabel(""), BorderLayout.NORTH);
@@ -227,6 +239,9 @@ public class Plateau extends JPanel {
     
     public JPanel communication(String type, Object[] data){
         JPanel communication = new JPanel(new BorderLayout());
+
+	communication.setBackground(new Color(124,155,120));
+	
         communication.setPreferredSize(new Dimension(communication.getSize().width, 50));
         if(type == "Affichage"){
             JLabel label = new JLabel((String)data[0], JLabel.CENTER);
