@@ -2,13 +2,9 @@ package Jeu;
 import Ihm.*;
 import Data.*;
 import static Ihm.Ihm.affJoueur;
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.Label;
-import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
 
 public class ControleurGraphique {
     private Monopoly monopoly;
