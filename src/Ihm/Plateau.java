@@ -100,7 +100,10 @@ public class Plateau extends JPanel {
 	};
 	JTable table = new JTable(model);
 
+	table.setBackground(new Color(204,227,199));
+	
 	String[] entetes = {"Joueur", "Cash"};
+	
 	model.setColumnIdentifiers(entetes);
 
 	tableauJoueurs.add(table.getTableHeader(), BorderLayout.NORTH);
@@ -165,6 +168,8 @@ public class Plateau extends JPanel {
 	};
 	JTable table = new JTable(model);
 
+	table.setBackground(new Color(204,227,199));
+	
 	String[] entetes = {"Numéro", "Nom"};
 	model.setColumnIdentifiers(entetes);
 
@@ -194,6 +199,8 @@ public class Plateau extends JPanel {
 	};
 	JTable table2 = new JTable(model2);
 
+	table2.setBackground(new Color(204,227,199));
+	
 	String[] entetes2 = {"Nom", "Type", "Nombre"};
 	model2.setColumnIdentifiers(entetes2);
 
