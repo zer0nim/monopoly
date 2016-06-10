@@ -36,12 +36,10 @@ public class FenetreDeJeu {
 	
 	frame.setMinimumSize(new Dimension(770,640));
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	
 	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
 
-	
 	panelPrincipal = new JPanel();
-	
 	panelPrincipal.setLayout(new BorderLayout());
 	
         boutons = pl.Bouton(controleur); //JPanel contenant les boutons "Lancer les dés", "Acheter le bien", "Construire" et "Fin de tour"
@@ -55,7 +53,7 @@ public class FenetreDeJeu {
         animationDe = pl.deAnimation();
         animationDe.getComponent(0).setVisible(false);
         
-        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie."});
+        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie."}); //init
 	
 	PaneauInfosJoueurs = new JPanel();
 	
