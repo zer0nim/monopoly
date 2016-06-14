@@ -125,17 +125,7 @@ public class FenetreDeJeu {
         //communcication.add(com, BorderLayout.CENTER);
         communcication.add(com, BorderLayout.CENTER);
     }
-    
-    public JLabel getCommunicationLabel(){
-        JLabel label;
-        if(communcication.getComponentCount() != 0){
-            label =  (JLabel)communcication.getComponent(0);
-        }else{
-            label = new JLabel("");
-        }
-        return label;
-    }
-    
+        
     public void setInfosJoueurs(ControleurGraphique controleur){
         PaneauIntermediaireInfosJoueurs.remove(PaneauIntermediaireInfosJoueurs.getComponent(1));
         for(int i =0; i < PaneauInfosJoueurs.getComponentCount(); i++){
@@ -164,5 +154,10 @@ public class FenetreDeJeu {
         }else if(b[3] == 1){
             boutons.getComponent(0).setEnabled(false);
         }
+    }
+    
+    public void closeFrame(){
+        frame.setVisible(false);
+        frame.dispose();
     }
 }

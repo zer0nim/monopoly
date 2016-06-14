@@ -84,16 +84,17 @@ public class AutreCarreau extends Carreau {
     }
     
     public void libPrisonCarte(Joueur j){
-        j.setEnPrison(-1);
+        j.setEnPrison(0);
         j.setCarteLibPrison(j.getCarteLibPrison() - 1);
-        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
+        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,0});
         controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes sorti de prison avec votre carte \"Vous êtes libéré de Prison\".", true});
+        j.setPositionCourante(controleur.getMonopoly().getCarreaux().get(((j.getPositionCourante().getNumero() + controleur.getResultatD())-1)%40));
         controleur.actionCarreau(controleur.getJoueurCourant(), controleur.getResultatD());
     }
     
     public void purgerPeine(Joueur j){
             j.setEnPrison(j.getPrison()-1);
             controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
-            controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison our encore " + Integer.toString(j.getPrison()) + " tours.", true});
+            controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison pour encore " + Integer.toString(j.getPrison()) + " tours.", true});
     }
 }

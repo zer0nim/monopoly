@@ -52,7 +52,15 @@ public class ControleurGraphique {
                 monopoly.removeJoueur(jCourant);
                 if(monopoly.getJoueurs().size() == 1){
                     String nomWinner = monopoly.getJoueurs().get(0).getNomJoueur();
-                    winPane.showMessageDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu", JOptionPane.INFORMATION_MESSAGE);
+                    //winPane.showMessageDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu", JOptionPane.INFORMATION_MESSAGE);
+                    String options[] = {"Recommencer une partie", "Quitter le jeu"};
+                    int retour = winPane.showOptionDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
+                             if( retour==JOptionPane.CLOSED_OPTION || retour == 1){
+                                 System.exit(0);
+                             }else{
+                                 interfacee.getFenetre().closeFrame();
+                                 LancementJeu ihmf = new LancementJeu();
+                             }
                 }
 	}
         interfacee.getFenetre().setInfosJoueurs(this);

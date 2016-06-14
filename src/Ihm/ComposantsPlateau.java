@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import Data.*;
 import Jeu.*;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +28,7 @@ public class ComposantsPlateau extends JPanel {
     private DefaultTableModel model2;
     private DefaultTableModel model3;
     private Timer timer;
+    private String comText;
 
     public String PopupConstruction(ControleurGraphique controleur) {
 	ArrayList<String> liste = new ArrayList<>();
@@ -379,12 +381,18 @@ public class ComposantsPlateau extends JPanel {
 	communication.setPreferredSize(new Dimension(communication.getSize().width, 50));
 	if (type == "Affichage") {
             if((boolean)data[1]){
-                //JLabel label = new JLabel(controleur.getInterfacee().getFenetre().getCommunicationLabel().toString() + "\n" + (String) data[0], JLabel.CENTER);
-                JLabel label = new JLabel((String) data[0], JLabel.CENTER);
+                String text = comText;
+                if(text.length() - text.replace("<br>", "").length() == 12){
+                    String parts[] = comText.split("<br>");
+                    comText = parts[1] + "<br>" + parts[2] + "<br>";
+                }
+                comText += (String) data[0] + "<br>";
+                JLabel label = new JLabel("<html>" + comText + "</html>", JLabel.CENTER);
                 communication.add(label, BorderLayout.CENTER);
             }else{
                 JLabel label = new JLabel((String) data[0], JLabel.CENTER);
                 communication.add(label, BorderLayout.CENTER);
+                comText = "";
             }
 	} else if (type == "DemandePrison") {
 	    JLabel label = new JLabel((String) data[0], JLabel.CENTER);
