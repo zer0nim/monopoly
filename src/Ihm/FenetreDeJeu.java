@@ -84,16 +84,22 @@ public class FenetreDeJeu {
     }
     
     public void ControlDesTours(ControleurGraphique controleur) {
-	deathNote = new ArrayList<>(); //ArrayList qui permet de lister les joueurs à éliminer
     	if(controleur.getMonopoly().getJoueurs().size() > 1){ //si reste plus de 1 joueur
             setEnabledButton(new Integer[]{1,0,0,0});
             jCourant = controleur.getJoueurCourant();//tant qu'il y a au moins 2 joueurs
             if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
                 controleur.getMonopoly().getJoueurs().remove(jCourant);
+		
+		String nomJMort = jCourant.getNomJoueur();
+		JOptionPane winPane = new JOptionPane();
+		winPane.showMessageDialog(null, ("Le Joueur " + nomJMort + " est Mort !"), "Décès", JOptionPane.INFORMATION_MESSAGE);
 	    }
             jCourant = controleur.getJoueurCourant();
-	}else{
-            //Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
+	}
+	else{
+	    String nomWinner = controleur.getMonopoly().getJoueurs().get(0).getNomJoueur();
+	    JOptionPane winPane = new JOptionPane();
+	    winPane.showMessageDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
