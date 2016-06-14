@@ -131,46 +131,32 @@ public class IhmPlateau {
 	g.setColor(new Color(204,227,199));
 	g.fillRect(x, y, larg, haut);
 	
-	//------------vvv----Affiche--Couleurs-Groupes-----vvv
-	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")){ //donc si possede groupe
-	    String couleur = ((ProprieteAConstruire)carreau).getGroupe().getCouleur().toString();
-	    
-	    switch (couleur) {
-	    	case "bleuFonce":
-		    g.setColor(new Color(1,104,181));
-		    break;
-	    	case "orange":
-		    g.setColor(new Color(245,144,2));
-		    break;
-	    	case "mauve":
-		    g.setColor(new Color(212,115,212));
-		    break;
-	    	case "violet":
-		    g.setColor(new Color(127,72,140));
-		    break;
-	    	case "bleuCiel":
-		    g.setColor(new Color(146,211,244));
-		    break;
-	    	case "jaune":
-		    g.setColor(new Color(255,236,1));
-		    break;
-	    	case "vert":
-		    g.setColor(new Color(31,165,76));
-		    break;
-	    	default:
-		    //rouge
-		    g.setColor(new Color(229,2,19));
-		    break;
-	    }
-	    int hauteurGroupe = (haut > larg)? larg/4 : haut/4;
+	affCouleursGroupes(g, x, y, larg, haut, carreau);// Affiche les Couleurs des cartes avec Groupe
+	
+	affTexteCarreau(g, x, y, larg, haut, carreau);// Affiche les noms des Carreaux
+	
+	affPionsJoueur(g, x, y, larg, haut, carreau);// Affiche les Pions des Joueurs
+    }
+    
+    
+    public void affPionsJoueur(Graphics g, int x, int y, int larg, int haut, Carreau carreau){
+	//------------vvv----Affiche--Pions-Joueur-----vvv	
+	String nomImage;
+	int comptPions = 0;
+	for (Joueur jCourt : getMonopoly().getJoueurs()){ //boucle sur les joueurs
+	    if (jCourt.getPositionCourante().equals(carreau)){
+		nomImage = jCourt.getPion().toString();
 
-	    g.fillRect(x, y, larg, hauteurGroupe);//aff couleurgroupe
+		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png"); //selectionne l'image du pion correspondant à celui du joueur jCourt
+		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/3)):(x+(comptPions-3)*(larg/3))),   (int)((y+haut)-(haut/3.6 * ((comptPions < 3)? 1:1.7))),    (int)(larg/3.5),    (int)( (int)(larg/3.5)*0.71), null);
+ 		comptPions ++;
+	    }
 	}
-	//------------^^^----Affiche--Couleurs-Groupes-----^^^
-	
-	
-	
-	//------------vvv----Affiche--Texte-Carreau-----vvv
+	//------------^^^----Affiche--Pions-Joueur-----^^^
+    }
+    
+    public void affTexteCarreau(Graphics g, int x, int y, int larg, int haut, Carreau carreau){
+    //------------vvv----Affiche--Texte-Carreau-----vvv
 	g.setFont(new Font("Droid Sans", Font.PLAIN, 9));
 
 	g.setColor(Color.black);
@@ -208,24 +194,46 @@ public class IhmPlateau {
 	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-2));
 	}
  	//------------^^^----Affiche--Texte-Carreau-----^^^
-	
-	
-	
-	//------------vvv----Affiche--Pions-Joueurs-----vvv	
-	String nomImage;
-	int comptPions = 0;
-	for (Joueur jCourt : getMonopoly().getJoueurs()){ //boucle sur les joueurs
-	    if (jCourt.getPositionCourante().equals(carreau)){
-		nomImage = jCourt.getPion().toString();
-
-		Image img1 = Toolkit.getDefaultToolkit().getImage("src//Image//Pions//" + nomImage + ".png"); //selectionne l'image du pion correspondant à celui du joueur jCourt
-		g.drawImage(img1, ((comptPions < 3)?(x+comptPions*(larg/3)):(x+(comptPions-3)*(larg/3))),   (int)((y+haut)-(haut/3.6 * ((comptPions < 3)? 1:1.7))),    (int)(larg/3.5),    (int)( (int)(larg/3.5)*0.71), null);
- 		comptPions ++;
-	    }
-	}
-	//------------^^^----Affiche--Pions-Joueurs-----^^^
-
     }
+    
+    public void affCouleursGroupes(Graphics g, int x, int y, int larg, int haut, Carreau carreau){
+	//------------vvv----Affiche--Couleurs-Groupes-----vvv
+	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")){ //donc si possede groupe
+	    String couleur = ((ProprieteAConstruire)carreau).getGroupe().getCouleur().toString();
+	    
+	    switch (couleur) {
+	    	case "bleuFonce":
+		    g.setColor(new Color(1,104,181));
+		    break;
+	    	case "orange":
+		    g.setColor(new Color(245,144,2));
+		    break;
+	    	case "mauve":
+		    g.setColor(new Color(212,115,212));
+		    break;
+	    	case "violet":
+		    g.setColor(new Color(127,72,140));
+		    break;
+	    	case "bleuCiel":
+		    g.setColor(new Color(146,211,244));
+		    break;
+	    	case "jaune":
+		    g.setColor(new Color(255,236,1));
+		    break;
+	    	case "vert":
+		    g.setColor(new Color(31,165,76));
+		    break;
+	    	default:
+		    //rouge
+		    g.setColor(new Color(229,2,19));
+		    break;
+	    }
+	    int hauteurGroupe = (haut > larg)? larg/4 : haut/4;
+
+	    g.fillRect(x, y, larg, hauteurGroupe);//aff couleurgroupe
+	}
+	//------------^^^----Affiche--Couleurs-Groupes-----^^^
+    } 
     
     public JCanvas getJc() {
 	return jc;
