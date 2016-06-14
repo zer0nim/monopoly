@@ -26,27 +26,21 @@ public class AutreCarreau extends Carreau {
 	    case "Départ": //Si on tombe sur la case départ, ne rien faire
 		break;
 	    case "Impôt sur le revenu": //Si on tombe sur la case "Impôt sur le revenu"
-                IhmText.Afficher(Integer.toString(getInfo()));
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez l'impôt sur le revenu, vous perdez donc 200€", true});
 		break;
 	    case "Simple Visite / En Prison": //Case Prison ou Visite
                 if(j.getPrison() > 1){
-                    IhmText.Afficher("Il est en prison");
                     if(j.getCarteLibPrison() != 0){
-                        IhmText.Afficher("Il a une carte");
                         controleur.setCom("DemandePrison", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison pour encore " + j.getPrison() + " tours. Vous disposez d'une carte \"Vous êtes libéré de Prison\".", controleur});
                     }else{
-                        IhmText.Afficher("Il purge la peine");
                        purgerPeine(j); 
                     }
                 }else if(j.getPrison() == 1){ //POur son dernier tour il paye une amende de 50$
-                    IhmText.Afficher("Il paye l'ammande");
                     j.setCash(j.getCash()-50);
                     j.setEnPrison(-1);
                     controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez fini votre de peine de prison. Vous avez payé 50€ d'amande.", true});
                 }else{
-                    IhmText.Afficher("Il est en visite");
                     controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous participez à une visite de la prison.", true});
                 }
 		break;
@@ -61,7 +55,6 @@ public class AutreCarreau extends Carreau {
 		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours.", true});
 		break;
 	    case "Taxe de Luxe": //Enlève la somme getInfo() de la case "Taxe de Luxe"
-                IhmText.Afficher(Integer.toString(getInfo()));
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez la taxe de Luxe, vous perdez donc 100€", true});
                 break;
@@ -99,15 +92,8 @@ public class AutreCarreau extends Carreau {
     }
     
     public void purgerPeine(Joueur j){
-        IhmText.Afficher("Il l'a purge bien");
-        if(j.getPrison() != 0){ //Sinon il reste en prison
-            IhmText.Afficher("Il l'a purge plus que bien");
             j.setEnPrison(j.getPrison()-1);
             controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
             controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison our encore " + Integer.toString(j.getPrison()) + " tours.", true});
-        }else{ // A supprimer
-            IhmText.Afficher("Il ne la purge plus");
-            controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Sortie de prison.", true});
-        }
     }
 }
