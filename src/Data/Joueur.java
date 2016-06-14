@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class Joueur {
     private String nomJoueur; // nom du joueur j
-    private int cash = 1500; //solde de départ
+    private int cash = 1; //solde de départ
     private Carreau positionCourante; //position du joueur j sur le plateau
     private ArrayList<Biens_achetables> propriétés = new ArrayList<>(); //liste des biens achetables possédés par le joueur j
     private HashSet<Groupe> groupes = new HashSet<>(); //liste des groupes où le joueur possède toutes les propriétés

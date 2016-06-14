@@ -89,10 +89,6 @@ public class FenetreDeJeu {
             jCourant = controleur.getJoueurCourant();//tant qu'il y a au moins 2 joueurs
             if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
                 controleur.getMonopoly().getJoueurs().remove(jCourant);
-		
-		String nomJMort = jCourant.getNomJoueur();
-		JOptionPane winPane = new JOptionPane();
-		winPane.showMessageDialog(null, ("Le Joueur " + nomJMort + " est Mort !"), "Décès", JOptionPane.INFORMATION_MESSAGE);
 	    }
             jCourant = controleur.getJoueurCourant();
 	}
