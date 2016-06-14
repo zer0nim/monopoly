@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.*;
 
-public class Interface extends JPanel {
+public class Interface extends JPanel { //Fenetre de lancement du jeu (selection nbs joueurs, noms, pions)
 
     private JButton jouer;
     private JButton annuler;
@@ -58,6 +58,7 @@ public class Interface extends JPanel {
 	jouer = new JButton("Jouer au monopoly");  //crée les joueurs et lance la partie
 	lancement.add(jouer);
 	jouer.addActionListener(new ActionListener() {
+	    @Override
 	    public void actionPerformed(ActionEvent e) {
 
 		int i = 0;
