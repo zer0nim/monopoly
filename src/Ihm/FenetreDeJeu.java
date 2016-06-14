@@ -23,10 +23,10 @@ public class FenetreDeJeu {
     private JPanel boutons;
     
     JPanel panelPrincipal;
-    private Plateau pl;
+    private ComposantsPlateau pl;
 
     public FenetreDeJeu(ControleurGraphique controleur){ //créer la fenêtre du jeu
-	pl = new Plateau();
+	pl = new ComposantsPlateau();
 	frame = new JFrame();
 	frame.setTitle("Partie de Monopoly"); //nom de la fenêtre
 	frame.setSize(1000, 900); //taille de la fenêtre 1000 de large sur 900 de haut

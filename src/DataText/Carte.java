@@ -17,7 +17,7 @@ public class Carte {
     }
 
     public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux) {
-	Ihm.Afficher("Carte pioché: " + getDescription());
+	IhmText.Afficher("Carte pioché: " + getDescription());
 	switch (getTypeAction().name()) {
 	    case "libPrison":
 		libPrison(j);
@@ -61,7 +61,7 @@ public class Carte {
 	j.setPositionCourante(carreaux.get(numCase));
 
 	if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
+	    IhmText.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ)");
 	    j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
 	}
 
@@ -83,7 +83,7 @@ public class Carte {
 
     public void allerPrison(Joueur j, ArrayList<Carreau> carreaux) {
 	j.setEnPrison(3);
-	Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+	IhmText.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
 	avancerJusquaScaseDep(j, 10, carreaux);
     }
 

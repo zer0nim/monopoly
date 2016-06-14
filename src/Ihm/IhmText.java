@@ -3,7 +3,7 @@ package Ihm;
 import Data.*;
 import java.util.*;
 
-public class Ihm {
+public class IhmText {
 
     public static void affJoueur(Joueur j) { // FAIT
         System.out.println("------------------Tour--------------------");
@@ -12,7 +12,7 @@ public class Ihm {
         System.out.println("Joueur: " + j.getNomJoueur());
         System.out.println("Argent: " + j.getCash());
         System.out.println("Position Courante: ");
-        Ihm.affBiens(j.getPositionCourante());
+        IhmText.affBiens(j.getPositionCourante());
     }
 
     public static void affBiens(Carreau c) { // FAIT
@@ -49,15 +49,15 @@ public class Ihm {
     }
 
     public static void Cimetiere(Joueur j) {
-        Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
+        IhmText.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
         System.out.println("Le Joueur " + j.getNomJoueur() + " est mort ! :(");
-        Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
+        IhmText.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
     }
 
     public static void Winner(Joueur j) {
-        Ihm.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
-        Ihm.Afficher("Le Joueur " + j.getNomJoueur() + " a gagné !");
-        Ihm.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
+        IhmText.Afficher("//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
+        IhmText.Afficher("Le Joueur " + j.getNomJoueur() + " a gagné !");
+        IhmText.Afficher("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//");
     }
 
     public static boolean propositionAchat(Joueur j, Biens_achetables ba) {

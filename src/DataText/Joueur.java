@@ -178,33 +178,33 @@ public class Joueur {
     public void achetterConstruction(boolean demande, boolean maisons, boolean hotels){
         setGroupe();
         setProprietePourConstruire(maisons, hotels);
-        Ihm.Afficher(nomJoueur);
-                Ihm.Afficher("Vos constructions");
+        IhmText.Afficher(nomJoueur);
+                IhmText.Afficher("Vos constructions");
                 for(Biens_achetables prop : getPropriétés()){
                     if(prop.getClass().getSimpleName().contains("ProprieteAConstruire")){
                         for(Construction cons : ((ProprieteAConstruire)prop).getConstructions()){
-                            Ihm.Afficher(cons.getTerrain().getNomCarreau() + " " + cons.getType());
+                            IhmText.Afficher(cons.getTerrain().getNomCarreau() + " " + cons.getType());
                         }
                     }
                 }
         if(!groupes.isEmpty() && !listeConstructionsDispo.isEmpty()){ // ##################################### Verifier s'il reste des cons à acheter
             boolean veutAchetter = false;
             if(demande){
-                if(Ihm.demanderOuiNon("Voulez vous construire une maison ou un hotel sur une de vos propriétés ? (oui/non)")){
+                if(IhmText.demanderOuiNon("Voulez vous construire une maison ou un hotel sur une de vos propriétés ? (oui/non)")){
                     veutAchetter = true;
                 }
             }
             if((demande && veutAchetter) || !demande){
-                Object[] constructionAchettee = Ihm.afficherConstructions(listeConstructionsDispo);
+                Object[] constructionAchettee = IhmText.afficherConstructions(listeConstructionsDispo);
                 if((Integer)(constructionAchettee[5]) != 1){
                     ProprieteAConstruire prop = (ProprieteAConstruire) constructionAchettee[0];
                     int prixAchat = (Integer)constructionAchettee[4];           
                     if(getCash() >= prixAchat){
                         setCash(getCash()-prixAchat);
                         prop.addConstructions(new Construction(prop, this, (String) constructionAchettee[1]));
-                        Ihm.Afficher("Prop ajoutée");
+                        IhmText.Afficher("Prop ajoutée");
                     }else{
-                        Ihm.Afficher("Vous n'avez pas assez d'argent !");
+                        IhmText.Afficher("Vous n'avez pas assez d'argent !");
                         achetterConstruction(false, maisons, hotels);
                     }
                 }

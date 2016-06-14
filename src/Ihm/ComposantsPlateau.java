@@ -17,7 +17,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.JComponent;
 
-public class Plateau extends JPanel {
+public class ComposantsPlateau extends JPanel {
 
     private JButton lancerDe;
     private JButton acheter;

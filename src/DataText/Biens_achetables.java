@@ -21,7 +21,7 @@ public abstract class Biens_achetables extends Carreau{
 		int loy = CalculLoyer(resultde);
                 j.payerArgent(loy); //j paye le loyer
 		getPropriétaire().recevoirArgent(loy);
-		Ihm.Afficher(j.getNomJoueur() + " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur());
+		IhmText.Afficher(j.getNomJoueur() + " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur());
 	    }
 	}
 	else{
@@ -31,7 +31,7 @@ public abstract class Biens_achetables extends Carreau{
 		}*/
 	    }
 	    else{
-		Ihm.Afficher("Pas assez d'argent pour acheter !");
+		IhmText.Afficher("Pas assez d'argent pour acheter !");
 	    }
 	}
     }

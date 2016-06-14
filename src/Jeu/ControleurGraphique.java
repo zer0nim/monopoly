@@ -10,12 +10,12 @@ public class ControleurGraphique {
     private Monopoly monopoly;
     private Joueur jCourant;
     private boolean appuye;
-    private Interface interfacee;
+    private LancementJeu interfacee;
     private int resultD;
     private int resultD2;
     private boolean test = true;
     
-    public ControleurGraphique(Interface inter){
+    public ControleurGraphique(LancementJeu inter){
 	this.monopoly = new Monopoly(this);
         this.interfacee =  inter;
     }
@@ -241,7 +241,7 @@ public class ControleurGraphique {
     /**
      * @return the interfacee
      */
-    public Interface getInterfacee() {
+    public LancementJeu getInterfacee() {
         return interfacee;
     }
     

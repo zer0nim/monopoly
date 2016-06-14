@@ -1,7 +1,7 @@
 package Jeu;
 import Ihm.*;
 import Data.*;
-import static Ihm.Ihm.affJoueur;
+import static Ihm.IhmText.affJoueur;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,7 +13,7 @@ public class Controleur {
     }
 
     public void jouerUnCoup(Joueur j) {
-        Ihm.Afficher("");
+        IhmText.Afficher("");
 	int resultD = lancerDésAvancer(j);
 	int resultD2 = lancerDésAvancer(j);
         //int resultD = 2;
@@ -22,7 +22,7 @@ public class Controleur {
 	    resultD += resultD2;
             if(j.getPrison() != 0 && resultD == 2 * resultD2){
                 j.setEnPrison(0);
-                Ihm.Afficher("Vous venez de sortir de prison avec un double dé !");
+                IhmText.Afficher("Vous venez de sortir de prison avec un double dé !");
                 j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
             }
 	    affJoueur(j);
@@ -31,8 +31,8 @@ public class Controleur {
             
             if(j.getPrison() == -1){
                 j.setEnPrison(0);
-                Ihm.Afficher("résultat lancé du dé: " + (resultD - resultD2));
-                Ihm.Afficher("résultat lancé du dé: " + resultD2);
+                IhmText.Afficher("résultat lancé du dé: " + (resultD - resultD2));
+                IhmText.Afficher("résultat lancé du dé: " + resultD2);
                 j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
                 affJoueur(j);
                 actionCarreau(j, resultD);
@@ -43,12 +43,12 @@ public class Controleur {
 		j.vendrePropriétés();
 	}
 	if (resultD == 2 * resultD2){ //si double
-	    Ihm.Afficher("Double au Dé !");
+	    IhmText.Afficher("Double au Dé !");
             j.incrementCompteDoubleDes();
             if (j.getCompteDoubleDes() == 3) {
                 j.setPositionCourante(monopoly.getCarreaux().get(10));
                 j.setEnPrison(3);
-                Ihm.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
+                IhmText.Afficher(j.getNomJoueur() + " est en prison. Il lui reste " + j.getPrison() + " tour(s) en prison.");
                 j.resetCompteDoubleDes();
             } else {
                 jouerUnCoup(j);
@@ -83,12 +83,12 @@ public class Controleur {
     private int lancerDésAvancer(Joueur j){
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
-        Ihm.Afficher("résultat lancé du dé: " + resultD);
+        IhmText.Afficher("résultat lancé du dé: " + resultD);
         if(j.getPrison() >= 0){
             j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         }
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
+	    IhmText.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
@@ -100,7 +100,7 @@ public class Controleur {
     } 
     
     public void creerJoueurs(){
-	int nbJoueur = Ihm.nbJoueur();
+	int nbJoueur = IhmText.nbJoueur();
 	for (int j = 0; j < nbJoueur ; j++) {
 		//monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
 	}

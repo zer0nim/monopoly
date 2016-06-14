@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.*;
 
-public class Interface extends JPanel { //Fenetre de lancement du jeu (selection nbs joueurs, noms, pions)
+public class LancementJeu extends JPanel { //Fenetre de lancement du jeu (selection nbs joueurs, noms, pions)
 
     private JButton jouer;
     private JButton annuler;
@@ -24,7 +24,7 @@ public class Interface extends JPanel { //Fenetre de lancement du jeu (selection
     private Enumeration.Pions ItemType;
     private FenetreDeJeu fenetre;
 
-    public Interface() {
+    public LancementJeu() {
 	frame = new JFrame();
 	frame.setTitle("Choix nom joueurs");
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,6 +45,14 @@ public class Interface extends JPanel { //Fenetre de lancement du jeu (selection
 	frame.setVisible(true);
     }
 
+    public static int afficherBoiteDialogue() {
+
+	String[] list = {"2", "3", "4", "5", "6"}; //choix du nombre de joueur
+	JComboBox jcb = new JComboBox(list); //Liste de sélection du nombre de joueur
+	JOptionPane.showMessageDialog(null, jcb, "Nombre de joueurs", JOptionPane.QUESTION_MESSAGE);//création de la fenêtre de choix des joueurs
+	return (Integer.valueOf((String) jcb.getSelectedItem())); //retourne le choix du nombre de joueur
+    }
+    
     private void initUIComponents() {
 	this.setLayout(new BorderLayout());
 
@@ -114,7 +122,7 @@ public class Interface extends JPanel { //Fenetre de lancement du jeu (selection
 	    }
 	});
 
-	nbJoueur = (IhmNbJoueur.afficherBoiteDialogue()); //demande a l'utilisateur le nombre de joueurs via un widgetS
+	nbJoueur = (afficherBoiteDialogue()); //demande a l'utilisateur le nombre de joueurs via un widgetS
 
 	//------vvv---paneau de selection nom joueur---vvv
 	JPanel ChoixInfoJoueurs = new JPanel();

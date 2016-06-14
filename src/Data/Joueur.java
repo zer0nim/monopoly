@@ -197,10 +197,10 @@ public class Joueur {
             if(getCash() >= prixAchat){
                 setCash(getCash()-prixAchat);
                 prop.addConstructions(new Construction(prop, this, (String) constructionAchettee[1]));
-                Ihm.Afficher("Prop ajoutée");
+                IhmText.Afficher("Prop ajoutée");
                 controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,0,-1});
             }else{
-                Ihm.Afficher("Vous n'avez pas assez d'argent !");
+                IhmText.Afficher("Vous n'avez pas assez d'argent !");
                 //###### Plateau action bouton construire
             }
         }

@@ -33,6 +33,6 @@ public class Main {
 	}
 	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
 	*/
-	Interface ihmf = new Interface();
+	LancementJeu ihmf = new LancementJeu();
     }
 }

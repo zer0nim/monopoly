@@ -38,7 +38,7 @@ public class AutreCarreau extends Carreau {
                 }else if(j.getPrison() == 1){ //POur son dernier tour il paye une amende de 50$
                     j.setCash(j.getCash()-50);
                     j.setEnPrison(-1);
-                    Ihm.Afficher("Truc -1");
+                    IhmText.Afficher("Truc -1");
                     controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez fini votre de peine de prison. Vous avez payé 50€ d'amande."});
                 }
 		break;
@@ -94,7 +94,7 @@ public class AutreCarreau extends Carreau {
             controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
             controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison our encore " + j.getPrison() + " tours."});
         }else{
-            Ihm.Afficher("Sortie de praison");
+            IhmText.Afficher("Sortie de praison");
         }
     }
 }
