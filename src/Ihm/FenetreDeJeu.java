@@ -89,7 +89,12 @@ public class FenetreDeJeu {
             if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
                 controleur.getMonopoly().getJoueurs().remove(jCourant);
 	    }
-            jCourant = controleur.getJoueurCourant();
+	    if (controleur.getMonopoly().getJoueurs().size() < 2){
+		frame.setVisible(false);
+	    }
+	    else{
+		jCourant = controleur.getJoueurCourant();
+	    }
     }
 
     /**
