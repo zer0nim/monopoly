@@ -12,6 +12,7 @@ public class AutreCarreau extends Carreau {
     public AutreCarreau(int numero, String nomCarreau, int info, ControleurGraphique controleur) {
 	super(numero, nomCarreau);
         this.controleur = controleur;
+        this.info = info;
     }
 
     public void action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ChanceCommu cartesChCo) {
@@ -25,6 +26,7 @@ public class AutreCarreau extends Carreau {
 	    case "Départ": //Si on tombe sur la case départ, ne rien faire
 		break;
 	    case "Impôt sur le revenu": //Si on tombe sur la case "Impôt sur le revenu"
+                IhmText.Afficher(Integer.toString(getInfo()));
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez l'impôt sur le revenu, vous perdez donc 200€", true});
 		break;
@@ -59,6 +61,7 @@ public class AutreCarreau extends Carreau {
 		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours.", true});
 		break;
 	    case "Taxe de Luxe": //Enlève la somme getInfo() de la case "Taxe de Luxe"
+                IhmText.Afficher(Integer.toString(getInfo()));
 		j.setCash(j.getCash() + getInfo());
                 controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous payez la taxe de Luxe, vous perdez donc 100€", true});
                 break;

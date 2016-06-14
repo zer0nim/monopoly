@@ -2,6 +2,7 @@ package Jeu;
 
 import java.util.ArrayList;
 import Data.*;
+import Ihm.IhmText;
 import java.io.*;
 
 
@@ -44,24 +45,23 @@ public class Monopoly {
 				carreaux.add(new ProprieteAConstruire(Integer.parseInt(data.get(i)[4]), Integer.parseInt(data.get(i)[5]), Integer.parseInt(data.get(i)[1]), data.get(i)[2], getGroupe(CouleurPropriete.valueOf(data.get(i)[3])), Loyers, Integer.parseInt(data.get(i)[11]), Integer.parseInt(data.get(i)[12]), controleur));
 				//public ProprieteAConstruire(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
                                 ((ProprieteAConstruire)carreaux.get(carreaux.size()-1)).getGroupe().setCarreau(((ProprieteAConstruire)carreaux.get(carreaux.size()-1)));
-			}
-			else if(caseType.compareTo("G") == 0){
+			}else if(caseType.compareTo("G") == 0){
 				carreaux.add(new Gare(Integer.parseInt(data.get(i)[3]), Integer.parseInt(data.get(i)[1]), data.get(i)[2],controleur));
 				//public Gare(int prixAchat, int numero, String nomCarreau) {
-			}
-			else if(caseType.compareTo("C") == 0){
+			}else if(caseType.compareTo("C") == 0){
 				carreaux.add(new Compagnie(Integer.parseInt(data.get(i)[3]), Integer.parseInt(data.get(i)[1]), data.get(i)[2],controleur));
 				//public Compagnie(int prixAchat, int prixPassage, int numero, String nomCarreau, Groupe groupe) {
-			}
-			else if(caseType.compareTo("AU") == 0){
-			    if(data.get(i).length < 4)
-				carreaux.add(	new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2],0, controleur));
-			    else
+			}else if(caseType.compareTo("AU") == 0){
+			    if(data.get(i).length < 4){
+				carreaux.add(new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2],0, controleur));
+                            }else{
+                                IhmText.Afficher(data.get(i)[2]);
 				carreaux.add(new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), controleur));
 				//public AutreCarreau(int numero, String nomCarreau) {
-			}
-			else
+                            }
+                        }else{
 				System.err.println("[buildGamePleateau()] : Invalid Data type");
+                        }
 		}
 		
 	} 
@@ -134,6 +134,10 @@ public class Monopoly {
 
     public void setCartesChCo(ChanceCommu cartesChCo) {
 	this.cartesChCo = cartesChCo;
+    }
+    
+    public void removeJoueur(Joueur j){
+        joueurs.remove(j);
     }
 }
 

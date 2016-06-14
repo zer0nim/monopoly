@@ -51,6 +51,11 @@ public class ControleurGraphique {
 		String nomJMort = jCourant.getNomJoueur();
 		JOptionPane winPane = new JOptionPane();
 		winPane.showMessageDialog(null, ("Le Joueur " + nomJMort + " est Mort !"), "Décès", JOptionPane.INFORMATION_MESSAGE);
+                monopoly.removeJoueur(jCourant);
+                if(monopoly.getJoueurs().size() == 1){
+                    String nomWinner = monopoly.getJoueurs().get(0).getNomJoueur();
+                    winPane.showMessageDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu", JOptionPane.INFORMATION_MESSAGE);
+                }
 	}
         interfacee.getFenetre().setInfosJoueurs(this);
 	if (resultD == 2 * resultD2){ //si double
