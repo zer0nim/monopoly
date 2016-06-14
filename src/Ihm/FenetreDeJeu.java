@@ -125,7 +125,7 @@ public class FenetreDeJeu {
         }
         JPanel com = pl.communication(type, data, controleur);
         //communcication.add(com, BorderLayout.CENTER);
-        communcication = com;
+        communcication.add(com, BorderLayout.CENTER);
     }
     
     public JLabel getCommunicationLabel(){
