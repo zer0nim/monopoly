@@ -13,9 +13,6 @@ import javax.swing.border.EmptyBorder;
 public class FenetreDeJeu {
 
     private JFrame frame = new JFrame();
-    private JButton lancerDe;
-    private JButton acheter;
-    private JButton finDuTour;
     private Joueur jCourant;
     private static ArrayList<Joueur> deathNote;
     private IhmPlateau ihmPlateau;
