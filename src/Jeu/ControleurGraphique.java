@@ -99,11 +99,10 @@ public class ControleurGraphique {
 	int ancPos = j.getPositionCourante().getNumero();
         int resultD = LancerDeN(6);
         if(j.getPrison() == 0){
-            Ihm.Afficher(Integer.toString(j.getPrison()));
             j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         }
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça njCourantouvelle position est inférieur à la nouvelle
-	    Ihm.Afficher(j.getNomJoueur() + " reçois son Salaire (case départ) sa position etait: " + j.getPositionCourante().getNumero());
+	   
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
@@ -113,14 +112,6 @@ public class ControleurGraphique {
 	Random rand = new Random();
         return rand.nextInt(n)+1; //retourne un entier correspondant à un lancé de dé
     } 
-    
-    public void creerJoueurs(){
-	int nbJoueur = Ihm.nbJoueur();
-	for (int j = 0; j < nbJoueur ; j++) {
-		monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0), this));
-	}
-	quiCommence();
-    }
     
     public void quiCommence(){
 	Joueur j = null;
@@ -170,7 +161,18 @@ public class ControleurGraphique {
 	}
 	monopoly.setJoueurs(njoueurs);
     }
-    
+    public void construire(Joueur j){
+        ArrayList<Integer> comptes = setCompteConstructions();
+        boolean maisons = false;
+        boolean hotels = false;
+        if(comptes.get(0) < 32){
+            maisons = true;
+        }
+        if(comptes.get(1) < 12){
+            hotels = true;
+        }
+        j.achetterConstruction(maisons, hotels);
+    }
 
     //v--getters setters--v
 
@@ -204,33 +206,16 @@ public class ControleurGraphique {
         return comptes;
     }
     
-    public void construire(Joueur j){
-        ArrayList<Integer> comptes = setCompteConstructions();
-        boolean maisons = false;
-        boolean hotels = false;
-        if(comptes.get(0) < 32){
-            maisons = true;
-        }
-        if(comptes.get(1) < 12){
-            hotels = true;
-        }
-        j.achetterConstruction(maisons, hotels);
-    }
+    
     
     public void setJoueurCourant(Joueur j){
         jCourant = j;
     }
 
-    /**
-     * @return the appuye
-     */
     public boolean isAppuye() {
         return appuye;
     }
 
-    /**
-     * @param appuye the appuye to set
-     */
     public void setAppuye(boolean appuye) {
         this.appuye = appuye;
     }

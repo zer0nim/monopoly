@@ -15,8 +15,7 @@ public class Construction {
     private ProprieteAConstruire terrain;
     private Joueur proprietaire;
     private String type;
-    private int numero;
-    
+
     
     public Construction(ProprieteAConstruire terrain, Joueur proprietaire, String type){
         this.terrain = terrain;
