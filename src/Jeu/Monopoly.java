@@ -55,7 +55,6 @@ public class Monopoly {
 			    if(data.get(i).length < 4){
 				carreaux.add(new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2],0, controleur));
                             }else{
-                                IhmText.Afficher(data.get(i)[2]);
 				carreaux.add(new AutreCarreau(Integer.parseInt(data.get(i)[1]), data.get(i)[2], Integer.parseInt(data.get(i)[3]), controleur));
 				//public AutreCarreau(int numero, String nomCarreau) {
                             }
