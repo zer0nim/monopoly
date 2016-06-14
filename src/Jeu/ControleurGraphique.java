@@ -47,6 +47,10 @@ public class ControleurGraphique {
 	}
 	if (jCourant.estMort()){ //pas de else il est peut etre mort en jouant
 		jCourant.vendrePropriétés();
+		
+		String nomJMort = jCourant.getNomJoueur();
+		JOptionPane winPane = new JOptionPane();
+		winPane.showMessageDialog(null, ("Le Joueur " + nomJMort + " est Mort !"), "Décès", JOptionPane.INFORMATION_MESSAGE);
 	}
         interfacee.getFenetre().setInfosJoueurs(this);
 	if (resultD == 2 * resultD2){ //si double
