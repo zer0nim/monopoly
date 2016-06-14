@@ -13,7 +13,6 @@ public class ControleurGraphique {
     private LancementJeu interfacee;
     private int resultD;
     private int resultD2;
-    private boolean test = true;
     
     public ControleurGraphique(LancementJeu inter){
 	this.monopoly = new Monopoly(this);
@@ -24,25 +23,22 @@ public class ControleurGraphique {
         resultD = lancerDésAvancer(jCourant);
 	resultD2 = lancerDésAvancer(jCourant);
     }
-    public void jouerUnCoup() {  //Afficher les doubles dans un deuxieme Comunnication
+    public void jouerUnCoup() {
+        IhmText.Afficher("test");
+        IhmText.Afficher(Integer.toString(jCourant.getPrison()));//Afficher les doubles dans un deuxieme Comunnication
 	if (!jCourant.estMort()){
 	    resultD += resultD2;
             if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
                 jCourant.setEnPrison(0);
-                interfacee.getFenetre().setCommunication("Affichage", new Object[]{jCourant.getNomJoueur() + " vient de sortir de prison avec un double dé."});
+                setCom("Affichage", new Object[]{jCourant.getNomJoueur() + " vient de sortir de prison avec un double dé.", true});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
             }
 	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
             interfacee.getFenetre().setInfosJoueurs(this);
             construire(jCourant);
-            if(!test){
-                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
-                jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
-                jCourant.setEnPrison(3);
-                test =false;
-            }
             if(jCourant.getPrison() == -1){
+                IhmText.Afficher("Il est libéré");
                 jCourant.setEnPrison(0);
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(((jCourant.getPositionCourante().getNumero() + resultD)-1)%40));
                 actionCarreau(jCourant, resultD);
@@ -56,13 +52,13 @@ public class ControleurGraphique {
 	if (resultD == 2 * resultD2){ //si double
             jCourant.incrementCompteDoubleDes();
             if (jCourant.getCompteDoubleDes() == 3) {
-                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison."});
+                setCom("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait 3 doubles dés à la suite. Allez en prison.", true});
                 jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
                 jCourant.setEnPrison(3);
                 jCourant.resetCompteDoubleDes();
                 interfacee.getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
             } else {
-                interfacee.getFenetre().setCommunication("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait un double dé. Vous pouvez jouer un nouveau tour. "});
+                setCom("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous avez fait un double dé. Vous pouvez jouer un nouveau tour.", true});
                 interfacee.getFenetre().setEnabledButton(new Integer[]{1,-1,-1,0});
             }
 	} else {
@@ -102,7 +98,7 @@ public class ControleurGraphique {
             j.setPositionCourante(monopoly.getCarreaux().get(((j.getPositionCourante().getNumero() + resultD)-1)%40));
         }
         if (j.getPositionCourante().getNumero() < ancPos) { //si ça njCourantouvelle position est inférieur à la nouvelle
-	   
+            setCom("Affichage",new Object[]{jCourant.getNomJoueur()+ " : Vous venez de passer par la case départ. Vous gagnez donc 200€.", true});
             j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
         }
 	return(resultD);
@@ -261,7 +257,7 @@ public class ControleurGraphique {
     }
     
     public void setCom(String type, Object[] data){
-        interfacee.getFenetre().setCommunication(type, data);
+        interfacee.getFenetre().setCommunication(type, data, this);
     }
     
     public int getResultatD(){

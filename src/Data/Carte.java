@@ -20,7 +20,7 @@ public class Carte {
     public void Action(Joueur j, ArrayList<Joueur> joueurs, ArrayList<Carreau> carreaux, ControleurGraphique controleur) {
         this.controleur = controleur;
         controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
-        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Carte pioché => " + getDescription()});
+        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Carte pioché => " + getDescription(), true});
 	switch (getTypeAction().name()) {
 	    case "libPrison":
 		libPrison(j);
@@ -64,7 +64,7 @@ public class Carte {
 	j.setPositionCourante(carreaux.get(numCase));
 
 	if (j.getPositionCourante().getNumero() < ancPos) { //si ça nouvelle position est inférieur à la nouvelle
-	    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous venez de compléter un tour. Vous empocher donc un salaire de 200€."});
+	    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous venez de compléter un tour. Vous empocher donc un salaire de 200€.", true});
 	    j.recevoirArgent(200); // on ajoute 200 de cash, car il est donc passé par le départ
 	}
 
@@ -86,7 +86,7 @@ public class Carte {
 
     public void allerPrison(Joueur j, ArrayList<Carreau> carreaux) {
 	j.setEnPrison(3);
-	controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours."});
+	controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez été envoyé en prison. Vous devez y rester 3 tours.", true});
 	avancerJusquaScaseDep(j, 10, carreaux);
     }
 

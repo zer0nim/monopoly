@@ -24,17 +24,17 @@ public abstract class Biens_achetables extends Carreau{
 		int loy = CalculLoyer(resultde);
                 j.payerArgent(loy); //j paye le loyer
 		getPropriétaire().recevoirArgent(loy);
-                controleur.getInterfacee().getFenetre().setCommunication("Affichage",new Object[]{j.getNomJoueur()+ " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur()+"."});
+                controleur.setCom("Affichage",new Object[]{j.getNomJoueur()+ " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur()+".", true});
 	    }
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
                 controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,1,-1,1});
-		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous pouvez achetter " + getNomCarreau() + " pour " + Integer.toString(getPrixAchat()) + "€ ?"});
+		controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous pouvez achetter " + getNomCarreau() + " pour " + Integer.toString(getPrixAchat()) + "€ ?", true});
 	    }
 	    else{
 		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,1});
-                controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous n'avez pas assez d'argent pour acheter " + getNomCarreau() + "."});
+                controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous n'avez pas assez d'argent pour acheter " + getNomCarreau() + ".", true});
             }
 	}
     }

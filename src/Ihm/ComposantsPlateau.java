@@ -88,7 +88,7 @@ public class ComposantsPlateau extends JPanel {
 	lancerDe.addActionListener(new ActionListener() {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
-		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0, 0, 0, 1});
+		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{0, 0, 0, 0});
 		controleur.setAnimationDeVisible();
 		controleur.lancerDes();
 		timer = new Timer(1500, new ActionListener() {
@@ -116,7 +116,7 @@ public class ComposantsPlateau extends JPanel {
 		bienCourant.setPropriétaire(joueurCourant);
 		joueurCourant.payerArgent(bienCourant.getPrixAchat());
 
-		controleur.setCom("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Vous venez d'acheter " + controleur.getJoueurCourant().getPositionCourante().getNomCarreau() + "."});
+		controleur.setCom("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Vous venez d'acheter " + controleur.getJoueurCourant().getPositionCourante().getNomCarreau() + ".", true});
 		controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1, 0, -1, -1});
 		controleur.getInterfacee().getFenetre().setInfosJoueurs(controleur);
 	    }
@@ -143,7 +143,7 @@ public class ComposantsPlateau extends JPanel {
 		controleur.setJoueurSuivant(controleur.getJoueurCourant());
 		controleur.getInterfacee().getFenetre().ControlDesTours(controleur);
 		controleur.getInterfacee().getFenetre().setInfosJoueurs(controleur);
-		controleur.getInterfacee().getFenetre().setCommunication("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Lancez les dés pour commencer votre tour."});
+		controleur.setCom("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Lancez les dés pour commencer votre tour.", false});
 	    }
 	});
 	finDuTour.setEnabled(false);
@@ -371,15 +371,21 @@ public class ComposantsPlateau extends JPanel {
 	return animation;
     }
 
-    public JPanel communication(String type, Object[] data) {
+    public JPanel communication(String type, Object[] data, ControleurGraphique controleur) {
 	JPanel communication = new JPanel(new BorderLayout());
 
 	communication.setBackground(new Color(124, 155, 120));
 
 	communication.setPreferredSize(new Dimension(communication.getSize().width, 50));
 	if (type == "Affichage") {
-	    JLabel label = new JLabel((String) data[0], JLabel.CENTER);
-	    communication.add(label, BorderLayout.CENTER);
+            if((boolean)data[1]){
+                //JLabel label = new JLabel(controleur.getInterfacee().getFenetre().getCommunicationLabel().toString() + "\n" + (String) data[0], JLabel.CENTER);
+                JLabel label = new JLabel((String) data[0], JLabel.CENTER);
+                communication.add(label, BorderLayout.CENTER);
+            }else{
+                JLabel label = new JLabel((String) data[0], JLabel.CENTER);
+                communication.add(label, BorderLayout.CENTER);
+            }
 	} else if (type == "DemandePrison") {
 	    JLabel label = new JLabel((String) data[0], JLabel.CENTER);
 	    JButton buttonYes = new JButton("Utiliser la carte");

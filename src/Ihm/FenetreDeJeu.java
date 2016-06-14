@@ -50,7 +50,7 @@ public class FenetreDeJeu {
         animationDe = pl.deAnimation();
         animationDe.getComponent(0).setVisible(false);
         
-        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie."}); //init
+        communcication = pl.communication("Affichage", new Object[]{"Appuyer sur \"Lancer les dés\" pour commencer la partie.", false}, controleur); //init
 	
 	PaneauInfosJoueurs = new JPanel();
 	
@@ -123,13 +123,23 @@ public class FenetreDeJeu {
         }
     }
     
-    public void setCommunication(String type, Object[] data){
+    public void setCommunication(String type, Object[] data,ControleurGraphique controleur){
         for(int i =0; i < communcication.getComponentCount(); i++){
             communcication.remove(communcication.getComponent(i));
         }
-        JPanel com = pl.communication(type, data);
+        JPanel com = pl.communication(type, data, controleur);
         //communcication.add(com, BorderLayout.CENTER);
-        communcication.add(com, BorderLayout.CENTER);
+        communcication = com;
+    }
+    
+    public JLabel getCommunicationLabel(){
+        JLabel label;
+        if(communcication.getComponentCount() != 0){
+            label =  (JLabel)communcication.getComponent(0);
+        }else{
+            label = new JLabel("");
+        }
+        return label;
     }
     
     public void setInfosJoueurs(ControleurGraphique controleur){
