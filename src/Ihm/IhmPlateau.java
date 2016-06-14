@@ -22,7 +22,7 @@ public class IhmPlateau {
 	    ArrayList<Carreau> carreaux = getMonopoly().getCarreaux();
 
 	    Graphics2D g = (Graphics2D) g1;
-	    Dimension dimension = getSize(); // Taille de la zone de dessin
+	    Dimension dimension = getSize(); // Taille du paneau
 
 	    double plusPetitCotéF = dimension.height;
 	    if (dimension.width < plusPetitCotéF) {
@@ -32,8 +32,8 @@ public class IhmPlateau {
 	    double CotéPlateau = (plusPetitCotéF * 0.98);
 
 	    double espaceEntre = (CotéPlateau * 0.005);
-	    double cotéCarreau = ((CotéPlateau - (9 * espaceEntre)) / 12);
-	    double hautCarreau = (1.5) * cotéCarreau;
+	    double cotéCarreau = ((CotéPlateau - (9 * espaceEntre)) / 12); //calcul de la taille du plus petit coté d'un careau
+	    double hautCarreau = (1.5) * cotéCarreau; //calcul de la taille du plus grand coté d'un careau
 	    double margex = (dimension.width - CotéPlateau) / 2;
 	    double margey = (dimension.height - CotéPlateau) / 2;
 
@@ -45,75 +45,93 @@ public class IhmPlateau {
 	    g.setColor(new Color(146,169,143));// Couleur de fond
 	    g.fillRect(0, 0, dimension.width, dimension.height);
 	    
+	    //-------vv----Affiche le centre du plateau----vvv
 	    Image imgCentre = Toolkit.getDefaultToolkit().getImage("src//Image//CentreJeu.png");
 	    g.drawImage(imgCentre, (int)(margex+hautCarreau+2), (int)(margey+hautCarreau+2), (int)(CotéPlateau - (hautCarreau*2)), (int)(CotéPlateau - (hautCarreau*2)), null);
 	    
 	    int numC = 0;
+	    
+	    // Comme les careau ne sont pas désiné dans l'ordre mais ligne par ligne on utilise se tableau de conversion
 	    int[] coresp = {0,1,2,3,4,5,6,7,8,9,10,39,11,38,12,37,13,36,14,35,15,34,16,33,17,32,18,31,19,30,29,28,27,26,25,24,23,22,21,20};
+	    
+	    // ----vv----double boucle pour parcourir un tableau fictif a deux dimension--vv---
 	    for (int y = 0; y < 11; y++) {
 		for (int x = 0; x < 11; x++) {
-		    if ((x == 0 || x == 10) || (y == 0 || y == 10)) {
-			double espaceFirstLast = hautCarreau + (cotéCarreau * 9);
+	    // ----^^----double boucle pour parcourir un tableau fictif a deux dimension--^^---
+		    
+		    if ((x == 0 || x == 10) || (y == 0 || y == 10)) { //permet de ne rien faire si on se trouve sur les cases du milieu(exemple 5-0 ok mais 5-2 pas ok car au centre)
+			
+			
+			double espaceFirstLast = hautCarreau + (cotéCarreau * 9); //espace entre les deux carreaux en hauteur ou en largeur(car carré) -> 1----------1 espace entre 1 et 1
 
-			if (y != 0 && y != 10) {
-			    if (x == 0) {
+			if (y != 0 && y != 10) { //Pour dessiner tous les carreaux centraux
+			    if (x == 0) { //premier c de la ligne
 				int posx = (int) (margex + (espaceEntre * x));
 				int posy = (int) (margey + hautCarreau + ((y - 1) * cotéCarreau) + (espaceEntre * y));
 				drawRect(g1, posx, posy, (int) hautCarreau, (int) cotéCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
-			    else {
+			    else { //dernier c de la ligne
 				int posx = (int) (margex + espaceFirstLast + (espaceEntre * x));
 				int posy = (int) (margey + hautCarreau + ((y - 1) * cotéCarreau) + (espaceEntre * y));
 				drawRect(g1, posx, posy, (int) hautCarreau, (int) cotéCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
 			}
+			//--vv puis la premiere et derniere ligne
+
+			//--vv premiere ligne
 			else if (y == 0) {//premiere ligne
-			    if (x != 0 && x != 10) {
+			    if (x != 0 && x != 10) {// c centraux de la ligne
 				int posx = (int) (margex + hautCarreau + ((x - 1) * cotéCarreau) + (espaceEntre * x));
 				int posy = (int) (margey + (espaceEntre * y));
 				drawRect(g1, posx, posy, (int) cotéCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
-			    else if (x == 0) {
+			    else if (x == 0) { //premier c de la ligne
 				int posx = (int) (margex + (espaceEntre * x));
 				int posy = (int) (margey + (espaceEntre * y));
 				drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
-			    else {
+			    else { //dernier c de la ligne
 				int posx = (int) (margex + espaceFirstLast + (espaceEntre * x));
 				int posy = (int) (margey + (espaceEntre * y));
 				drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			    }
 			}
-			else if (x != 0 && x != 10) {
+			//--vv derniere ligne
+			else if (x != 0 && x != 10) {// c centraux de la ligne
 			    int posx = (int) (margex + hautCarreau + ((x - 1) * cotéCarreau) + (espaceEntre * x));
 			    int posy = (int) (margey + espaceFirstLast + (espaceEntre * y));
 			    drawRect(g1, posx, posy, (int) cotéCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			}
-			else if (x == 0) {
+			else if (x == 0) { //premier c de la ligne
 			    int posx = (int) (margex + (espaceEntre * x));
 			    int posy = (int) (margey + espaceFirstLast + (espaceEntre * y));
 			    drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			}
-			else {
+			else { //dernier c de la ligne
 			    int posx = (int) (margex + espaceFirstLast + (espaceEntre * x));
 			    int posy = (int) (margey + espaceFirstLast + (espaceEntre * y));
 			    drawRect(g1, posx, posy, (int) hautCarreau, (int) hautCarreau, carreaux.get( (coresp[numC]+20)%40 ));
 			}
 			numC++;
+			
+
 		    }
+		    
 		}
 	    }
+	    
+	    
 	}
 
     }
 
-    public void drawRect(Graphics g, int x, int y, int larg, int haut, Carreau carreau) {
+    public void drawRect(Graphics g, int x, int y, int larg, int haut, Carreau carreau) { //Permet de dessiner une carte a la taille et au coordonés donnés
 	g.setColor(Color.black);
 	g.drawRect(x, y, larg, haut);
 	g.setColor(new Color(204,227,199));
 	g.fillRect(x, y, larg, haut);
 	
-	//------------vvv----Couleurs-Groupes-----vvv
+	//------------vvv----Affiche--Couleurs-Groupes-----vvv
 	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")){ //donc si possede groupe
 	    String couleur = ((ProprieteAConstruire)carreau).getGroupe().getCouleur().toString();
 	    
@@ -148,21 +166,22 @@ public class IhmPlateau {
 
 	    g.fillRect(x, y, larg, hauteurGroupe);//aff couleurgroupe
 	}
-	//------------^^^----Couleurs-Groupes-----^^^
+	//------------^^^----Affiche--Couleurs-Groupes-----^^^
 	
 	
-	//------------vvv----Texte-Carreau-----vvv
+	
+	//------------vvv----Affiche--Texte-Carreau-----vvv
 	g.setFont(new Font("Droid Sans", Font.PLAIN, 9));
 
 	g.setColor(Color.black);
 	
 	String nomc = carreau.getNomCarreau();
-	String[] parts = nomc.split(" ");
+	String[] parts = nomc.split(" "); // Crée un tableau de la Chaine de caractere découpé avec pour séparateur " " dans chaque case
 	
 	int margeH = 10;
 	if (carreau.getClass().getSimpleName().equals("ProprieteAConstruire")) //donc si possede groupe
 	    margeH = 26;
-	
+	//---------vv-----permet-d'afficher-le-nom-de-la-carte-selon-l'espace-disponible
 	int i = 0;
 	int lign = 0;
 	String str;
@@ -188,10 +207,11 @@ public class IhmPlateau {
 	if (carreau.getClass().getSuperclass().getSimpleName().equals("Biens_achetables")){
 	    g.drawString( Integer.toString(((Biens_achetables)carreau).getPrixAchat()) + "€", x+(larg/2)-(Integer.toString(((Biens_achetables)carreau).getPrixAchat()).length()*5/2), y+(haut-2));
 	}
- 	//------------^^^----Texte-Carreau-----^^^
+ 	//------------^^^----Affiche--Texte-Carreau-----^^^
 	
 	
-	//------------vvv----Pions-Joueurs-----vvv	
+	
+	//------------vvv----Affiche--Pions-Joueurs-----vvv	
 	String nomImage;
 	int comptPions = 0;
 	for (Joueur jCourt : getMonopoly().getJoueurs()){ //boucle sur les joueurs
@@ -203,9 +223,7 @@ public class IhmPlateau {
  		comptPions ++;
 	    }
 	}
-	
-	
-	//------------^^^----Pions-Joueurs-----^^^
+	//------------^^^----Affiche--Pions-Joueurs-----^^^
 
     }
     
