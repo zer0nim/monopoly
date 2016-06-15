@@ -5,7 +5,7 @@
  */
 package DataText;
 
-import Data.*;
+import DataText.*;
 
 /**
  *

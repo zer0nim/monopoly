@@ -1,6 +1,6 @@
 package DataText;
 
-import Data.*;
+import DataText.*;
 import java.util.ArrayList;
 
 public class Groupe {

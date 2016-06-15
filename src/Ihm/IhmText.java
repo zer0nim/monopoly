@@ -1,6 +1,6 @@
 package Ihm;
 
-import Data.*;
+import DataText.*;
 import java.util.*;
 
 public class IhmText {

@@ -1,6 +1,6 @@
 package DataText;
 
-import Data.*;
+import DataText.*;
 import javax.swing.ComboBoxModel;
 
 

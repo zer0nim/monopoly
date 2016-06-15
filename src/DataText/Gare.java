@@ -1,6 +1,6 @@
 package DataText;
 
-import Data.*;
+import DataText.*;
 
 public class Gare extends Biens_achetables{
 

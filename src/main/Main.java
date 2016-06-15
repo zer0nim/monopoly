@@ -1,5 +1,6 @@
 package main;
 
+//import DataText.*;
 import Data.*;
 import Ihm.*;
 import Jeu.*;
@@ -20,7 +21,7 @@ public class Main {
 		if (controleur.getMonopoly().getJoueurs().size() > 1){//tant qu'il y a au moins 2 joueurs
 		    controleur.jouerUnCoup(j); //chaque joueur jous un coup
 		    if(j.estMort()){ //si le joueur à 0 ou moins de cash
-			Ihm.Cimetiere(j); //affiche que le joueur est éliminé
+			IhmText.Cimetiere(j); //affiche que le joueur est éliminé
 			deathNote.add(j); //ajoute le joueur à la liste d'élimination
 		    }
 		}
@@ -31,8 +32,8 @@ public class Main {
 	    }
 	    deathNote.clear(); //Puis on vide cette list pour le prochain passage
 	}
-	Ihm.Winner(controleur.getMonopoly().getJoueurs().get(0));
-	*/
+	IhmText.Winner(controleur.getMonopoly().getJoueurs().get(0));*/
+	
 	LancementJeu ihmf = new LancementJeu();
     }
 }

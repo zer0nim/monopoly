@@ -1,6 +1,6 @@
 package DataText;
 
-import Data.*;
+import DataText.*;
 import Ihm.*;
 import java.util.ArrayList;
 

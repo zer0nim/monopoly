@@ -1,7 +1,7 @@
 
 package DataText;
 
-import Data.*;
+import DataText.*;
 
 public class Compagnie extends Biens_achetables{
 

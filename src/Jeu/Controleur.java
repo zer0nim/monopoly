@@ -1,15 +1,15 @@
 package Jeu;
 import Ihm.*;
-import Data.*;
+import DataText.*;
 import static Ihm.IhmText.affJoueur;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Controleur {
-    private Monopoly monopoly;
+    private MonopolyText monopoly;
     
     public Controleur(){
-	//this.monopoly = new Monopoly();
+	this.monopoly = new MonopolyText();
     }
 
     public void jouerUnCoup(Joueur j) {
@@ -69,15 +69,15 @@ public class Controleur {
 	}*/
     }
 
-    private void actionCarreau(Joueur j, int resultD){
+    public void actionCarreau(Joueur j, int resultD){
         if (j.getPositionCourante().getClass().getSimpleName().equals("Gare"))
-		((Gare)j.getPositionCourante()).action(j, resultD);
+		((DataText.Gare)j.getPositionCourante()).action(j, resultD);
 	    else if (j.getPositionCourante().getClass().getSimpleName().equals("Compagnie"))
-		((Compagnie)j.getPositionCourante()).action(j, resultD);
+		((DataText.Compagnie)j.getPositionCourante()).action(j, resultD);
 	    else if (j.getPositionCourante().getClass().getSimpleName().equals("ProprieteAConstruire"))
-		((ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
+		((DataText.ProprieteAConstruire)j.getPositionCourante()).action(j, resultD);
 	    else
-		((AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux(), monopoly.getCartesChCo());
+		((DataText.AutreCarreau)j.getPositionCourante()).action(j, monopoly.getJoueurs(), monopoly.getCarreaux(), monopoly.getCartesChCo());
     }
     
     private int lancerDésAvancer(Joueur j){
@@ -102,7 +102,7 @@ public class Controleur {
     public void creerJoueurs(){
 	int nbJoueur = IhmText.nbJoueur();
 	for (int j = 0; j < nbJoueur ; j++) {
-		//monopoly.setJoueur(new Joueur(Ihm.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
+		monopoly.setJoueur(new Joueur(IhmText.nomJoueur(j+1), monopoly.getCarreaux().get(0)));
 	}
 	quiCommence();
     }
@@ -159,11 +159,11 @@ public class Controleur {
 
     //v--getters setters--v
 
-    public Monopoly getMonopoly() {
+    public MonopolyText getMonopoly() {
         return monopoly;
     }
 
-    public void setMonopoly(Monopoly monopoly) {
+    public void setMonopoly(MonopolyText monopoly) {
         this.monopoly = monopoly;
     }
     
@@ -199,6 +199,6 @@ public class Controleur {
         if(comptes.get(1) < 12){
             hotels = true;
         }
-        j.achetterConstruction(maisons, hotels);
+        j.achetterConstruction(maisons, hotels, true);
     }
 }

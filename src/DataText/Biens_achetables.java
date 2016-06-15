@@ -1,7 +1,7 @@
 
 package DataText;
 
-import Data.*;
+import DataText.*;
 import Ihm.*;
 
 public abstract class Biens_achetables extends Carreau{
@@ -26,9 +26,9 @@ public abstract class Biens_achetables extends Carreau{
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
-		/*if (Ihm.propositionAchat(j, this)){
+		if (IhmText.propositionAchat(j, this)){
 		    acheterPropriété(j);
-		}*/
+		}
 	    }
 	    else{
 		IhmText.Afficher("Pas assez d'argent pour acheter !");

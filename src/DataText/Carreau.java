@@ -1,6 +1,6 @@
 package DataText;
 
-import Data.*;
+import DataText.*;
 
 public abstract class Carreau {
     private int numero;
