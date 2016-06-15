@@ -32,6 +32,7 @@ public class AutreCarreau extends Carreau {
 	    case "Simple Visite / En Prison": //Case Prison ou Visite
                 if(j.getPrison() > 1){
                     if(j.getCarteLibPrison() != 0){
+                        controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,0});
                         controleur.setCom("DemandePrison", new Object[]{j.getNomJoueur()+ " : Vous êtes en prison pour encore " + j.getPrison() + " tours. Vous disposez d'une carte \"Vous êtes libéré de Prison\".", controleur});
                     }else{
                        purgerPeine(j); 
@@ -87,7 +88,7 @@ public class AutreCarreau extends Carreau {
         j.setEnPrison(0);
         j.setCarteLibPrison(j.getCarteLibPrison() - 1);
         controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{-1,0,-1,0});
-        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes sorti de prison avec votre carte \"Vous êtes libéré de Prison\".", true});
+        controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous êtes sorti de prison avec votre carte \"Vous êtes libéré de Prison\". Vous jouez votre tour :", true});
         j.setPositionCourante(controleur.getMonopoly().getCarreaux().get(((j.getPositionCourante().getNumero() + controleur.getResultatD())-1)%40));
         controleur.actionCarreau(controleur.getJoueurCourant(), controleur.getResultatD());
     }

@@ -296,7 +296,6 @@ public class ComposantsPlateau extends JPanel {
 	    }
 	};
 
-	table.setBackground(new Color(204, 227, 199));
 	table.getTableHeader().setBackground(new Color(219, 236, 215));
 
 	String[] entetes = {"Numéro", "Nom"};
@@ -318,6 +317,7 @@ public class ComposantsPlateau extends JPanel {
 	}
         
         JScrollPane js =new JScrollPane(table);
+        js.setBackground(new Color(204, 227, 199));
         js.getViewport().setPreferredSize(new Dimension(200, 250));
 	propJoueur.add(table.getTableHeader(), BorderLayout.CENTER);
 	propJoueur.add(js, BorderLayout.SOUTH);
@@ -337,7 +337,6 @@ public class ComposantsPlateau extends JPanel {
 	};
 	JTable table2 = new JTable(model2);
 
-	table2.setBackground(new Color(204, 227, 199));
 	table2.getTableHeader().setBackground(new Color(219, 236, 215));
 
 	String[] entetes2 = {"Nom", "Type", "Nombre"};
@@ -356,6 +355,7 @@ public class ComposantsPlateau extends JPanel {
 	    }
 	}
         JScrollPane js2 =new JScrollPane(table2);
+        js2.setBackground(new Color(204, 227, 199));
         js2.getViewport().setPreferredSize(new Dimension(200, 150));
 	consJoueur.add(table2.getTableHeader(), BorderLayout.CENTER);
 	consJoueur.add(js2, BorderLayout.SOUTH);
@@ -406,6 +406,7 @@ public class ComposantsPlateau extends JPanel {
 	} else if (type == "DemandePrison") {
 	    JLabel label = new JLabel((String) data[0], JLabel.CENTER);
 	    JButton buttonYes = new JButton("Utiliser la carte");
+            buttonYes.setBackground(new Color(219, 236, 215));
 	    buttonYes.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -413,17 +414,16 @@ public class ComposantsPlateau extends JPanel {
 		}
 	    });
 	    JButton buttonNo = new JButton("Rester en prison");
-	    buttonYes.addActionListener(new ActionListener() {
+            buttonNo.setBackground(new Color(219, 236, 215));
+	    buttonNo.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 		    ((AutreCarreau) (((ControleurGraphique) data[1]).getJoueurCourant().getPositionCourante())).purgerPeine(((ControleurGraphique) data[1]).getJoueurCourant());
 		}
 	    });
-	    buttonYes.setBorder(new EmptyBorder(2, 0, 5, 20));
-	    buttonNo.setBorder(new EmptyBorder(2, 20, 5, 0));
-	    JPanel PanelInter = new JPanel(new BorderLayout());
-	    PanelInter.add(buttonYes, BorderLayout.EAST);
-	    PanelInter.add(buttonNo, BorderLayout.WEST);
+	    JPanel PanelInter = new JPanel(new GridLayout(1, 2));
+	    PanelInter.add(buttonYes);
+	    PanelInter.add(buttonNo);
 	    communication.add(label, BorderLayout.CENTER);
 	    communication.add(PanelInter, BorderLayout.SOUTH);
 	}

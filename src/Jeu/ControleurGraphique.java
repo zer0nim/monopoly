@@ -27,12 +27,16 @@ public class ControleurGraphique {
     public void jouerUnCoup() {
         if(test){
             test = false;
-            for(Carreau car : getMonopoly().getCarreaux()){
+            /*for(Carreau car : getMonopoly().getCarreaux()){
                 if(car.getClass().getSimpleName().equals("ProprieteAConstruire")){
                     jCourant.addPropriété((Biens_achetables)car);
                     ((Biens_achetables)car).setPropriétaire(jCourant);
                 }
-            }
+            }*/
+            jCourant.setPositionCourante(monopoly.getCarreaux().get(10));
+            jCourant.setEnPrison(3);
+            interfacee.getFenetre().setEnabledButton(new Integer[]{0,0,0,1});
+            jCourant.setCarteLibPrison(1);
         }
 	if (!jCourant.estMort()){
 	    resultD += resultD2;
