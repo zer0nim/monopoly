@@ -41,6 +41,8 @@ public class LancementJeu extends JPanel { //Fenetre de lancement du jeu (select
 	frame.add(this);
 
 	frame.setSize(500, ResponsiveHeight());
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 
 	frame.setVisible(true);
     }

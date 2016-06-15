@@ -31,9 +31,12 @@ public class FenetreDeJeu {
 	frame.setTitle("Partie de Monopoly"); //nom de la fenêtre
 	frame.setSize(1000, 900); //taille de la fenêtre 1000 de large sur 900 de haut
 	
-	frame.setMinimumSize(new Dimension(770,640));
+	frame.setMinimumSize(new Dimension(1000,950));
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+        
 	ihmPlateau = new IhmPlateau(controleur.getMonopoly());
 
 	panelPrincipal = new JPanel();
