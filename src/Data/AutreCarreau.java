@@ -40,7 +40,7 @@ public class AutreCarreau extends Carreau {
                 }else if(j.getPrison() == 1){ //POur son dernier tour il paye une amende de 50$
                     j.setCash(j.getCash()-50);
                     j.setEnPrison(-1);
-                    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez fini votre de peine de prison. Vous avez payé 50€ d'amande.", true});
+                    controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous avez fini votre de peine de prison. Vous avez payé 50€ d'amande. Vous jouez votre tour :", true});
                 }else{
                     controleur.setCom("Affichage", new Object[]{j.getNomJoueur()+ " : Vous participez à une visite de la prison.", true});
                 }

@@ -13,7 +13,7 @@ public class ControleurGraphique {
     private LancementJeu interfacee;
     private int resultD;
     private int resultD2;
-    private boolean test = false;
+    private boolean test = true;
     
     public ControleurGraphique(LancementJeu inter){
 	this.monopoly = new Monopoly(this);
