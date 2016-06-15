@@ -73,8 +73,12 @@ public class ComposantsPlateau extends JPanel {
 	String[] list = liste.toArray(new String[7]);
 	JComboBox jcb = new JComboBox(list);
 	listeConstructions.add(jcb, BorderLayout.SOUTH);
-	JOptionPane.showConfirmDialog(null, listeConstructions, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
-	return ((jcb.getSelectedItem().toString()));
+	int retour = JOptionPane.showConfirmDialog(null, listeConstructions, "Construire", JOptionPane.OK_CANCEL_OPTION);//création de la fenêtre de choix des joueurs
+	if(retour == JOptionPane.CANCEL_OPTION){
+            return("Annuler");
+        }else{
+            return ((jcb.getSelectedItem().toString()));
+        }
     }
 
     public JPanel Bouton(ControleurGraphique controleur) {
@@ -133,13 +137,15 @@ public class ComposantsPlateau extends JPanel {
 	    public void actionPerformed(ActionEvent e) {
 		//construire(); passer en object param
                 String cons = PopupConstruction(controleur);
-                Object[] construction = {};
-                for(Object[] prop : controleur.getJoueurCourant().getLiseConstructionsDispo()){
-                    if(cons.contains(((ProprieteAConstruire) prop[0]).getNomCarreau())){
-                        construction = prop;
+                if(cons != "Annuler"){
+                    Object[] construction = {};
+                    for(Object[] prop : controleur.getJoueurCourant().getLiseConstructionsDispo()){
+                        if(cons.contains(((ProprieteAConstruire) prop[0]).getNomCarreau())){
+                            construction = prop;
+                        }
                     }
+                    controleur.getJoueurCourant().construire(construction);
                 }
-                controleur.getJoueurCourant().construire(construction);
 	    }
 	});
 	construire.setEnabled(false);
