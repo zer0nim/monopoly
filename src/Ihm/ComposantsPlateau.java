@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import Data.*;
 import Jeu.*;
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +26,7 @@ public class ComposantsPlateau extends JPanel {
     private DefaultTableModel model;
     private DefaultTableModel model2;
     private DefaultTableModel model3;
+    private DefaultTableModel model4;
     private Timer timer;
     private String comText;
 
@@ -45,19 +45,19 @@ public class ComposantsPlateau extends JPanel {
 	table3.setBackground(new Color(204, 227, 199));
 	table3.getTableHeader().setBackground(new Color(219, 236, 215));
 
-	String[] entetes = {"Numéro", "Carreau", "Nom", "Type", "Nombre", "Prix Achat", "Loyer"};
+	String[] entetes = {"Carreau", "Nom", "Groupe", "Type", "Nombre", "Prix Achat", "Loyer"};
 
 	model3.setColumnIdentifiers(entetes);
-
+        
 	listeConstructions.add(table3.getTableHeader(), BorderLayout.NORTH);
 	listeConstructions.add(table3, BorderLayout.CENTER);
 
 	String[] valeur = new String[7];
 	int i = 0;
 	for (Object[] cons : controleur.getJoueurCourant().getLiseConstructionsDispo()) {
-	    valeur[0] = Integer.toString(i);
-	    valeur[1] = Integer.toString(((ProprieteAConstruire) cons[0]).getNumero());
-	    valeur[2] = ((ProprieteAConstruire) cons[0]).getNomCarreau();
+	    valeur[0] = Integer.toString(((ProprieteAConstruire) cons[0]).getNumero());
+	    valeur[1] = ((ProprieteAConstruire) cons[0]).getNomCarreau();
+            valeur[2] = ((ProprieteAConstruire) cons[0]).getGroupe().getCouleur().name();
 	    valeur[3] = ((String) cons[1]);
 	    if (((String) cons[1]) == "hotel") {
 		valeur[4] = "1";
@@ -68,7 +68,7 @@ public class ComposantsPlateau extends JPanel {
 	    valeur[6] = Integer.toString(((Integer) cons[3]));
 	    model3.addRow(valeur);
 	    i++;
-	    liste.add(valeur[0] + ", " + valeur[1] + ", " + valeur[2] + ", " + valeur[3] + ", " + valeur[4] + ", " + valeur[5] + ", " + valeur[6]);
+	    liste.add(valeur[0] + " : " + valeur[1]);
 	}
 	String[] list = liste.toArray(new String[7]);
 	JComboBox jcb = new JComboBox(list);
@@ -132,6 +132,14 @@ public class ComposantsPlateau extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		//construire(); passer en object param
+                String cons = PopupConstruction(controleur);
+                Object[] construction = {};
+                for(Object[] prop : controleur.getJoueurCourant().getLiseConstructionsDispo()){
+                    if(cons.contains(((ProprieteAConstruire) prop[0]).getNomCarreau())){
+                        construction = prop;
+                    }
+                }
+                controleur.getJoueurCourant().construire(construction);
 	    }
 	});
 	construire.setEnabled(false);
@@ -143,7 +151,7 @@ public class ComposantsPlateau extends JPanel {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
 		controleur.setJoueurSuivant(controleur.getJoueurCourant());
-		controleur.getInterfacee().getFenetre().ControlDesTours(controleur);
+                controleur.getInterfacee().getFenetre().setEnabledButton(new Integer[]{1,0,0,0});
 		controleur.getInterfacee().getFenetre().setInfosJoueurs(controleur);
 		controleur.setCom("Affichage", new Object[]{controleur.getJoueurCourant().getNomJoueur() + " : Lancez les dés pour commencer votre tour.", false});
 	    }
@@ -231,14 +239,14 @@ public class ComposantsPlateau extends JPanel {
 	propJoueur.setBackground(new Color(124, 155, 120));
 
 	propJoueur.add(new JLabel("Propriétés du joueur: "), BorderLayout.NORTH);
-	model = new DefaultTableModel() {
+	model4 = new DefaultTableModel() {
 
 	    @Override
 	    public boolean isCellEditable(int row, int column) {
 		return false;//This causes all cells to be not editable
 	    }
 	};
-	JTable table = new JTable(model) { // met en couleur de fond de case la couleur du groupe corespondant
+	JTable table = new JTable(model4) { // met en couleur de fond de case la couleur du groupe corespondant
 	    @Override
 	    public Component prepareRenderer(TableCellRenderer renderer, int rowIndex,
 		    int columnIndex) {
@@ -292,14 +300,14 @@ public class ComposantsPlateau extends JPanel {
 	table.getTableHeader().setBackground(new Color(219, 236, 215));
 
 	String[] entetes = {"Numéro", "Nom"};
-	model.setColumnIdentifiers(entetes);
+	model4.setColumnIdentifiers(entetes);
 
 	String[] valeur = new String[2];
 
 	for (Biens_achetables bien : j.getPropriétés()) {
 	    valeur[0] = Integer.toString(bien.getNumero());
 	    valeur[1] = bien.getNomCarreau();
-	    model.addRow(valeur);
+	    model4.addRow(valeur);
 
 	    String couleur;
 	    if (bien.getClass().getSimpleName().equals("ProprieteAConstruire")) {
@@ -308,9 +316,11 @@ public class ComposantsPlateau extends JPanel {
 		couleur = "default";
 	    }
 	}
-
+        
+        JScrollPane js =new JScrollPane(table);
+        js.getViewport().setPreferredSize(new Dimension(200, 250));
 	propJoueur.add(table.getTableHeader(), BorderLayout.CENTER);
-	propJoueur.add(table, BorderLayout.SOUTH);
+	propJoueur.add(js, BorderLayout.SOUTH);
 
 	JPanel consJoueur = new JPanel();
 	consJoueur.setLayout(new BorderLayout());
@@ -341,17 +351,16 @@ public class ComposantsPlateau extends JPanel {
 		    valeur2[0] = bien.getNomCarreau();
 		    valeur2[1] = ((ProprieteAConstruire) bien).getConstructions().get(0).getType();
 		    valeur2[2] = Integer.toString(((ProprieteAConstruire) bien).getConstructions().size());
+                    model2.addRow(valeur2);
 		}
 	    }
-	    model2.addRow(valeur2);
 	}
-
+        JScrollPane js2 =new JScrollPane(table2);
+        js2.getViewport().setPreferredSize(new Dimension(200, 150));
 	consJoueur.add(table2.getTableHeader(), BorderLayout.CENTER);
-	consJoueur.add(table2, BorderLayout.SOUTH);
+	consJoueur.add(js2, BorderLayout.SOUTH);
 
 	JPanel panelInter = new JPanel(new BorderLayout());
-	consJoueur.setAutoscrolls(true);
-	propJoueur.setAutoscrolls(true);
 	propJoueur.setBorder(new EmptyBorder(10, 0, 20, 0));
 	consJoueur.setBorder(new EmptyBorder(20, 0, 10, 0));
 	panelInter.add(propJoueur, BorderLayout.CENTER);

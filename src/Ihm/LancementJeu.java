@@ -101,7 +101,6 @@ public class LancementJeu extends JPanel { //Fenetre de lancement du jeu (select
 			frame.setVisible(false);
 			frame.dispose();
 			fenetre = new FenetreDeJeu(controleur);
-                        fenetre.ControlDesTours(controleur);
 		    }
 		    else{  //si noms pas ok
 			JOptionPane.showMessageDialog(frame,"Les noms doivent être différents et non nuls !");

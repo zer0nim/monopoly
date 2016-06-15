@@ -13,6 +13,7 @@ public class ControleurGraphique {
     private LancementJeu interfacee;
     private int resultD;
     private int resultD2;
+    private boolean test = false;
     
     public ControleurGraphique(LancementJeu inter){
 	this.monopoly = new Monopoly(this);
@@ -24,6 +25,15 @@ public class ControleurGraphique {
 	resultD2 = lancerDésAvancer(jCourant);
     }
     public void jouerUnCoup() {
+        if(test){
+            test = false;
+            for(Carreau car : getMonopoly().getCarreaux()){
+                if(car.getClass().getSimpleName().equals("ProprieteAConstruire")){
+                    jCourant.addPropriété((Biens_achetables)car);
+                    ((Biens_achetables)car).setPropriétaire(jCourant);
+                }
+            }
+        }
 	if (!jCourant.estMort()){
 	    resultD += resultD2;
             if(jCourant.getPrison() != 0 && resultD == 2 * resultD2){
@@ -33,7 +43,7 @@ public class ControleurGraphique {
             }
 	    //affJoueur(jCourant);
 	    actionCarreau(jCourant, resultD);
-            interfacee.getFenetre().setInfosJoueurs(this);
+            getInterfacee().getFenetre().setInfosJoueurs(this);
             construire(jCourant);
             if(jCourant.getPrison() == -1){
                 IhmText.Afficher("Il est libéré");
@@ -54,7 +64,7 @@ public class ControleurGraphique {
                     String nomWinner = monopoly.getJoueurs().get(0).getNomJoueur();
                     //winPane.showMessageDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu", JOptionPane.INFORMATION_MESSAGE);
                     String options[] = {"Recommencer une partie", "Quitter le jeu"};
-                    int retour = winPane.showOptionDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, options[0]);
+                    int retour = winPane.showOptionDialog(null, ("Le Joueur " + nomWinner + " a Gagné !"), "Fin du Jeu",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null, options, null);
                              if( retour==JOptionPane.CLOSED_OPTION || retour == 1){
                                  System.exit(0);
                              }else{

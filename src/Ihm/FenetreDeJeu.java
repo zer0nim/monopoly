@@ -83,19 +83,6 @@ public class FenetreDeJeu {
         timer.start();
     }
     
-    public void ControlDesTours(ControleurGraphique controleur) {
-            setEnabledButton(new Integer[]{1,0,0,0});
-            jCourant = controleur.getJoueurCourant();//tant qu'il y a au moins 2 joueurs
-            if(jCourant.estMort()){ //si le joueur à 0 ou moins de cash
-                controleur.getMonopoly().getJoueurs().remove(jCourant);
-	    }
-	    if (controleur.getMonopoly().getJoueurs().size() < 2){
-		frame.setVisible(false);
-	    }
-	    else{
-		jCourant = controleur.getJoueurCourant();
-	    }
-    }
 
     /**
      * @return the animationDe
@@ -127,6 +114,7 @@ public class FenetreDeJeu {
     }
         
     public void setInfosJoueurs(ControleurGraphique controleur){
+        jCourant = controleur.getJoueurCourant();
         PaneauIntermediaireInfosJoueurs.remove(PaneauIntermediaireInfosJoueurs.getComponent(1));
         for(int i =0; i < PaneauInfosJoueurs.getComponentCount(); i++){
             PaneauInfosJoueurs.remove(PaneauInfosJoueurs.getComponent(i));

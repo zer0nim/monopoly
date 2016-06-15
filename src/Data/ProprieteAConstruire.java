@@ -99,11 +99,13 @@ public class ProprieteAConstruire extends Biens_achetables{
     }
     
     public int getNbConstructions(){
-        int nbConstruction ;
+        int nbConstruction;
         if(getHotel().size() != 0){
             nbConstruction = 4;
-        }else{
+        }else if(getConstructions() != null){
             nbConstruction = getConstructions().size();
+        }else{
+            nbConstruction = 0;
         }
         return nbConstruction;
     }

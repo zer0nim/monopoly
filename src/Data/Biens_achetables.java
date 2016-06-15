@@ -24,8 +24,10 @@ public abstract class Biens_achetables extends Carreau{
 		int loy = CalculLoyer(resultde);
                 j.payerArgent(loy); //j paye le loyer
 		getPropriétaire().recevoirArgent(loy);
-                controleur.setCom("Affichage",new Object[]{j.getNomJoueur()+ " paye " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur()+".", true});
-	    }
+                controleur.setCom("Affichage",new Object[]{j.getNomJoueur()+ " : Vous payez " + loy + "€ de loyer à " + getPropriétaire().getNomJoueur()+".", true});
+	    }else{
+                controleur.setCom("Affichage",new Object[]{j.getNomJoueur()+ " : Vous êtes sur votre bien " + getNomCarreau() + ".", true});
+            }
 	}
 	else{
 	    if(assezArgent(j)){//Proposition d'achat si assez d'argent
