@@ -9,7 +9,7 @@ First Java Project in university, design, and implementation of an electronic ve
 
 Play Monopoly in the same computer (no computer player or online mode)
 
-## Exemple
+## Example
 ![Monopoly1](../assets/Monopoly1.png)
 ![Monopoly2](../assets/Monopoly2.png)
 ![Monopoly3](../assets/Monopoly3.png)
