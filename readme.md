@@ -1,7 +1,7 @@
 # 42 _ fdf
 
 
-> Grenoble University Institute of Technology in IT<br>05/2016, Five-person Group project
+> Grenoble France, IT University<br>05/2016, Five-person Group project
 
 First Java Project in university, design, and implementation of an electronic version of the famous board game, Monopoly
 
